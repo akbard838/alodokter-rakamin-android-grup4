@@ -7,6 +7,23 @@
         <item name="android:lineSpacingMultiplier">1.2</item>
     </style>
 
+    <style name="AndroidAppTextInputLayout" parent="Widget.MaterialComponents.TextInputLayout.FilledBox.Dense">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="boxBackgroundColor">@color/colorTransparent</item>
+        <item name="android:textColorHint">@color/colorGrey</item>
+        <item name="startIconTint">@color/colorBlack</item>
+        <item name="android:textSize">@dimen/text_size_12sp</item>
+    </style>
+
+    <style name="AndroidAppEditText">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:textSize">@dimen/text_size_12sp</item>
+        <item name="android:textColor">@color/colorBlack</item>
+        <item name="android:textColorHint">@color/colorGrey</item>
+    </style>
+
     <style name="AndroidAppTextTitleToolbar">
         <item name="android:fontFamily">@font/lato_bold</item>
         <item name="android:textSize">@dimen/text_size_20sp</item>
