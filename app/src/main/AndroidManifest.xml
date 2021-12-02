@@ -25,7 +25,9 @@
         <activity
             android:name=".ui.auth.RegisterActivity" />
         <activity
-            android:name=".ui.auth.RegisterSuccessActivity" />
+            android:name=".ui.success.SuccessActivity" />
+        <activity
+            android:name=".ui.auth.ResetPasswordActivity" />
     </application>
 
 </manifest>

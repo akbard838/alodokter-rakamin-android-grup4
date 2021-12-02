@@ -8,7 +8,6 @@ import androidx.viewbinding.ViewBinding
 import com.example.androidgroup4.R
 import com.example.androidgroup4.base.BaseActivity
 import com.example.androidgroup4.databinding.ActivityLoginBinding
-import com.example.androidgroup4.utils.showToast
 import com.example.androidgroup4.utils.validateEmail
 import com.example.androidgroup4.utils.validateNonEmpty
 
@@ -36,7 +35,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
     override fun initAction() {
         binding.apply {
             btnForgotPassword.setOnClickListener {
-                showToast(this@LoginActivity, "Forgot")
+                ResetPasswordActivity.start(this@LoginActivity)
             }
 
             btnLogin.setOnClickListener {
