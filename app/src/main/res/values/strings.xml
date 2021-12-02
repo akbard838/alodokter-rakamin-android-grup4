@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">AndroidGroup4</string>
+    <string name="hint_email">Email</string>
+    <string name="hint_password">Password</string>
+    <string name="label_login">Login</string>
+    <string name="button_forgot_password">Lupa Password?</string>
+    <string name="button_register_here">Daftar Disini</string>
+    <string name="button_login">Login</string>
+    <string name="message_error_email">Format email tidak sesuai</string>
+    <string name="message_error_empty_field">Form tidak boleh kosong</string>
 </resources>
