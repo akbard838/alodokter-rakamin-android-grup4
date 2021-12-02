@@ -34,7 +34,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
             }
 
             btnRegister.setOnClickListener {
-                showToast(this@LoginActivity, "Register")
+                RegisterActivity.start(this@LoginActivity)
             }
         }
     }
