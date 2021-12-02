@@ -24,6 +24,8 @@
             android:name=".ui.auth.LoginActivity" />
         <activity
             android:name=".ui.auth.RegisterActivity" />
+        <activity
+            android:name=".ui.auth.RegisterSuccessActivity" />
     </application>
 
 </manifest>

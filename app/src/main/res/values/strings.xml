@@ -14,4 +14,6 @@
     <string name="button_register">Daftar</string>
     <string name="label_register_now">Daftar Sekarang</string>
     <string name="label_input_email_and_password_register">Silahkan masukkan email dan password anda untuk membuat akun</string>
+    <string name="message_input_account_for_login">Selamat anda telah berhasil melakukan pembuatan akun. Silahkan login dengan akun yang sudah anda buat</string>
+    <string name="title_register_success">Pendaftaran Berhasil</string>
 </resources>

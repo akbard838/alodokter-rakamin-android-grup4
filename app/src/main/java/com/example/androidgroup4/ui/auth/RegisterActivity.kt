@@ -27,6 +27,8 @@ class RegisterActivity : BaseActivity<ActivityRegisterBinding>() {
 
     override fun initUI() {
         setupToolbar(binding.toolbarMain.toolbar, true, emptyString())
+
+        initDummyData()
     }
 
     override fun initAction() {
@@ -35,6 +37,12 @@ class RegisterActivity : BaseActivity<ActivityRegisterBinding>() {
                 tilEmail.validateEmail()
                 tilPassword.validatePassword()
                 tilConfirmPassword.validateConfirmPassword(edtPassword.text.toString())
+
+                if (isFormValid(listOf(tilEmail, tilPassword, tilConfirmPassword))){
+                    RegisterSuccessActivity.start(this@RegisterActivity)
+                    finish()
+                }
+
             }
         }
     }
@@ -54,6 +62,14 @@ class RegisterActivity : BaseActivity<ActivityRegisterBinding>() {
             }
         }
         return true
+    }
+
+    private fun initDummyData() {
+        binding.apply {
+            edtEmail.setText("akbard838@gmail.com")
+            edtPassword.setText("Dino123")
+            edtConfirmPasword.setText("Dino123")
+        }
     }
 
 }

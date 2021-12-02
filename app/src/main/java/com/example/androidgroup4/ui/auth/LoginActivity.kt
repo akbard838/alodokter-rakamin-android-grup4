@@ -1,5 +1,7 @@
 package com.example.androidgroup4.ui.auth
 
+import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.MenuItem
 import androidx.viewbinding.ViewBinding
@@ -12,6 +14,14 @@ import com.example.androidgroup4.utils.validateNonEmpty
 
 class LoginActivity : BaseActivity<ActivityLoginBinding>() {
 
+    companion object {
+        fun start(context: Context) {
+            Intent(context, LoginActivity::class.java).apply {
+                context.startActivity(this)
+            }
+        }
+    }
+
     override val bindingInflater: (LayoutInflater) -> ViewBinding = ActivityLoginBinding::inflate
 
     override fun initIntent() {
@@ -20,6 +30,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
 
     override fun initUI() {
         setupToolbar(binding.toolbarMain.toolbar, true, getString(R.string.label_login))
+        initDummyData()
     }
 
     override fun initAction() {
@@ -54,6 +65,13 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
             }
         }
         return true
+    }
+
+    private fun initDummyData() {
+        binding.apply {
+            edtEmail.setText("akbard838@gmail.com")
+            edtPassword.setText("Dino123")
+        }
     }
 
 }
