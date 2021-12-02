@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="AndroidAppText">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:fontFamily">@font/lato_regular</item>
+        <item name="android:lineSpacingMultiplier">1.2</item>
+    </style>
+
+    <style name="AndroidAppTextTitleToolbar">
+        <item name="android:fontFamily">@font/lato_bold</item>
+        <item name="android:textSize">@dimen/text_size_20sp</item>
+    </style>
+
+    <style name="AndroidAppText.Italic">
+        <item name="android:fontFamily">@font/lato_italic</item>
+    </style>
+
+    <style name="AndroidAppText.SemiBold">
+        <item name="android:fontFamily">@font/lato_semi_bold</item>
+    </style>
+
+    <style name="AndroidAppText.Bold">
+        <item name="android:fontFamily">@font/lato_bold</item>
+    </style>
+
+    <style name="AndroidAppText.Light">
+        <item name="android:fontFamily">@font/lato_light</item>
+    </style>
+
+    <style name="AndroidAppText.Bold.Black">
+        <item name="android:textColor">@color/colorBlack</item>
+    </style>
+
+    <style name="AndroidAppText.White">
+        <item name="android:textColor">@color/colorWhite</item>
+    </style>
+
+    <style name="AndroidAppText.Blue">
+        <item name="android:textColor">@color/colorPrimary</item>
+    </style>
+
+    <style name="AndroidAppText.Black">
+        <item name="android:textColor">@color/colorBlack</item>
+    </style>
+
+    <style name="AndroidAppText.Bold.White">
+        <item name="android:textColor">@color/colorWhite</item>
+    </style>
+
+    <style name="AndroidAppText.Italic.Black">
+        <item name="android:textColor">@color/colorBlack</item>
+    </style>
+
+</resources>
