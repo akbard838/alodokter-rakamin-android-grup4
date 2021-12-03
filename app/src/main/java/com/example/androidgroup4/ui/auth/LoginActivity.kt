@@ -1,11 +1,13 @@
 package com.example.androidgroup4.ui.auth
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.MenuItem
 import androidx.viewbinding.ViewBinding
 import com.example.androidgroup4.R
 import com.example.androidgroup4.base.BaseActivity
 import com.example.androidgroup4.databinding.ActivityLoginBinding
+import com.example.androidgroup4.ui.profile.ProfileActivity
 import com.example.androidgroup4.utils.showToast
 import com.example.androidgroup4.utils.validateEmail
 import com.example.androidgroup4.utils.validateNonEmpty
@@ -25,7 +27,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
     override fun initAction() {
         binding.apply {
             btnForgotPassword.setOnClickListener {
-                showToast(this@LoginActivity, "Forgot")
+                startActivity(Intent(this@LoginActivity, ProfileActivity::class.java))
             }
 
             btnLogin.setOnClickListener {

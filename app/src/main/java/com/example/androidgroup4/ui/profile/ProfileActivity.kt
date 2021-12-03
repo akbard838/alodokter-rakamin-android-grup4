@@ -16,7 +16,7 @@ class ProfileActivity : BaseActivity<ActivityProfileBinding>() {
     }
 
     override fun initUI() {
-        setupToolbar(binding.toolbarMain.toolbar, true, getString(R.string.label_login))
+        setupToolbar(binding.toolbarMain.toolbar, true, getString(R.string.label_profile))
     }
 
     override fun initAction() {
