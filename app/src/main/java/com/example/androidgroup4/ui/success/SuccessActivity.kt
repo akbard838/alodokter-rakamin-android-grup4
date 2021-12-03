@@ -62,14 +62,6 @@ class SuccessActivity : BaseActivity<ActivitySuccessBinding>() {
     override fun initAction() {
         binding.apply {
             btnSuccess.setOnClickListener {
-                when (successType) {
-                    SuccessType.CONSULTATION.type -> {
-
-                    }
-                    else -> {
-                        LoginActivity.start(this@SuccessActivity)
-                    }
-                }
                 finish()
             }
         }
