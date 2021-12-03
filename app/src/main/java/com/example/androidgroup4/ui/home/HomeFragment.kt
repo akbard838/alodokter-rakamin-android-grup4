@@ -3,6 +3,9 @@ package com.example.androidgroup4.ui.home
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.navigation.Navigation
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewbinding.ViewBinding
 import com.example.androidgroup4.Article
@@ -34,21 +37,11 @@ class HomeFragment: BaseFragment<FragmentHomeBinding>() {
 
     override fun initAction() {
         articleAdapter.onItemClick = { article ->
-            val detailArticleFragment = DetailArticleFragment()
             // send data
             val mBundle = Bundle()
             mBundle.putParcelable(DetailArticleFragment.EXTRA_ARTICLE, article)
-            detailArticleFragment.arguments = mBundle
             // untuk pindah fragmment
-            parentFragmentManager.beginTransaction().apply {
-                replace(
-                    R.id.frame_container,
-                    detailArticleFragment,
-                    DetailArticleFragment::class.java.simpleName
-                )
-                addToBackStack(null)
-                commit()
-            }
+            findNavController().navigate(R.id.action_navigation_home_to_detailArticleFragment, mBundle)
         }
     }
 
