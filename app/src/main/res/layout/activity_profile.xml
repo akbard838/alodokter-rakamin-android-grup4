@@ -20,7 +20,6 @@
         android:id="@+id/profile_image"
         android:layout_width="@dimen/dimen_120dp"
         android:layout_height="@dimen/dimen_120dp"
-        android:layout_marginTop="@dimen/dimen_24dp"
         android:contentDescription="Profile Image"
         android:src="@drawable/profile_dummy"
         app:layout_constraintEnd_toEndOf="parent"
@@ -32,20 +31,20 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_baseline_photo_camera_24"
-        app:backgroundTint="@color/white"
+        app:backgroundTint="@color/grey_300"
+        app:fabSize="mini"
         app:layout_constraintBottom_toBottomOf="@+id/profile_image"
-        app:layout_constraintStart_toEndOf="@+id/profile_image" />
+        app:layout_constraintEnd_toEndOf="@+id/profile_image" />
 
     <TextView
         android:id="@+id/fullname_field"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dimen_16dp"
         android:fontFamily="@font/lato_semi_bold"
         android:includeFontPadding="false"
         android:text="Dino Akbar Pratondo"
         android:textColor="@color/colorWhite"
-        android:textSize="@dimen/text_size_22sp"
+        android:textSize="@dimen/text_size_18sp"
         app:layout_constraintEnd_toEndOf="@+id/profile_image"
         app:layout_constraintStart_toStartOf="@+id/profile_image"
         app:layout_constraintTop_toBottomOf="@+id/profile_image" />
@@ -57,7 +56,7 @@
         android:includeFontPadding="false"
         android:text="Jakarta, Indonesia"
         android:fontFamily="@font/lato_regular"
-        android:textSize="@dimen/text_size_18sp"
+        android:textSize="@dimen/text_size_16sp"
         android:textColor="@color/colorWhite"
         app:layout_constraintEnd_toEndOf="@+id/fullname_field"
         app:layout_constraintStart_toStartOf="@+id/fullname_field"
@@ -67,88 +66,87 @@
         android:id="@+id/edit_profile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dimen_16dp"
         android:foreground="@drawable/ic_button_edit"
+        app:layout_constraintBottom_toBottomOf="@+id/appCompatImageView"
         app:layout_constraintEnd_toEndOf="@+id/domisili"
-        app:layout_constraintStart_toStartOf="@+id/domisili"
-        app:layout_constraintTop_toBottomOf="@+id/domisili" />
+        app:layout_constraintStart_toStartOf="@+id/domisili" />
 
     <TextView
         android:id="@+id/tanggal_lahir_view"
         style="@style/AndroidAppText.Bold.Black"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dimen_24dp"
-        android:text="Tanggal Lahir"
-        android:textSize="@dimen/text_size_22sp"
+        android:layout_marginBottom="@dimen/dimen_8dp"
         android:fontFamily="@font/lato_bold"
-        app:layout_constraintStart_toStartOf="@+id/change_password"
-        app:layout_constraintTop_toBottomOf="@+id/edit_profile" />
+        android:text="Tanggal Lahir"
+        android:textSize="@dimen/text_size_18sp"
+        app:layout_constraintBottom_toTopOf="@+id/tanggal_lahir"
+        app:layout_constraintStart_toStartOf="@+id/change_password" />
 
     <TextView
         android:id="@+id/tanggal_lahir"
         style="@style/AndroidAppText.Black"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dimen_8dp"
-        android:text="12/09/2021"
+        android:layout_marginBottom="@dimen/dimen_16dp"
         android:fontFamily="@font/lato_semi_bold"
-        android:textSize="@dimen/text_size_18sp"
-        app:layout_constraintStart_toStartOf="@+id/tanggal_lahir_view"
-        app:layout_constraintTop_toBottomOf="@+id/tanggal_lahir_view" />
+        android:text="12/09/2021"
+        android:textSize="@dimen/text_size_16sp"
+        app:layout_constraintBottom_toTopOf="@+id/nomor_ktp_view"
+        app:layout_constraintStart_toStartOf="@+id/change_password" />
 
     <TextView
         android:id="@+id/nomor_ktp_view"
         style="@style/AndroidAppText.Bold.Black"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dimen_24dp"
-        android:text="Nomor KTP"
+        android:layout_marginBottom="@dimen/dimen_8dp"
         android:fontFamily="@font/lato_bold"
-        android:textSize="@dimen/text_size_22sp"
-        app:layout_constraintStart_toStartOf="@id/tanggal_lahir"
-        app:layout_constraintTop_toBottomOf="@+id/tanggal_lahir" />
+        android:text="Nomor KTP"
+        android:textSize="@dimen/text_size_18sp"
+        app:layout_constraintBottom_toTopOf="@+id/nomor_ktp"
+        app:layout_constraintStart_toStartOf="@+id/change_password" />
 
     <TextView
         android:id="@+id/nomor_ktp"
         style="@style/AndroidAppText.Black"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dimen_8dp"
+        android:layout_marginBottom="@dimen/dimen_16dp"
         android:fontFamily="@font/lato_semi_bold"
         android:text="28348324832"
-        android:textSize="@dimen/text_size_18sp"
-        app:layout_constraintStart_toStartOf="@+id/nomor_ktp_view"
-        app:layout_constraintTop_toBottomOf="@+id/nomor_ktp_view" />
+        android:textSize="@dimen/text_size_16sp"
+        app:layout_constraintBottom_toTopOf="@+id/alamat_view"
+        app:layout_constraintStart_toStartOf="@+id/change_password" />
 
     <TextView
         android:id="@+id/alamat_view"
         style="@style/AndroidAppText.Bold.Black"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dimen_24dp"
-        android:text="Alamat sesuai KTP"
+        android:layout_marginBottom="@dimen/dimen_8dp"
         android:fontFamily="@font/lato_bold"
-        android:textSize="@dimen/text_size_22sp"
-        app:layout_constraintStart_toStartOf="@id/nomor_ktp"
-        app:layout_constraintTop_toBottomOf="@+id/nomor_ktp" />
+        android:text="Alamat sesuai KTP"
+        android:textSize="@dimen/text_size_18sp"
+        app:layout_constraintBottom_toTopOf="@+id/alamat"
+        app:layout_constraintStart_toStartOf="@+id/change_password" />
 
     <TextView
         android:id="@+id/alamat"
         style="@style/AndroidAppText.Black"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dimen_8dp"
+        android:layout_marginBottom="@dimen/dimen_8dp"
         android:fontFamily="@font/lato_semi_bold"
-        android:text="Jl. Komplek"
-        android:textSize="@dimen/text_size_18sp"
-        app:layout_constraintStart_toStartOf="@+id/alamat_view"
-        app:layout_constraintTop_toBottomOf="@+id/alamat_view" />
+        android:text="Komplek Saari Jl. Nuri No. 12 Sukabumi Utara,\nKebon Jeruk, Jakarta Barat, 11340"
+        android:textSize="@dimen/text_size_16sp"
+        app:layout_constraintBottom_toTopOf="@+id/change_password"
+        app:layout_constraintStart_toStartOf="@+id/change_password" />
 
     <Button
         android:id="@+id/change_password"
         style="@style/AndroidAppButton.White"
-        android:layout_width="@dimen/dimen_350dp"
+        android:layout_width="@dimen/dimen_320dp"
         android:layout_height="wrap_content"
         android:text="UBAH PASSWORD"
         app:layout_constraintBottom_toTopOf="@+id/logout"
@@ -158,8 +156,9 @@
     <Button
         android:id="@+id/logout"
         style="@style/AndroidAppButton"
-        android:layout_width="@dimen/dimen_350dp"
+        android:layout_width="@dimen/dimen_320dp"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
         android:text="LOGOUT"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
