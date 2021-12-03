@@ -5,12 +5,11 @@ import android.view.MenuItem
 import androidx.viewbinding.ViewBinding
 import com.example.androidgroup4.R
 import com.example.androidgroup4.base.BaseActivity
-import com.example.androidgroup4.databinding.ActivityLoginBinding
 import com.example.androidgroup4.databinding.ActivityProfileBinding
 
 class ProfileActivity : BaseActivity<ActivityProfileBinding>() {
 
-    override val bindingInflater: (LayoutInflater) -> ViewBinding = ActivityLoginBinding::inflate
+    override val bindingInflater: (LayoutInflater) -> ViewBinding = ActivityProfileBinding::inflate
 
     override fun initIntent() {
 
