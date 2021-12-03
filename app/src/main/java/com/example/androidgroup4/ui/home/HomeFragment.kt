@@ -2,37 +2,37 @@ package com.example.androidgroup4.ui.home
 
 import android.os.Bundle
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.viewbinding.ViewBinding
 import com.example.androidgroup4.Article
 import com.example.androidgroup4.R
+import com.example.androidgroup4.base.BaseFragment
 import com.example.androidgroup4.databinding.FragmentHomeBinding
 import com.example.androidgroup4.ui.detail.DetailArticleFragment
 
-class HomeFragment : Fragment() {
+class HomeFragment: BaseFragment<FragmentHomeBinding>() {
 
-    private var _binding: FragmentHomeBinding? = null
-    private val binding get() = _binding!!
     private lateinit var articleAdapter: ArticleAdapter
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        _binding = FragmentHomeBinding.inflate(inflater, container, false)
-        return binding.root
+    override val bindingInflater: (LayoutInflater, ViewGroup?, Boolean) -> ViewBinding
+        = FragmentHomeBinding::inflate
+
+    override fun initIntent() {
+
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        initUI()
-        initAction()
+    override fun initUI() {
+        articleAdapter = ArticleAdapter()
+        articleAdapter.setData(dummyData())
+        with(binding.rvArticle) {
+            layoutManager = LinearLayoutManager(requireContext())
+            setHasFixedSize(true)
+            adapter = articleAdapter
+        }
     }
 
-    private fun initAction() {
+    override fun initAction() {
         articleAdapter.onItemClick = { article ->
             val detailArticleFragment = DetailArticleFragment()
             // send data
@@ -51,17 +51,16 @@ class HomeFragment : Fragment() {
             }
         }
     }
-    private fun initUI() {
-        articleAdapter = ArticleAdapter()
-        articleAdapter.setData(dummyData())
-        with(binding.rvArticle) {
-            layoutManager = LinearLayoutManager(requireContext())
-            setHasFixedSize(true)
-            adapter = articleAdapter
-        }
+
+    override fun initProcess() {
+
     }
 
-    //tes
+    override fun initObservable() {
+
+    }
+
+    //Create Dummy Data
     private fun dummyData(): List<Article> {
         return listOf(
             Article("kesehatan", "menjaga kesehatan"),
@@ -75,10 +74,4 @@ class HomeFragment : Fragment() {
             Article("makanan", "makan siang")
         )
     }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
-
 }
