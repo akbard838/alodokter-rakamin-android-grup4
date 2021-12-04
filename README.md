@@ -5,20 +5,21 @@ https://docs.google.com/document/d/1YY6Foi82z3_cbP6vMv8my0C5U-E77Z1raC8K9UST5WY/
 https://docs.google.com/presentation/d/1-JHo-VVN6VbN7drHSFIsexyeKW9YOIRY/edit?usp=sharing&ouid=107997149965940489981&rtpof=true&sd=true
 
 
-Analisa Projek
+# Analisa Projek
 
-Analisa Kepentingan
+## Analisa Kepentingan
 
 Karena adanya pandemi covid-19, tidak memungkinkan untuk berkerumun, dibutuhkan adanya sebuah platform yang memungkinkan pengguna untuk bisa mengatur jadwal dengan dokter secara online, selain itu karena banyaknya info hoaks tentang kesehatan yang tersebar perlu juga adanya platform yang menyediakan informasi tentang Kesehatan secara terpercaya
 
-Analisa Pengguna
+## Analisa Pengguna
+
 Pengguna dari platform dapat berupa masyarakat umum yang membutuhkan informasi terpercaya dari artikel yang sudah disediakan atau berupa pasien yang menggunakan platform untuk mengatur jadwal konsultasi dengan dokter agar bisa diproses lebih cepat dan tepat.
 
-Analisa Platform
+## Analisa Platform
 Aplikasi nantinya akan menggunakan platform web dan mobile agar dapat digunakan kapan saja dan dimana saja secara maksimal dan efisien.
 
 
-Modul dan Feature aplikasi
+## Modul dan Feature aplikasi
 
 Modul User
 Add User
@@ -38,7 +39,7 @@ Search Dokter
 Modul Penjadwalan
 Add Jadwal
 
-Flow Diagram Aplikasi Android
+## Flow Diagram Aplikasi Android
 
 AUTH
 
