@@ -9,6 +9,7 @@ import androidx.viewbinding.ViewBinding
 import com.example.androidgroup4.base.BaseActivity
 import com.example.androidgroup4.databinding.ActivitySplashScreenBinding
 import com.example.androidgroup4.ui.MainActivity
+import com.example.androidgroup4.ui.profile.ProfileActivity
 
 @SuppressLint("CustomSplashScreen")
 class SplashScreenActivity : BaseActivity<ActivitySplashScreenBinding>() {
@@ -27,7 +28,7 @@ class SplashScreenActivity : BaseActivity<ActivitySplashScreenBinding>() {
     override fun initProcess() {
         val handler = Handler(Looper.getMainLooper())
         handler.postDelayed({
-            val intent = Intent(this, MainActivity::class.java)
+            val intent = Intent(this, ProfileActivity::class.java)
             startActivity(intent)
             finish()
         }, 2000)
