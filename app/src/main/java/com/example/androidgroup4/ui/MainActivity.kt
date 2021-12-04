@@ -1,6 +1,5 @@
 package com.example.androidgroup4.ui
 
-import android.content.Intent
 import android.view.LayoutInflater
 import androidx.viewbinding.ViewBinding
 import com.example.androidgroup4.base.BaseActivity

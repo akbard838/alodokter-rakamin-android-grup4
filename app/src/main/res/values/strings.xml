@@ -31,4 +31,13 @@
     <string name="label_address">Alamat</string>
     <string name="button_change_password">Ubah Password</string>
     <string name="button_logout">Logout</string>
+    <string name="button_skip">Lewati</string>
+    <string name="button_next">Selanjutnya</string>
+    <string name="label_start">Mulai</string>
+    <string name="title_on_boarding_1">Selamat Datang Di Alodokter</string>
+    <string name="title_on_boarding_2">Artikel Kesehatan</string>
+    <string name="title_on_boarding_3">Siap Untuk Berkonsultasi</string>
+    <string name="message_on_boarding_3">Lebih dari 20 ribu dokter siap berkonsultasi denganmu</string>
+    <string name="message_on_boarding_2"><![CDATA[Panduan kesehatan terlengkap mulai dari artikel & tips kesehatan]]></string>
+    <string name="message_on_boarding_1"><![CDATA[Konsultasi bersama dokter umum & spesialis, kapan pun, di mana pun]]></string>
 </resources>

@@ -1,14 +1,13 @@
 package com.example.androidgroup4.ui.splash
 
 import android.annotation.SuppressLint
-import android.content.Intent
 import android.os.Handler
 import android.os.Looper
 import android.view.LayoutInflater
 import androidx.viewbinding.ViewBinding
 import com.example.androidgroup4.base.BaseActivity
 import com.example.androidgroup4.databinding.ActivitySplashScreenBinding
-import com.example.androidgroup4.ui.MainActivity
+import com.example.androidgroup4.ui.onboarding.OnBoardingActivity
 
 @SuppressLint("CustomSplashScreen")
 class SplashScreenActivity : BaseActivity<ActivitySplashScreenBinding>() {
@@ -27,8 +26,7 @@ class SplashScreenActivity : BaseActivity<ActivitySplashScreenBinding>() {
     override fun initProcess() {
         val handler = Handler(Looper.getMainLooper())
         handler.postDelayed({
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
+            OnBoardingActivity.start(this)
             finish()
         }, 2000)
     }
