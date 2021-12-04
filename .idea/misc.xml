@@ -3,19 +3,6 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/HP/AndroidStudioProjects/alodokter-rakamin-android-grup4/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.403125" />
-        <entry key="..\:/Users/HP/AndroidStudioProjects/alodokter-rakamin-android-grup4/app/src/main/res/drawable/bg_round_bottom_blue.xml" value="0.403125" />
-        <entry key="..\:/Users/HP/AndroidStudioProjects/alodokter-rakamin-android-grup4/app/src/main/res/drawable/ic_baseline_photo_camera_24.xml" value="0.403125" />
-        <entry key="..\:/Users/HP/AndroidStudioProjects/alodokter-rakamin-android-grup4/app/src/main/res/drawable/ic_button_edit.xml" value="0.403125" />
-        <entry key="..\:/Users/HP/AndroidStudioProjects/alodokter-rakamin-android-grup4/app/src/main/res/drawable/ic_launcher_background.xml" value="0.403125" />
-        <entry key="..\:/Users/HP/AndroidStudioProjects/alodokter-rakamin-android-grup4/app/src/main/res/drawable/ic_profile_dummy.xml" value="0.403125" />
-        <entry key="..\:/Users/HP/AndroidStudioProjects/alodokter-rakamin-android-grup4/app/src/main/res/drawable/profile_activity_bg.xml" value="0.403125" />
-        <entry key="..\:/Users/HP/AndroidStudioProjects/alodokter-rakamin-android-grup4/app/src/main/res/layout/activity_edit_profile.xml" value="0.370018115942029" />
-        <entry key="..\:/Users/HP/AndroidStudioProjects/alodokter-rakamin-android-grup4/app/src/main/res/layout/activity_login.xml" value="0.3491847826086957" />
-        <entry key="..\:/Users/HP/AndroidStudioProjects/alodokter-rakamin-android-grup4/app/src/main/res/layout/activity_main.xml" value="0.358695652173913" />
-        <entry key="..\:/Users/HP/AndroidStudioProjects/alodokter-rakamin-android-grup4/app/src/main/res/layout/activity_profile.xml" value="0.5" />
-        <entry key="..\:/Users/HP/AndroidStudioProjects/alodokter-rakamin-android-grup4/app/src/main/res/layout/content_profile.xml" value="0.358695652173913" />
-        <entry key="..\:/Users/HP/AndroidStudioProjects/alodokter-rakamin-android-grup4/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.275" />
         <entry key="..\:/Users/akbar/Documents/AndroidProjects/AndroidGroup4/app/src/main/res/drawable/ic_back_white.xml" value="0.10989583333333333" />
         <entry key="..\:/Users/akbar/Documents/AndroidProjects/AndroidGroup4/app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="..\:/Users/akbar/Documents/AndroidProjects/AndroidGroup4/app/src/main/res/layout/fragment_list_doctor.xml" value="0.1" />
@@ -24,10 +11,7 @@
       </map>
     </option>
   </component>
-  <component name="ProjectPlainTextFileTypeManager">
-    <file url="file://$PROJECT_DIR$/app/src/main/java/com/example/androidgroup4/ui/profile/ProfileActivity.kt" />
-  </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" project-jdk-name="11" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="JDK" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">
