@@ -27,7 +27,10 @@
             android:name=".ui.auth.RegisterActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.auth.RegisterSuccessActivity"
+            android:name=".ui.success.SuccessActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.auth.ResetPasswordActivity"
             android:exported="false" />
         <activity
             android:name=".ui.MainActivity"

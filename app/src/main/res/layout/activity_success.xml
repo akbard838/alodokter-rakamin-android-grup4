@@ -2,7 +2,8 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <androidx.appcompat.widget.AppCompatImageView
         android:layout_width="match_parent"
@@ -12,14 +13,14 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/imgDone"
+        android:id="@+id/imgSuccess"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="@dimen/dimen_64dp"
-        android:layout_marginEnd="50dp"
+        android:layout_marginStart="@dimen/dimen_42dp"
+        android:layout_marginTop="@dimen/dimen_48dp"
+        android:layout_marginEnd="@dimen/dimen_42dp"
         android:adjustViewBounds="true"
-        android:src="@drawable/ic_done"
+        tools:src="@drawable/ic_done"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
@@ -29,11 +30,11 @@
         android:layout_marginStart="@dimen/dimen_16dp"
         android:layout_marginEnd="@dimen/dimen_16dp"
         android:layout_marginBottom="@dimen/dimen_12dp"
-        android:text="@string/title_register_success"
+        tools:text="@string/title_register_success"
         android:textSize="@dimen/text_size_22sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/imgDone" />
+        app:layout_constraintTop_toBottomOf="@id/imgSuccess" />
 
     <TextView
         android:id="@+id/tvMessage"
@@ -42,19 +43,19 @@
         android:layout_marginStart="@dimen/dimen_24dp"
         android:layout_marginTop="@dimen/dimen_12dp"
         android:layout_marginEnd="@dimen/dimen_24dp"
-        android:text="@string/message_input_account_for_login"
+        tools:text="@string/message_input_account_for_login"
         android:textAlignment="center"
         android:textSize="@dimen/text_size_14sp"
         app:layout_constraintTop_toBottomOf="@id/tvTitle" />
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/btnLogin"
+        android:id="@+id/btnSuccess"
         style="@style/AndroidAppButton"
         android:layout_width="match_parent"
         android:layout_marginStart="@dimen/dimen_16dp"
         android:layout_marginEnd="@dimen/dimen_16dp"
         android:layout_marginBottom="@dimen/dimen_16dp"
-        android:text="@string/button_login"
+        android:text="@string/button_ok"
         app:layout_constraintBottom_toBottomOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

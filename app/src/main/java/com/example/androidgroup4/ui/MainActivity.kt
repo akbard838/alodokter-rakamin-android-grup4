@@ -21,7 +21,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
 
     override fun initAction() {
         binding.tvHello.setOnClickListener {
-            startActivity(Intent(this, LoginActivity::class.java))
+            LoginActivity.start(this)
         }
 
     }
