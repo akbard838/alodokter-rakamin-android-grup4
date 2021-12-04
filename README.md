@@ -6,7 +6,9 @@ https://docs.google.com/presentation/d/1-JHo-VVN6VbN7drHSFIsexyeKW9YOIRY/edit?us
 
 
 Analisa Projek
-Analisa Kepentingan 
+
+Analisa Kepentingan
+
 Karena adanya pandemi covid-19, tidak memungkinkan untuk berkerumun, dibutuhkan adanya sebuah platform yang memungkinkan pengguna untuk bisa mengatur jadwal dengan dokter secara online, selain itu karena banyaknya info hoaks tentang kesehatan yang tersebar perlu juga adanya platform yang menyediakan informasi tentang Kesehatan secara terpercaya
 
 Analisa Pengguna
@@ -37,7 +39,9 @@ Modul Penjadwalan
 Add Jadwal
 
 Flow Diagram Aplikasi Android
+
 AUTH
+
 User Sign in
 ![image14](https://user-images.githubusercontent.com/57163153/144715522-e2e2e695-4bf2-4160-b51f-1d538567a129.png)
 
@@ -58,6 +62,7 @@ Change Password
 ![change password drawio](https://user-images.githubusercontent.com/57163153/144715851-2a442fe2-73cd-4054-b111-c0759969aba4.png)
 
 ARTIKEL
+
 Lihat Artikel
 ![image7](https://user-images.githubusercontent.com/57163153/144715881-3a4c8e6f-d162-40bb-b484-f5b78c97d764.png)
 
@@ -65,6 +70,7 @@ Lihat Detail Artikel
 ![image28](https://user-images.githubusercontent.com/57163153/144715915-ed8dd369-612f-49b1-98fa-f1b5d9972b72.png)
 
 DOKTER
+
 Lihat List Dokter
 ![image1](https://user-images.githubusercontent.com/57163153/144715945-2b80de73-4dfd-46e8-841e-a964127a3395.png)
 
