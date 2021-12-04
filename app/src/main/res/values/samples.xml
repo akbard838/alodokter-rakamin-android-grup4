@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="sample_name">Dino Akbar Pratondo</string>
+    <string name="sample_date_of_birth">12/09/2021</string>
+    <string name="sample_id_card_number">28348324832</string>
+    <string name="sample_address">Komplek Saari Jl. Nuri No. 12 Sukabumi Utara,\nKebon Jeruk, Jakarta Barat, 11340</string>
+</resources>
