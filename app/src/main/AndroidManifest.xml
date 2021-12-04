@@ -22,13 +22,20 @@
         </activity>
         <activity
             android:name=".ui.auth.LoginActivity"
-            android:exported="false"/>
+            android:exported="false" />
+        <activity
+            android:name=".ui.auth.RegisterActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.auth.RegisterSuccessActivity"
+            android:exported="false" />
         <activity
             android:name=".ui.MainActivity"
-            android:exported="false"/>
+            android:exported="false" />
         <activity
             android:name=".ui.profile.ProfileActivity"
             android:exported="false" />
+
     </application>
 
 </manifest>

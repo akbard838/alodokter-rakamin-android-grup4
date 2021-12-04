@@ -11,5 +11,9 @@
     <dimen name="dimen_140dp">140dp</dimen>
     <dimen name="dimen_120dp">120dp</dimen>
     <dimen name="dimen_48dp">48dp</dimen>
+    <dimen name="dimen_minus_82dp">-82dp</dimen>
+    <dimen name="dimen_32dp">32dp</dimen>
+    <dimen name="dimen_42dp">42dp</dimen>
+    <dimen name="dimen_64dp">64dp</dimen>
     <dimen name="dimen_320dp">320dp</dimen>
 </resources>

@@ -8,7 +8,15 @@
     <string name="button_register_here">Daftar Disini</string>
     <string name="button_login">Login</string>
     <string name="message_error_email">Format email tidak sesuai</string>
+    <string name="message_error_password">Password harus mengandung setidaknya satu angka dan satu huruf kapital</string>
+    <string name="message_error_confirm_email">Konfirmasi email tidak sesuai</string>
     <string name="message_error_empty_field">Form tidak boleh kosong</string>
+    <string name="hint_confirm_password">Konfirmasi Password</string>
+    <string name="button_register">Daftar</string>
+    <string name="label_register_now">Daftar Sekarang</string>
+    <string name="label_input_email_and_password_register">Silahkan masukkan email dan password anda untuk membuat akun</string>
+    <string name="message_input_account_for_login">Selamat anda telah berhasil melakukan pembuatan akun. Silahkan login dengan akun yang sudah anda buat</string>
+    <string name="title_register_success">Pendaftaran Berhasil</string>
     <string name="desc_profile_image">Profile Image</string>
     <string name="sample_location">Jakarta, Indonesia</string>
     <string name="label_date_of_birth">Tanggal Lahir</string>
