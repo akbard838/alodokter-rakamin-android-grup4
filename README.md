@@ -22,24 +22,18 @@ Aplikasi nantinya akan menggunakan platform web dan mobile agar dapat digunakan 
 ## Modul dan Feature aplikasi
 
 #### Modul User
-Add User
-
-Register User 
-
-Nonaktif User
-
+Add User,
+Register User, 
+Nonaktif User,
 Edit User
 
 #### Modul Artikel
-Get All Artikel
-
+Get All Artikel,
 Search Artikel
 
 #### Modul Dokter
-Get Spesifik Dokter
-
-Get All Dokter
-
+Get Spesifik Dokter,
+Get All Dokter,
 Search Dokter
 
 #### Modul Penjadwalan
