@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.androidgroup4">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AndroidGroup4">
         <activity
-            android:name=".ui.MainActivity"
+            android:name=".ui.splash.SplashScreenActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -21,11 +21,21 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.auth.LoginActivity" />
+            android:name=".ui.auth.LoginActivity"
+            android:exported="false" />
         <activity
-            android:name=".ui.auth.RegisterActivity" />
+            android:name=".ui.auth.RegisterActivity"
+            android:exported="false" />
         <activity
-            android:name=".ui.auth.RegisterSuccessActivity" />
+            android:name=".ui.auth.RegisterSuccessActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.MainActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.profile.ProfileActivity"
+            android:exported="false" />
+
     </application>
 
 </manifest>
