@@ -21,22 +21,22 @@ Aplikasi nantinya akan menggunakan platform web dan mobile agar dapat digunakan 
 
 ## Modul dan Feature aplikasi
 
-Modul User
+#### Modul User
 Add User
 Register User 
 Nonaktif User
 Edit User
 
-Modul Artikel
+#### Modul Artikel
 Get All Artikel
 Search Artikel
 
-Modul Dokter
+#### Modul Dokter
 Get Spesifik Dokter
 Get All Dokter
 Search Dokter
 
-Modul Penjadwalan
+#### Modul Penjadwalan
 Add Jadwal
 
 ## Flow Diagram Aplikasi Android
