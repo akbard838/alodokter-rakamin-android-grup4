@@ -41,7 +41,7 @@ Add Jadwal
 
 ## Flow Diagram Aplikasi Android
 
-AUTH
+### AUTH
 
 User Sign in
 
@@ -55,7 +55,7 @@ Reset Password
 
 ![reset password drawio](https://user-images.githubusercontent.com/57163153/144715644-93534b17-b41f-4c2e-8725-56af0aae8518.png)
 
-PROFILE
+### PROFILE
 
 Sign Out
 
@@ -69,7 +69,7 @@ Change Password
 
 ![change password drawio](https://user-images.githubusercontent.com/57163153/144715851-2a442fe2-73cd-4054-b111-c0759969aba4.png)
 
-ARTIKEL
+### ARTIKEL
 
 Lihat Artikel
 
@@ -79,7 +79,7 @@ Lihat Detail Artikel
 
 ![image28](https://user-images.githubusercontent.com/57163153/144715915-ed8dd369-612f-49b1-98fa-f1b5d9972b72.png)
 
-DOKTER
+### DOKTER
 
 Lihat List Dokter
 
