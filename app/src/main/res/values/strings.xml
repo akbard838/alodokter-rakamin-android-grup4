@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">AndroidGroup4</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="hint_email">Email</string>
     <string name="hint_password">Password</string>
     <string name="label_login">Login</string>
@@ -12,6 +13,14 @@
     <string name="message_error_confirm_email">Konfirmasi email tidak sesuai</string>
     <string name="message_reset_password_success">Kami telah mengirim pesan ke email %s. Silahkan pesan kotak masuk pada email anda untuk melakukan reset password</string>
     <string name="message_error_empty_field">Form tidak boleh kosong</string>
+
+    <string name="title_activity_home">Alodokter</string>
+    <string name="title_article">Article</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="hint_article_image">article image</string>
+    <string name="hint_search_article">Cari artikel...</string>
+
     <string name="hint_confirm_password">Konfirmasi Password</string>
     <string name="button_register">Daftar</string>
     <string name="label_register_now">Daftar Sekarang</string>
