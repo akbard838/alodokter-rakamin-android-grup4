@@ -5,6 +5,7 @@ import androidx.viewbinding.ViewBinding
 import com.example.androidgroup4.base.BaseActivity
 import com.example.androidgroup4.databinding.ActivityMainBinding
 import com.example.androidgroup4.ui.auth.LoginActivity
+import com.example.androidgroup4.ui.profile.EditProfileActivity
 
 class MainActivity : BaseActivity<ActivityMainBinding>() {
 
@@ -20,7 +21,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
 
     override fun initAction() {
         binding.tvHello.setOnClickListener {
-            LoginActivity.start(this)
+            EditProfileActivity.start(this)
         }
 
     }

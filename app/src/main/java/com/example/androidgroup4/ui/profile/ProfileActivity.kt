@@ -35,7 +35,7 @@ class ProfileActivity : BaseActivity<ActivityProfileBinding>() {
 
             }
             editProfile.setOnClickListener {
-
+                EditProfileActivity.start(this@ProfileActivity)
             }
             changePassword.setOnClickListener {
 
