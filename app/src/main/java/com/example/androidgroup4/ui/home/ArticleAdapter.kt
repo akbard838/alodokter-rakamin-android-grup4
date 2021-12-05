@@ -37,6 +37,7 @@ class ArticleAdapter: RecyclerView.Adapter<ArticleAdapter.ListViewHolder>() {
             with(binding) {
                 tvTitle.text = data.title
                 tvDescription.text = data.description
+                tvCategory.text = data.category
             }
         }
 

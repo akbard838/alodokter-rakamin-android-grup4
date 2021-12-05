@@ -1,4 +1,4 @@
-package com.example.androidgroup4.ui.notifications
+package com.example.androidgroup4.ui.profile
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

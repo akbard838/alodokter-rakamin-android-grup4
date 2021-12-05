@@ -2,8 +2,10 @@ package com.example.androidgroup4.ui.detail
 
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.androidgroup4.Article
 import com.example.androidgroup4.databinding.FragmentDetailArticleBinding
@@ -28,6 +30,9 @@ class DetailArticleFragment : Fragment() {
     }
 
     private fun initUI() {
+        (activity as AppCompatActivity?)!!.setSupportActionBar(binding.toolbar)
+        (activity as AppCompatActivity?)!!.supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
         val article = arguments?.getParcelable<Article>(EXTRA_ARTICLE)
         with(binding) {
             tvTitle.text = article?.title

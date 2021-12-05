@@ -9,8 +9,10 @@
     <string name="button_login">Login</string>
     <string name="message_error_email">Format email tidak sesuai</string>
     <string name="message_error_empty_field">Form tidak boleh kosong</string>
-    <string name="title_activity_home">HomeActivity</string>
-    <string name="title_home">Home</string>
+    <string name="title_activity_home">Alodokter</string>
+    <string name="title_article">Article</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
+    <string name="hint_article_image">article image</string>
+    <string name="hint_search_article">Cari artikel...</string>
 </resources>
