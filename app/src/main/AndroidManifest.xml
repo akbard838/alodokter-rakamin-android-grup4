@@ -12,23 +12,38 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AndroidGroup4">
         <activity
-            android:name=".HomeActivity"
+            android:name=".ui.splash.SplashScreenActivity"
             android:exported="true"
             android:label="@string/title_activity_home">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
         <activity
-            android:name=".ui.MainActivity"
-            android:exported="true">
+            android:name=".ui.auth.LoginActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.auth.RegisterActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.success.SuccessActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.auth.ResetPasswordActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.profile.ProfileActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.onboarding.OnBoardingActivity"
+            android:exported="false" />
 
-        </activity>
-        <activity android:name=".ui.auth.LoginActivity" />
+        <activity
+            android:name=".HomeActivity"
+            android:exported="false" />
+
     </application>
 
 </manifest>
