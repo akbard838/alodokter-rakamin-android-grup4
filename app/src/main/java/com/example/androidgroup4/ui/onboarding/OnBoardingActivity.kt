@@ -5,6 +5,7 @@ import android.content.Intent
 import android.view.LayoutInflater
 import androidx.viewbinding.ViewBinding
 import androidx.viewpager2.widget.ViewPager2
+import com.example.androidgroup4.HomeActivity
 import com.example.androidgroup4.R
 import com.example.androidgroup4.base.BaseActivity
 import com.example.androidgroup4.databinding.ActivityOnBoardingBinding
@@ -36,12 +37,12 @@ class OnBoardingActivity : BaseActivity<ActivityOnBoardingBinding>() {
         binding.btnNext.setOnClickListener {
             val currentItemPosition = binding.vpOnBoarding.currentItem
             if (currentItemPosition == itemList.size -1) {
-                LoginActivity.start(this)
+                HomeActivity.start(this)
             }
             binding.vpOnBoarding.setCurrentItem(currentItemPosition + 1, true)
         }
         binding.btnSkip.setOnClickListener {
-            LoginActivity.start(this)
+            HomeActivity.start(this)
         }
     }
 

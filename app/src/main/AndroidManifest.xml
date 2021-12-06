@@ -12,11 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AndroidGroup4">
         <activity
-            android:name=".ui.doctor.DoctorListActivity"
-            android:exported="false" />
-        <activity
             android:name=".ui.splash.SplashScreenActivity"
-            android:exported="true">
+            android:exported="true"
+            android:label="@string/title_activity_home">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -36,9 +34,6 @@
             android:name=".ui.auth.ResetPasswordActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.MainActivity"
-            android:exported="false" />
-        <activity
             android:name=".ui.profile.ProfileActivity"
             android:exported="false" />
         <activity
@@ -46,6 +41,12 @@
             android:exported="false" />
         <activity
             android:name=".ui.doctor.DoctorDetailActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.doctor.DoctorListActivity"
+            android:exported="false" />
+        <activity
+            android:name=".HomeActivity"
             android:exported="false" />
     </application>
 
