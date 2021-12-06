@@ -4,7 +4,6 @@ import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.MenuItem
-import android.view.View
 import android.widget.TextView
 import androidx.viewbinding.ViewBinding
 import com.example.androidgroup4.R
@@ -43,6 +42,15 @@ class EditProfileActivity : BaseActivity<ActivityEditProfileBinding>(), DatePick
             btnChangeData.setOnClickListener {
 
             }
+            ibDatePicker.setOnClickListener {
+                showDatePicker()
+            }
+            edtBirthDate.setOnClickListener {
+                showDatePicker()
+            }
+            tilBirthDate.setOnClickListener {
+                showDatePicker()
+            }
         }
     }
 
@@ -67,7 +75,7 @@ class EditProfileActivity : BaseActivity<ActivityEditProfileBinding>(), DatePick
 
     }
 
-    fun showDatePicker(view: View) {
+    private fun showDatePicker() {
         val dialogFragment = DatePickerFragment()
         dialogFragment.show(supportFragmentManager, "datePicker")
     }
@@ -76,7 +84,7 @@ class EditProfileActivity : BaseActivity<ActivityEditProfileBinding>(), DatePick
         val calendar = Calendar.getInstance()
         calendar.set(year, month, dayOfMonth)
         val dateFormat = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
-        findViewById<TextView>(R.id.tilBirthDate).text = dateFormat.format(calendar.time)
+        findViewById<TextView>(R.id.edtBirthDate).text = dateFormat.format(calendar.time)
 
         dueDateMillis = calendar.timeInMillis
     }

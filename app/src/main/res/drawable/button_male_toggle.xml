@@ -6,5 +6,5 @@
 
     <item
         android:state_checked="false"
-        android:drawable="@drawable/button_male_not_clicked" />
+        android:drawable="@drawable/button_male_not_clicked"/>
 </selector>

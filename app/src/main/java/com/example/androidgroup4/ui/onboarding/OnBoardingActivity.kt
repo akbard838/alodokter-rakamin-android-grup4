@@ -10,6 +10,7 @@ import com.example.androidgroup4.base.BaseActivity
 import com.example.androidgroup4.databinding.ActivityOnBoardingBinding
 import com.example.androidgroup4.ui.adapter.PagerAdapter
 import com.example.androidgroup4.ui.auth.LoginActivity
+import com.example.androidgroup4.ui.profile.EditProfileActivity
 
 class OnBoardingActivity : BaseActivity<ActivityOnBoardingBinding>() {
 
