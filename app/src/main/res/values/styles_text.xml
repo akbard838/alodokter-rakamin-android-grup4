@@ -61,6 +61,10 @@
         <item name="android:textColor">@color/colorPrimary</item>
     </style>
 
+    <style name="AndroidAppText.Grey">
+        <item name="android:textColor">@color/colorGrey</item>
+    </style>
+
     <style name="AndroidAppText.Black">
         <item name="android:textColor">@color/colorBlack</item>
     </style>

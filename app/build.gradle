@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
+    id 'kotlin-parcelize'
 }
 
 android {
@@ -58,4 +59,7 @@ dependencies {
 
     //Dot indicator
     implementation 'com.tbuonomo.andrui:viewpagerdotsindicator:4.1.2'
+
+    //Circular ImageView
+    implementation 'de.hdodenhof:circleimageview:3.1.0'
 }

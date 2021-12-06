@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AndroidGroup4">
         <activity
+            android:name=".ui.doctor.DoctorListActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.splash.SplashScreenActivity"
             android:exported="true">
             <intent-filter>
@@ -40,8 +43,10 @@
             android:exported="false" />
         <activity
             android:name=".ui.onboarding.OnBoardingActivity"
-            android:exported="false"/>
-
+            android:exported="false" />
+        <activity
+            android:name=".ui.doctor.DoctorDetailActivity"
+            android:exported="false" />
     </application>
 
 </manifest>

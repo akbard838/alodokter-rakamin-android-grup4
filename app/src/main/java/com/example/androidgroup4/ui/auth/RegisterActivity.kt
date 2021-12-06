@@ -41,14 +41,15 @@ class RegisterActivity : BaseActivity<ActivityRegisterBinding>() {
                 tilPassword.validatePassword()
                 tilConfirmPassword.validateConfirmPassword(edtPassword.text.toString())
 
-                if (isFormValid(listOf(tilEmail, tilPassword, tilConfirmPassword))) {
+                isFormValid(listOf(tilEmail, tilPassword, tilConfirmPassword)) {
                     SuccessActivity.start(
                         this@RegisterActivity,
                         R.drawable.ic_done,
                         getString(R.string.title_register_success),
                         getString(R.string.message_input_account_for_login),
                         getString(R.string.button_login),
-                        SuccessType.REGISTER.type)
+                        SuccessType.REGISTER.type
+                    )
                     finish()
                 }
 

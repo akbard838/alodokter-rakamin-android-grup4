@@ -32,7 +32,11 @@ class ResetPasswordActivity : BaseActivity<ActivityResetPasswordBinding>() {
 
     override fun initUI() {
         binding.apply {
-            setupToolbar(toolbarResetPassword.toolbar, true, getString(R.string.title_forget_password))
+            setupToolbar(
+                toolbarResetPassword.toolbar,
+                true,
+                getString(R.string.title_forget_password)
+            )
             edtEmail.setText("akbard838@gmail.com")
         }
     }
@@ -42,12 +46,14 @@ class ResetPasswordActivity : BaseActivity<ActivityResetPasswordBinding>() {
             btnResetPassword.setOnClickListener {
                 tilEmail.validateEmail()
 
-                if (isFormValid(tilEmail)) {
+                isFormValid(tilEmail) {
                     SuccessActivity.start(
                         this@ResetPasswordActivity,
                         R.drawable.ic_email_sent,
                         getString(R.string.title_reset_password_success),
-                        String.format(getString(R.string.message_reset_password_success), edtEmail.text.toString()
+                        String.format(
+                            getString(R.string.message_reset_password_success),
+                            edtEmail.text.toString()
                         ),
                         getString(R.string.button_login),
                         SuccessType.RESET_PASSWORD.type

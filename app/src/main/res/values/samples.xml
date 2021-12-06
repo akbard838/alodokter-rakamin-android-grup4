@@ -4,4 +4,79 @@
     <string name="sample_date_of_birth">12/09/2021</string>
     <string name="sample_id_card_number">28348324832</string>
     <string name="sample_address">Komplek Saari Jl. Nuri No. 12 Sukabumi Utara,\nKebon Jeruk, Jakarta Barat, 11340</string>
+    <string name="sample_doctor_name">Dr. Hendra Pramono</string>
+    <string name="sample_doctor_specialist">Dokter Kulit</string>
+    <string name="sample_distance">0.2 KM dari anda</string>
+    <string name="sample_hospital_name">RSAL Mintoharjo Jakarta</string>
+    <string name="sample_hospital_location">Jl. Bendungan Hilir No.17, RT.4/RW.3, Bend. Hilir, Kecamatan Tanah Abang, Kota Jakarta Pusat, Daerah Khusus Ibukota Jakarta 10210</string>
+    <string name="sample_lorem_description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed porttitor in magna et tincidunt. Aliquam mattis in turpis eu porttitor. Sed ligula neque, interdum sed ante non, tincidunt eleifend lorem. Morbi at viverra libero. Nullam sit amet nisi ullamcorper, lobortis ligula condimentum, porta neque. Cras tincidunt, arcu at hendrerit gravida, nisi velit accumsan est, nec elementum enim nisl ut libero. Pellentesque viverra at magna ac interdum. Quisque id pulvinar ex, quis sagittis nibh. Suspendisse dictum dapibus tellus sit amet vestibulum.</string>
+    <string name="sample_hour">17.00 - 18.00</string>
+    <string name="sample_date">22 November 2021</string>
+    <string name="sample_day">Senin</string>
+    <string name="sample_yoe">Pengalaman 20 tahun</string>
+
+    <string-array name="list_of_day">
+        <item>Senin</item>
+        <item>Selasa</item>
+        <item>Rabu</item>
+        <item>Kamis</item>
+        <item>Jumat</item>
+    </string-array>
+
+    <string-array name="list_of_date">
+        <item>6 Desember 2021</item>
+        <item>7 Desember 2021</item>
+        <item>8 Desember 2021</item>
+        <item>9 Desember 2021</item>
+        <item>10 Desember 2021</item>
+    </string-array>
+
+    <string-array name="list_of_hospital_image">
+        <item>https://www.beaconhospital.co.id/wp-content/uploads/2020/03/Beacon-Hospital-New.jpg</item>
+        <item>https://mayapadahospital.com/images/news/Mayapada%20Hospital%20Surabaya.jpg</item>
+        <item>https://static.republika.co.id/uploads/images/inpicture_slide/rumah-sakit-angkatan-laut-mintohardjo-_160314171915-209.jpg</item>
+        <item>https://mayapadahospital.com/images/news/Mayapada%20Hospital%20Surabaya.jpg</item>
+        <item>https://static.republika.co.id/uploads/images/inpicture_slide/rumah-sakit-angkatan-laut-mintohardjo-_160314171915-209.jpg</item>
+    </string-array>
+
+    <string-array name="list_of_hospital_name">
+        <item>Rs. Suka Mulyo</item>
+        <item>RSAL Mintoharjo Jakarta</item>
+        <item>RSUD Cikarang Barat</item>
+        <item>Rs. Medika Pertama</item>
+        <item>Rs. Puri Cendana Kasih</item>
+    </string-array>
+
+    <string-array name="list_of_doctor_image">
+        <item>https://mrcode.az/media/ready-to-start/docman/assets/img/doctors/doctor-thumb-02.jpg</item>
+        <item>https://demo.cherrytheme.com/gems/wp-content/uploads/2018/11/our-team-04.jpg</item>
+        <item>https://img.freepik.com/free-photo/beautiful-woman-doctor-with-hijab-portrait-white-background_33799-7250.jpg</item>
+        <item>https://clinicalnotebook.com/wp-content/uploads/2015/04/Doctor-Profile-Pic-Example.png</item>
+        <item>https://testingapi.talkehr.com/telemedicine-pics/provider/5653638_12162020114117.png</item>
+    </string-array>
+
+    <string-array name="list_of_doctor_name">
+        <item>Dr. Hendra Pramono</item>
+        <item>Drs. Suka Wijaya</item>
+        <item>Drs. Kartika Putri</item>
+        <item>Dr. Tanto Jatmiko Supratinoyo</item>
+        <item>Drs. Nurwinda Amelia Ningsih</item>
+    </string-array>
+
+    <string-array name="list_of_doctor_specialist">
+        <item>Dokter Bedah</item>
+        <item>Dokter Kulit</item>
+        <item>Dokter THT</item>
+        <item>Dokter Syaraf</item>
+        <item>Dokter Kulit</item>
+    </string-array>
+
+    <integer-array name="list_of_doctor_yoe">
+        <item>25</item>
+        <item>23</item>
+        <item>12</item>
+        <item>15</item>
+        <item>20</item>
+    </integer-array>
+
 </resources>
