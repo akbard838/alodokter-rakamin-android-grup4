@@ -30,7 +30,7 @@
         android:id="@+id/change_photo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/ic_baseline_photo_camera_24"
+        android:src="@drawable/ic_camera"
         app:backgroundTint="@color/grey_300"
         app:fabSize="mini"
         app:layout_constraintBottom_toBottomOf="@+id/profile_image"

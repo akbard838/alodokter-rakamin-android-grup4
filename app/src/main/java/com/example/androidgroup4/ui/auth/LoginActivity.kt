@@ -8,6 +8,7 @@ import androidx.viewbinding.ViewBinding
 import com.example.androidgroup4.R
 import com.example.androidgroup4.base.BaseActivity
 import com.example.androidgroup4.databinding.ActivityLoginBinding
+import com.example.androidgroup4.utils.isFormValid
 import com.example.androidgroup4.utils.validateEmail
 import com.example.androidgroup4.utils.validateNonEmpty
 
@@ -41,6 +42,10 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
             btnLogin.setOnClickListener {
                 tilEmail.validateEmail()
                 tilPassword.validateNonEmpty()
+
+                isFormValid(listOf(tilEmail, tilPassword)) {
+                    finish()
+                }
             }
 
             btnRegister.setOnClickListener {

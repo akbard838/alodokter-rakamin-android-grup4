@@ -1,10 +1,11 @@
 <resources>
-    <string name="app_name">AndroidGroup4</string>
+    <string name="app_name">HiDokter</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="hint_email">Email</string>
     <string name="hint_password">Password</string>
     <string name="label_login">Login</string>
     <string name="label_profile">Profil</string>
+    <string name="title_doctor_profile">Profil Dokter</string>
     <string name="button_forgot_password">Lupa Password?</string>
     <string name="button_register_here">Daftar Disini</string>
     <string name="button_login">Login</string>
@@ -13,14 +14,12 @@
     <string name="message_error_confirm_email">Konfirmasi email tidak sesuai</string>
     <string name="message_reset_password_success">Kami telah mengirim pesan ke email %s. Silahkan pesan kotak masuk pada email anda untuk melakukan reset password</string>
     <string name="message_error_empty_field">Form tidak boleh kosong</string>
-
     <string name="title_activity_home">Alodokter</string>
     <string name="title_article">Article</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="title_doctor">Doctor</string>
+    <string name="title_profile">Profile</string>
     <string name="hint_article_image">article image</string>
     <string name="hint_search_article">Cari artikel...</string>
-
     <string name="hint_confirm_password">Konfirmasi Password</string>
     <string name="button_register">Daftar</string>
     <string name="label_register_now">Daftar Sekarang</string>
@@ -49,4 +48,12 @@
     <string name="message_on_boarding_3">Lebih dari 20 ribu dokter siap berkonsultasi denganmu</string>
     <string name="message_on_boarding_2"><![CDATA[Panduan kesehatan terlengkap mulai dari artikel & tips kesehatan]]></string>
     <string name="message_on_boarding_1"><![CDATA[Konsultasi bersama dokter umum & spesialis, kapan pun, di mana pun]]></string>
+    <string name="label_location">Lokasi</string>
+    <string name="label_schedule">Jadwal Praktik</string>
+    <string name="button_consultation">Ajukan Konsultasi</string>
+    <string name="format_yoe">Pengalaman %s tahun</string>
+    <string name="hint_search_dokter">Cari dokter anda...</string>
+    <string name="title_no_data">Data Tidak Ditemukan</string>
+    <string name="message_no_data">Tidak ada dokter yang cocok dengan nama yang anda masukkan</string>
+    <string name="message_pick_schedule">*Untuk mengajukan konsultasi silahkan pilih salah satu jadwal konsultasi dengan melakukan klik pada jam konsultasi yang tersedia</string>
 </resources>

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/dimen_8dp"
+    app:cardCornerRadius="@dimen/dimen_12dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/img_doctor"
+            android:layout_width="@dimen/dimen_100dp"
+            android:layout_height="@dimen/dimen_120dp"
+            android:background="@color/colorWhiteTwo"
+            android:scaleType="centerCrop"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@drawable/img_doctor" />
+
+        <ProgressBar
+            android:id="@+id/pb_doctor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@id/img_doctor"
+            app:layout_constraintEnd_toEndOf="@id/img_doctor"
+            app:layout_constraintStart_toStartOf="@id/img_doctor"
+            app:layout_constraintTop_toTopOf="@id/img_doctor" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_name"
+            style="@style/AndroidAppText.Bold"
+            android:layout_width="@dimen/dimen_0dp"
+            android:layout_marginStart="@dimen/dimen_8dp"
+            android:layout_marginTop="@dimen/dimen_8dp"
+            android:layout_marginEnd="@dimen/dimen_8dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:textSize="@dimen/text_size_14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/img_doctor"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="@string/sample_doctor_name" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_specialist"
+            style="@style/AndroidAppText.Blue"
+            android:layout_marginTop="@dimen/dimen_8dp"
+            android:textSize="@dimen/text_size_12sp"
+            app:layout_constraintStart_toStartOf="@id/tv_name"
+            app:layout_constraintTop_toBottomOf="@id/tv_name"
+            tools:text="@string/sample_doctor_specialist" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_yoe"
+            style="@style/AndroidAppText"
+            android:layout_marginTop="@dimen/dimen_8dp"
+            android:textSize="@dimen/text_size_12sp"
+            app:layout_constraintStart_toStartOf="@id/tv_specialist"
+            app:layout_constraintTop_toBottomOf="@id/tv_specialist"
+            tools:text="@string/sample_yoe" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/img_distance"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen_12dp"
+            android:src="@drawable/ic_ic_location"
+            app:layout_constraintStart_toStartOf="@id/tv_name"
+            app:layout_constraintTop_toBottomOf="@id/tv_yoe" />
+
+        <TextView
+            android:id="@+id/tv_distance"
+            style="@style/AndroidAppText.SemiBold"
+            android:layout_marginStart="@dimen/dimen_4dp"
+            android:textSize="@dimen/text_size_12sp"
+            app:layout_constraintBottom_toBottomOf="@id/img_distance"
+            app:layout_constraintStart_toEndOf="@id/img_distance"
+            app:layout_constraintTop_toTopOf="@id/img_distance"
+            tools:text="@string/sample_distance" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.google.android.material.card.MaterialCardView>

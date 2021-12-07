@@ -26,7 +26,8 @@ class PagerAdapter(private val items: ArrayList<OnBoardingData>) :
 
     override fun getItemCount(): Int = items.size
 
-    class TopViewHolder(private val binding: ItemOnBoardingBinding) : RecyclerView.ViewHolder(binding.root) {
+    class TopViewHolder(private val binding: ItemOnBoardingBinding) :
+        RecyclerView.ViewHolder(binding.root) {
         fun bind(data: OnBoardingData) {
             binding.tvTitle.text = data.title
             binding.tvMessage.text = data.message

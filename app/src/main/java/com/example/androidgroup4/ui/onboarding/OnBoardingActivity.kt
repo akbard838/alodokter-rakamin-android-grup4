@@ -5,12 +5,11 @@ import android.content.Intent
 import android.view.LayoutInflater
 import androidx.viewbinding.ViewBinding
 import androidx.viewpager2.widget.ViewPager2
-import com.example.androidgroup4.HomeActivity
+import com.example.androidgroup4.MainActivity
 import com.example.androidgroup4.R
 import com.example.androidgroup4.base.BaseActivity
 import com.example.androidgroup4.databinding.ActivityOnBoardingBinding
 import com.example.androidgroup4.ui.adapter.PagerAdapter
-import com.example.androidgroup4.ui.auth.LoginActivity
 
 class OnBoardingActivity : BaseActivity<ActivityOnBoardingBinding>() {
 
@@ -37,12 +36,12 @@ class OnBoardingActivity : BaseActivity<ActivityOnBoardingBinding>() {
         binding.btnNext.setOnClickListener {
             val currentItemPosition = binding.vpOnBoarding.currentItem
             if (currentItemPosition == itemList.size -1) {
-                HomeActivity.start(this)
+                MainActivity.start(this)
             }
             binding.vpOnBoarding.setCurrentItem(currentItemPosition + 1, true)
         }
         binding.btnSkip.setOnClickListener {
-            HomeActivity.start(this)
+            MainActivity.start(this)
         }
     }
 
