@@ -16,8 +16,8 @@
     <string name="message_error_empty_field">Form tidak boleh kosong</string>
     <string name="title_activity_home">Alodokter</string>
     <string name="title_article">Article</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="title_doctor">Doctor</string>
+    <string name="title_profile">Profile</string>
     <string name="hint_article_image">article image</string>
     <string name="hint_search_article">Cari artikel...</string>
     <string name="hint_confirm_password">Konfirmasi Password</string>

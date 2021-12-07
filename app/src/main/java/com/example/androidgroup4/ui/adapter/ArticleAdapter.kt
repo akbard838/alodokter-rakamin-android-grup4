@@ -1,4 +1,4 @@
-package com.example.androidgroup4.ui.home
+package com.example.androidgroup4.ui.adapter
 
 import android.view.LayoutInflater
 import android.view.View

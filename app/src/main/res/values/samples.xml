@@ -3,7 +3,7 @@
     <string name="sample_name">Dino Akbar Pratondo</string>
     <string name="sample_date_of_birth">12/09/2021</string>
     <string name="sample_id_card_number">28348324832</string>
-    <string name="sample_address">Komplek Saari Jl. Nuri No. 12 Sukabumi Utara,\nKebon Jeruk, Jakarta Barat, 11340</string>
+    <string name="sample_address">Komplek Saari Jl. Nuri No. 12 Sukabumi Utara, Kebon Jeruk, Jakarta Barat, 11340</string>
     <string name="sample_doctor_name">Dr. Hendra Pramono</string>
     <string name="sample_doctor_specialist">Dokter Kulit</string>
     <string name="sample_distance">0.2 KM dari anda</string>
@@ -14,6 +14,8 @@
     <string name="sample_date">22 November 2021</string>
     <string name="sample_day">Senin</string>
     <string name="sample_yoe">Pengalaman 20 tahun</string>
+    <string name="sample_email">akbard838@gmail.com</string>
+    <string name="sample_image_url">https://wallpaperaccess.com/full/2213424.jpg</string>
 
     <string-array name="list_of_day">
         <item>Senin</item>

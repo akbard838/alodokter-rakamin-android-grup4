@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewbinding.ViewBinding
@@ -13,6 +12,7 @@ import com.example.androidgroup4.Article
 import com.example.androidgroup4.R
 import com.example.androidgroup4.base.BaseFragment
 import com.example.androidgroup4.databinding.FragmentHomeBinding
+import com.example.androidgroup4.ui.adapter.ArticleAdapter
 import com.example.androidgroup4.ui.detail.DetailArticleFragment
 import com.synnapps.carouselview.ImageListener
 
@@ -30,8 +30,6 @@ class HomeFragment: BaseFragment<FragmentHomeBinding>() {
     }
 
     override fun initUI() {
-        (activity as AppCompatActivity?)?.setSupportActionBar(binding.toolbar)
-
         articleAdapter = ArticleAdapter()
         articleAdapter.setData(dummyData())
         with(binding.rvArticle) {

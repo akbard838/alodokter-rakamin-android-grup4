@@ -5,14 +5,18 @@ import android.os.Handler
 import android.os.Looper
 import android.view.LayoutInflater
 import androidx.viewbinding.ViewBinding
+import com.example.androidgroup4.MainActivity
 import com.example.androidgroup4.base.BaseActivity
 import com.example.androidgroup4.databinding.ActivitySplashScreenBinding
 import com.example.androidgroup4.ui.onboarding.OnBoardingActivity
+import com.example.androidgroup4.utils.constant.PreferenceKeys
+import com.example.androidgroup4.utils.getAppSharedPreference
 
 @SuppressLint("CustomSplashScreen")
 class SplashScreenActivity : BaseActivity<ActivitySplashScreenBinding>() {
 
-    override val bindingInflater: (LayoutInflater) -> ViewBinding = ActivitySplashScreenBinding::inflate
+    override val bindingInflater: (LayoutInflater) -> ViewBinding =
+        ActivitySplashScreenBinding::inflate
 
     override fun initIntent() {
     }
@@ -26,7 +30,10 @@ class SplashScreenActivity : BaseActivity<ActivitySplashScreenBinding>() {
     override fun initProcess() {
         val handler = Handler(Looper.getMainLooper())
         handler.postDelayed({
-            OnBoardingActivity.start(this)
+            if (getAppSharedPreference(this).getBoolean(PreferenceKeys.FIRST_TIME_LAUNCH, true))
+                OnBoardingActivity.start(this)
+            else
+                MainActivity.start(this)
             finish()
         }, 2000)
     }

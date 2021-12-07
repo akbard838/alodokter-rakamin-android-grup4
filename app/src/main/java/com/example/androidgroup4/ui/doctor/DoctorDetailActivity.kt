@@ -12,6 +12,7 @@ import com.example.androidgroup4.data.model.Doctor
 import com.example.androidgroup4.data.model.Schedule
 import com.example.androidgroup4.databinding.ActivityDoctorDetailBinding
 import com.example.androidgroup4.ui.adapter.ScheduleAdapter
+import com.example.androidgroup4.utils.constant.BundleKeys
 import com.example.androidgroup4.utils.setImageUrl
 
 class DoctorDetailActivity : BaseActivity<ActivityDoctorDetailBinding>() {
@@ -19,7 +20,7 @@ class DoctorDetailActivity : BaseActivity<ActivityDoctorDetailBinding>() {
     companion object {
         fun start(context: Context, doctor: Doctor) {
             Intent(context, DoctorDetailActivity::class.java).apply {
-                putExtra("DOCTOR", doctor)
+                putExtra(BundleKeys.DOCTOR, doctor)
                 context.startActivity(this)
             }
         }

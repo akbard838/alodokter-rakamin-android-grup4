@@ -12,4 +12,6 @@ object BundleKeys {
 
     const val SUCCESS_TYPE = "success_type"
 
+    const val DOCTOR = "DOCTOR"
+
 }

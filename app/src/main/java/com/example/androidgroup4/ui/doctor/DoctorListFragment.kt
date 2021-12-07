@@ -1,44 +1,164 @@
 package com.example.androidgroup4.ui.doctor
 
-import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
-import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
-import com.example.androidgroup4.databinding.FragmentDashboardBinding
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.viewbinding.ViewBinding
+import com.example.androidgroup4.R
+import com.example.androidgroup4.base.BaseFragment
+import com.example.androidgroup4.data.model.Doctor
+import com.example.androidgroup4.data.model.Location
+import com.example.androidgroup4.data.model.Schedule
+import com.example.androidgroup4.databinding.FragmentDoctorListBinding
+import com.example.androidgroup4.ui.adapter.DoctorAdapter
+import com.example.androidgroup4.utils.gone
+import com.example.androidgroup4.utils.visible
+import java.util.*
+import java.util.regex.Pattern
 
-class DashboardFragment : Fragment() {
+class DoctorListFragment: BaseFragment<FragmentDoctorListBinding>() {
 
-    private lateinit var dashboardViewModel: DashboardViewModel
-    private var _binding: FragmentDashboardBinding? = null
+    private lateinit var doctorAdapter: DoctorAdapter
 
-    // This property is only valid between onCreateView and
-    // onDestroyView.
-    private val binding get() = _binding!!
+    private var doctors: ArrayList<Doctor> = arrayListOf()
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        dashboardViewModel =
-            ViewModelProvider(this).get(DashboardViewModel::class.java)
+    override val bindingInflater: (LayoutInflater, ViewGroup?, Boolean) -> ViewBinding
+        = FragmentDoctorListBinding::inflate
 
-        _binding = FragmentDashboardBinding.inflate(inflater, container, false)
-        val root: View = binding.root
+    override fun initIntent() {
 
-        val textView: TextView = binding.textDashboard
-        dashboardViewModel.text.observe(viewLifecycleOwner, Observer {
-            textView.text = it
-        })
-        return root
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
+    override fun initUI() {
+        initRecyclerView()
+    }
+
+    override fun initAction() {
+        doctorAdapter.onDoctorItemClicked = { doctor ->
+            DoctorDetailActivity.start(requireContext(), doctor)
+        }
+
+        binding.fabSearch.setOnClickListener {
+            doctorAdapter.setData(getFilteredData())
+            checkIsDataEmpty(getFilteredData())
+        }
+
+        binding.edtSearchDoctor.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+
+            }
+
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                if (binding.edtSearchDoctor.text.toString().isEmpty()) {
+                    reloadData()
+                }
+
+            }
+
+            override fun afterTextChanged(p0: Editable?) {
+
+            }
+
+        })
+    }
+
+    override fun initProcess() {
+        doctors.addAll(getDummyDoctors())
+        doctorAdapter.setData(doctors)
+        checkIsDataEmpty(doctors)
+    }
+
+    override fun initObservable() {
+
+    }
+
+    private fun initRecyclerView() {
+        doctorAdapter = DoctorAdapter(requireContext())
+
+        binding.apply {
+            rvDoctor.setHasFixedSize(true)
+            rvDoctor.layoutManager = LinearLayoutManager(requireContext())
+            rvDoctor.adapter = doctorAdapter
+        }
+    }
+
+    private fun getDummySchedules(): ArrayList<Schedule> {
+        val schedules = arrayListOf<Schedule>()
+        val dates = resources.getStringArray(R.array.list_of_date)
+
+        dates.forEachIndexed { i, _ ->
+            schedules.add(
+                Schedule(
+                    dates[i],
+                    getString(R.string.sample_hour),
+                    getString(R.string.sample_hour)
+                )
+            )
+        }
+
+        return schedules
+    }
+
+    private fun getDummyDoctors(): ArrayList<Doctor>{
+        val doctors = arrayListOf<Doctor>()
+
+        val names = resources.getStringArray(R.array.list_of_doctor_name)
+        val images = resources.getStringArray(R.array.list_of_doctor_image)
+        val specialists = resources.getStringArray(R.array.list_of_doctor_specialist)
+        val yoe = resources.getIntArray(R.array.list_of_doctor_yoe)
+
+        val hospitalNames = resources.getStringArray(R.array.list_of_hospital_name)
+        val hospitalImages = resources.getStringArray(R.array.list_of_hospital_image)
+
+        names.forEachIndexed { i, _ ->
+            doctors.add(
+                Doctor(
+                    imageUrl = images[i],
+                    name = names[i],
+                    specialist = specialists[i],
+                    yoe = yoe[i],
+                    profile = getString(R.string.sample_lorem_description),
+                    location = Location(
+                        imageUrl = hospitalImages[i],
+                        name = hospitalNames[i],
+                        address = getString(R.string.sample_address),
+                        dummyDistance = getString(R.string.sample_distance),
+                    ),
+                    schedules = getDummySchedules()
+                )
+            )
+        }
+
+        return doctors
+    }
+
+    private fun getFilteredData(): List<Doctor> {
+        val filtered = getDummyDoctors().filter {
+            Pattern.compile(
+                Pattern.quote(binding.edtSearchDoctor.text.toString()),
+                Pattern.CASE_INSENSITIVE
+            ).matcher(it.name).find()
+        }
+
+        return filtered
+    }
+
+    private fun reloadData() {
+        doctorAdapter.setData(getDummyDoctors())
+        checkIsDataEmpty(getDummyDoctors())
+    }
+
+    private fun checkIsDataEmpty(doctors: List<Doctor>) {
+        binding.apply {
+            if (doctors.isEmpty()) {
+                rvDoctor.gone()
+                layoutEmpty.layoutEmpty.visible()
+            } else {
+                rvDoctor.visible()
+                layoutEmpty.layoutEmpty.gone()
+            }
+        }
     }
 }

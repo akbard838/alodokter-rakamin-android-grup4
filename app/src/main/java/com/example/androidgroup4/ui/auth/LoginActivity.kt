@@ -8,7 +8,6 @@ import androidx.viewbinding.ViewBinding
 import com.example.androidgroup4.R
 import com.example.androidgroup4.base.BaseActivity
 import com.example.androidgroup4.databinding.ActivityLoginBinding
-import com.example.androidgroup4.ui.doctor.DoctorListActivity
 import com.example.androidgroup4.utils.isFormValid
 import com.example.androidgroup4.utils.validateEmail
 import com.example.androidgroup4.utils.validateNonEmpty
@@ -45,7 +44,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
                 tilPassword.validateNonEmpty()
 
                 isFormValid(listOf(tilEmail, tilPassword)) {
-                    DoctorListActivity.start(this@LoginActivity)
+                    finish()
                 }
             }
 
