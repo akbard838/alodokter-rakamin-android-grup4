@@ -14,4 +14,5 @@ object BundleKeys {
 
     const val DOCTOR = "DOCTOR"
 
+    const val PROFILE = "PROFILE"
 }

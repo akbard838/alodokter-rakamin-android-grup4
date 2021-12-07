@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import androidx.viewbinding.ViewBinding
 import com.example.androidgroup4.R
 import com.example.androidgroup4.base.BaseFragment
+import com.example.androidgroup4.data.model.Profile
 import com.example.androidgroup4.databinding.FragmentProfileBinding
 import com.example.androidgroup4.utils.setImageUrl
 
@@ -27,7 +28,13 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
 
             }
             editProfile.setOnClickListener {
-
+                val profile = Profile(
+                    getString(R.string.sample_name),
+                    getString(R.string.sample_date_of_birth),
+                    getString(R.string.sample_id_card_number),
+                    getString(R.string.sample_address)
+                )
+                EditProfileActivity.start(this@ProfileFragment.context, profile)
             }
             btnChangePassword.setOnClickListener {
 
@@ -39,6 +46,7 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
     }
 
     override fun initProcess() {
+
     }
 
     override fun initObservable() {

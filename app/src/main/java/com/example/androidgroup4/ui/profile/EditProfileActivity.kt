@@ -8,8 +8,12 @@ import android.widget.TextView
 import androidx.viewbinding.ViewBinding
 import com.example.androidgroup4.R
 import com.example.androidgroup4.base.BaseActivity
+import com.example.androidgroup4.data.model.Doctor
+import com.example.androidgroup4.data.model.Profile
 import com.example.androidgroup4.databinding.ActivityEditProfileBinding
 import com.example.androidgroup4.utils.DatePickerFragment
+import com.example.androidgroup4.utils.constant.BundleKeys
+import com.example.androidgroup4.utils.setImageUrl
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -18,18 +22,21 @@ class EditProfileActivity : BaseActivity<ActivityEditProfileBinding>(), DatePick
     private var dueDateMillis: Long = System.currentTimeMillis()
 
     companion object {
-        fun start(context: Context) {
+        fun start(context: Context?, profile: Profile) {
             Intent(context, EditProfileActivity::class.java).apply {
-                context.startActivity(this)
+                putExtra(BundleKeys.PROFILE, profile)
+                context?.startActivity(this)
             }
         }
     }
+
+    private var profile: Profile? = null
 
     override val bindingInflater: (LayoutInflater) -> ViewBinding =
         ActivityEditProfileBinding::inflate
 
     override fun initIntent() {
-
+        profile = intent.getParcelableExtra("PROFILE")
     }
 
     override fun initUI() {
@@ -51,11 +58,30 @@ class EditProfileActivity : BaseActivity<ActivityEditProfileBinding>(), DatePick
             tilBirthDate.setOnClickListener {
                 showDatePicker()
             }
+            btnMale.setOnCheckedChangeListener { _, isChecked ->
+                if (isChecked) {
+                    btnFemale.isChecked = false
+                } else {
+                    btnMale.isChecked = false
+                }
+            }
+            btnFemale.setOnCheckedChangeListener { _, isChecked ->
+                if (isChecked) {
+                    btnMale.isChecked = false
+                } else {
+                    btnFemale.isChecked = false
+                }
+            }
         }
     }
 
     override fun initProcess() {
-
+        binding.apply {
+            edtFullName.setText(profile?.name)
+            edtBirthDate.setText(profile?.birthDate)
+            edtKtpNumber.setText(profile?.ktpNumber)
+            edtAddress.setText(profile?.address)
+        }
     }
 
     override fun initObservable() {
@@ -84,7 +110,7 @@ class EditProfileActivity : BaseActivity<ActivityEditProfileBinding>(), DatePick
         val calendar = Calendar.getInstance()
         calendar.set(year, month, dayOfMonth)
         val dateFormat = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
-        findViewById<TextView>(R.id.edtBirthDate).text = dateFormat.format(calendar.time)
+        binding.edtBirthDate.setText(dateFormat.format(calendar.time))
 
         dueDateMillis = calendar.timeInMillis
     }
