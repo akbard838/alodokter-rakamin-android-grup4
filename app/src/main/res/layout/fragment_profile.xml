@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/img_background_top"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:src="@drawable/profile_activity_bg"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/img_profile_user"
+            android:layout_width="@dimen/dimen_110dp"
+            android:layout_height="@dimen/dimen_110dp"
+            android:layout_marginTop="@dimen/dimen_16dp"
+            android:contentDescription="@string/desc_profile_image"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@drawable/img_hospital" />
+
+        <ProgressBar
+            android:id="@+id/pb_profile_user"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@id/img_profile_user"
+            app:layout_constraintEnd_toEndOf="@id/img_profile_user"
+            app:layout_constraintStart_toStartOf="@id/img_profile_user"
+            app:layout_constraintTop_toTopOf="@id/img_profile_user" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/change_photo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="-14dp"
+            android:layout_marginBottom="-4dp"
+            android:src="@drawable/ic_camera"
+            app:backgroundTint="@color/grey_300"
+            app:fabSize="mini"
+            app:layout_constraintBottom_toBottomOf="@+id/img_profile_user"
+            app:layout_constraintEnd_toEndOf="@+id/img_profile_user" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen_16dp"
+            android:fontFamily="@font/lato_semi_bold"
+            android:includeFontPadding="false"
+            android:textColor="@color/colorWhite"
+            android:textSize="@dimen/text_size_18sp"
+            app:layout_constraintEnd_toEndOf="@+id/img_profile_user"
+            app:layout_constraintStart_toStartOf="@+id/img_profile_user"
+            app:layout_constraintTop_toBottomOf="@+id/img_profile_user"
+            tools:text="@string/sample_name" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/lato_regular"
+            android:includeFontPadding="false"
+            android:textColor="@color/colorWhite"
+            android:textSize="@dimen/text_size_14sp"
+            app:layout_constraintEnd_toEndOf="@+id/tv_name"
+            app:layout_constraintStart_toStartOf="@+id/tv_name"
+            app:layout_constraintTop_toBottomOf="@+id/tv_name"
+            tools:text="@string/sample_email" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/edit_profile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:foreground="@drawable/ic_button_edit"
+            app:fabSize="mini"
+            app:layout_constraintBottom_toBottomOf="@+id/img_background_top"
+            app:layout_constraintEnd_toEndOf="@+id/tv_email"
+            app:layout_constraintStart_toStartOf="@+id/tv_email" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_label_date_of_birth"
+            style="@style/AndroidAppText.SemiBold"
+            android:layout_marginStart="@dimen/dimen_16dp"
+            android:layout_marginTop="@dimen/dimen_8dp"
+            android:fontFamily="@font/lato_bold"
+            android:text="@string/label_date_of_birth"
+            android:textSize="@dimen/text_size_16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/img_background_top" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_date_of_birth"
+            style="@style/AndroidAppText.Black"
+            android:layout_marginTop="@dimen/dimen_8dp"
+            android:textSize="@dimen/text_size_14sp"
+            app:layout_constraintStart_toStartOf="@id/tv_label_date_of_birth"
+            app:layout_constraintTop_toBottomOf="@id/tv_label_date_of_birth"
+            tools:text="@string/sample_date_of_birth" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_label_id_card"
+            style="@style/AndroidAppText.SemiBold"
+            android:layout_marginTop="@dimen/dimen_16dp"
+            android:fontFamily="@font/lato_bold"
+            android:text="@string/label_Id_card_number"
+            android:textSize="@dimen/text_size_16sp"
+            app:layout_constraintStart_toStartOf="@id/tv_label_date_of_birth"
+            app:layout_constraintTop_toBottomOf="@id/tv_date_of_birth" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_id_card"
+            style="@style/AndroidAppText.Black"
+            android:layout_marginTop="@dimen/dimen_8dp"
+            android:textSize="@dimen/text_size_14sp"
+            app:layout_constraintStart_toStartOf="@id/tv_label_date_of_birth"
+            app:layout_constraintTop_toBottomOf="@id/tv_label_id_card"
+            tools:text="@string/sample_id_card_number" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_label_address"
+            style="@style/AndroidAppText.SemiBold"
+            android:layout_marginTop="@dimen/dimen_16dp"
+            android:text="@string/label_address"
+            android:textSize="@dimen/text_size_16sp"
+            app:layout_constraintStart_toStartOf="@id/tv_label_date_of_birth"
+            app:layout_constraintTop_toBottomOf="@id/tv_id_card" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_address"
+            style="@style/AndroidAppText"
+            android:layout_width="@dimen/dimen_0dp"
+            android:layout_marginTop="@dimen/dimen_8dp"
+            android:layout_marginEnd="@dimen/dimen_16dp"
+            android:textSize="@dimen/text_size_14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/tv_label_date_of_birth"
+            app:layout_constraintTop_toBottomOf="@id/tv_label_address"
+            tools:text="@string/sample_address" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_change_password"
+            style="@style/AndroidAppButton.White"
+            android:layout_width="match_parent"
+            android:layout_marginStart="@dimen/dimen_16dp"
+            android:layout_marginTop="@dimen/dimen_24dp"
+            android:layout_marginEnd="@dimen/dimen_16dp"
+            android:text="@string/button_change_password"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_address" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_logout"
+            style="@style/AndroidAppButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dimen_16dp"
+            android:layout_marginTop="@dimen/dimen_8dp"
+            android:layout_marginEnd="@dimen/dimen_16dp"
+            android:text="@string/button_logout"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btn_change_password" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.core.widget.NestedScrollView>
