@@ -49,5 +49,7 @@
     <string name="button_change_data">UBAH DATA</string>
     <string name="button_male">Laki-laki</string>
     <string name="hint_female">Perempuan</string>
-    <string name="date_picker">Button untuk memilih tanggal</string>
+    <string name="cd_date_picker">Button untuk memilih tanggal</string>
+    <string name="cd_change_photo">Tombol untuk mengganti foto</string>
+    <string name="cd_edit_profile_button">Tombol untuk mengedit profile</string>
 </resources>

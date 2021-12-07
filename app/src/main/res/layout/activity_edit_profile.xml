@@ -27,14 +27,13 @@
             android:padding="@dimen/dimen_16dp">
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/tilEmail"
+                android:id="@+id/tilFullName"
                 style="@style/AndroidAppTextInputLayout"
                 android:layout_width="match_parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:layout_editor_absoluteX="16dp">
+                app:layout_constraintTop_toTopOf="parent">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/edtEmail"
+                    android:id="@+id/edtFullName"
                     style="@style/AndroidAppEditText"
                     android:backgroundTint="@color/colorTransparent"
                     android:focusableInTouchMode="true"
@@ -49,8 +48,7 @@
                 style="@style/AndroidAppTextInputLayout"
                 android:layout_width="match_parent"
                 android:layout_marginTop="@dimen/dimen_16dp"
-                app:layout_constraintTop_toBottomOf="@id/tilEmail"
-                tools:layout_editor_absoluteX="16dp">
+                app:layout_constraintTop_toBottomOf="@id/tilFullName">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/edtBirthDate"
@@ -66,10 +64,10 @@
             <ImageButton
                 android:id="@+id/ibDatePicker"
                 style="@style/Base.Widget.AppCompat.ImageButton"
-                android:layout_width="50dp"
                 android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
                 android:background="@color/white"
-                android:contentDescription="@string/date_picker"
+                android:contentDescription="@string/cd_date_picker"
                 android:src="@drawable/ic_date_edit"
                 app:layout_constraintBottom_toBottomOf="@+id/tilBirthDate"
                 app:layout_constraintEnd_toEndOf="@+id/tilBirthDate"
@@ -117,8 +115,7 @@
                 style="@style/AndroidAppTextInputLayout"
                 android:layout_width="match_parent"
                 android:layout_marginTop="@dimen/dimen_16dp"
-                app:layout_constraintTop_toBottomOf="@id/btnMale"
-                tools:layout_editor_absoluteX="16dp">
+                app:layout_constraintTop_toBottomOf="@id/btnMale">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/edtKtpNumber"
@@ -136,9 +133,8 @@
                 android:id="@+id/tilAddress"
                 style="@style/AndroidAppTextInputLayout"
                 android:layout_width="match_parent"
-                android:layout_marginTop="16dp"
-                app:layout_constraintTop_toBottomOf="@id/tilKtpNumber"
-                tools:layout_editor_absoluteX="16dp">
+                android:layout_marginTop="@dimen/dimen_16dp"
+                app:layout_constraintTop_toBottomOf="@id/tilKtpNumber">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/edtAddress"

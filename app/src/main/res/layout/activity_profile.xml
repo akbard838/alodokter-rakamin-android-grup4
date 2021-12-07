@@ -17,7 +17,7 @@
         layout="@layout/layout_toolbar" />
 
     <ImageView
-        android:id="@+id/profile_image"
+        android:id="@+id/iv_profile"
         android:layout_width="@dimen/dimen_120dp"
         android:layout_height="@dimen/dimen_120dp"
         android:contentDescription="@string/desc_profile_image"
@@ -27,17 +27,18 @@
         app:layout_constraintTop_toBottomOf="@+id/toolbarMain" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/change_photo"
+        android:id="@+id/fab_change_photo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_baseline_photo_camera_24"
         app:backgroundTint="@color/grey_300"
+        android:contentDescription="@string/cd_change_photo"
         app:fabSize="mini"
-        app:layout_constraintBottom_toBottomOf="@+id/profile_image"
-        app:layout_constraintEnd_toEndOf="@+id/profile_image" />
+        app:layout_constraintBottom_toBottomOf="@+id/iv_profile"
+        app:layout_constraintEnd_toEndOf="@+id/iv_profile" />
 
     <TextView
-        android:id="@+id/fullname_field"
+        android:id="@+id/tv_fullname"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/lato_semi_bold"
@@ -45,12 +46,12 @@
         android:text="@string/sample_name"
         android:textColor="@color/colorWhite"
         android:textSize="@dimen/text_size_18sp"
-        app:layout_constraintEnd_toEndOf="@+id/profile_image"
-        app:layout_constraintStart_toStartOf="@+id/profile_image"
-        app:layout_constraintTop_toBottomOf="@+id/profile_image" />
+        app:layout_constraintEnd_toEndOf="@+id/iv_profile"
+        app:layout_constraintStart_toStartOf="@+id/iv_profile"
+        app:layout_constraintTop_toBottomOf="@+id/iv_profile" />
 
     <TextView
-        android:id="@+id/domisili"
+        android:id="@+id/tv_domisili"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:includeFontPadding="false"
@@ -58,99 +59,100 @@
         android:fontFamily="@font/lato_regular"
         android:textSize="@dimen/text_size_16sp"
         android:textColor="@color/colorWhite"
-        app:layout_constraintEnd_toEndOf="@+id/fullname_field"
-        app:layout_constraintStart_toStartOf="@+id/fullname_field"
-        app:layout_constraintTop_toBottomOf="@+id/fullname_field" />
+        app:layout_constraintEnd_toEndOf="@+id/tv_fullname"
+        app:layout_constraintStart_toStartOf="@+id/tv_fullname"
+        app:layout_constraintTop_toBottomOf="@+id/tv_fullname" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/edit_profile"
+        android:id="@+id/fab_edit_profile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:foreground="@drawable/ic_button_edit"
+        android:contentDescription="@string/cd_edit_profile_button"
         app:layout_constraintBottom_toBottomOf="@+id/appCompatImageView"
-        app:layout_constraintEnd_toEndOf="@+id/domisili"
-        app:layout_constraintStart_toStartOf="@+id/domisili" />
+        app:layout_constraintEnd_toEndOf="@+id/tv_domisili"
+        app:layout_constraintStart_toStartOf="@+id/tv_domisili" />
 
     <TextView
-        android:id="@+id/tanggal_lahir_view"
+        android:id="@+id/tv_birth_date"
         style="@style/AndroidAppText.Bold.Black"
         android:layout_marginBottom="@dimen/dimen_8dp"
         android:fontFamily="@font/lato_bold"
         android:text="@string/label_date_of_birth"
         android:textSize="@dimen/text_size_16sp"
-        app:layout_constraintBottom_toTopOf="@+id/tanggal_lahir"
-        app:layout_constraintStart_toStartOf="@+id/change_password" />
+        app:layout_constraintBottom_toTopOf="@+id/tv_birth_date_field"
+        app:layout_constraintStart_toStartOf="@+id/b_change_pwd" />
 
     <TextView
-        android:id="@+id/tanggal_lahir"
+        android:id="@+id/tv_birth_date_field"
         style="@style/AndroidAppText.Black"
         android:layout_marginBottom="@dimen/dimen_16dp"
         android:fontFamily="@font/lato_semi_bold"
         android:text="@string/sample_date_of_birth"
         android:textSize="@dimen/text_size_14sp"
-        app:layout_constraintBottom_toTopOf="@+id/nomor_ktp_view"
-        app:layout_constraintStart_toStartOf="@+id/change_password" />
+        app:layout_constraintBottom_toTopOf="@+id/tv_ktp_number"
+        app:layout_constraintStart_toStartOf="@+id/b_change_pwd" />
 
     <TextView
-        android:id="@+id/nomor_ktp_view"
+        android:id="@+id/tv_ktp_number"
         style="@style/AndroidAppText.Bold.Black"
         android:layout_marginBottom="@dimen/dimen_8dp"
         android:fontFamily="@font/lato_bold"
         android:text="@string/label_Id_card_number"
         android:textSize="@dimen/text_size_16sp"
-        app:layout_constraintBottom_toTopOf="@+id/nomor_ktp"
-        app:layout_constraintStart_toStartOf="@+id/change_password" />
+        app:layout_constraintBottom_toTopOf="@+id/tv_ktp_number_field"
+        app:layout_constraintStart_toStartOf="@+id/b_change_pwd" />
 
     <TextView
-        android:id="@+id/nomor_ktp"
+        android:id="@+id/tv_ktp_number_field"
         style="@style/AndroidAppText.Black"
         android:layout_marginBottom="@dimen/dimen_16dp"
         android:fontFamily="@font/lato_semi_bold"
         android:text="@string/sample_id_card_number"
         android:textSize="@dimen/text_size_12sp"
-        app:layout_constraintBottom_toTopOf="@+id/alamat_view"
-        app:layout_constraintStart_toStartOf="@+id/change_password" />
+        app:layout_constraintBottom_toTopOf="@+id/tv_address"
+        app:layout_constraintStart_toStartOf="@+id/b_change_pwd" />
 
     <TextView
-        android:id="@+id/alamat_view"
+        android:id="@+id/tv_address"
         style="@style/AndroidAppText.Bold.Black"
         android:layout_marginBottom="@dimen/dimen_8dp"
         android:fontFamily="@font/lato_bold"
         android:text="@string/label_address"
         android:textSize="@dimen/text_size_16sp"
-        app:layout_constraintBottom_toTopOf="@+id/alamat"
-        app:layout_constraintStart_toStartOf="@+id/change_password" />
+        app:layout_constraintBottom_toTopOf="@+id/tv_address_field"
+        app:layout_constraintStart_toStartOf="@+id/b_change_pwd" />
 
     <TextView
-        android:id="@+id/alamat"
+        android:id="@+id/tv_address_field"
         style="@style/AndroidAppText.Black"
-        android:layout_marginBottom="@dimen/dimen_8dp"
+        android:layout_marginBottom="@dimen/dimen_16dp"
         android:fontFamily="@font/lato_semi_bold"
         android:text="@string/sample_address"
         android:textSize="@dimen/text_size_14sp"
-        app:layout_constraintBottom_toTopOf="@+id/change_password"
-        app:layout_constraintStart_toStartOf="@+id/change_password" />
+        app:layout_constraintBottom_toTopOf="@+id/b_change_pwd"
+        app:layout_constraintStart_toStartOf="@+id/b_change_pwd" />
 
     <Button
-        android:id="@+id/change_password"
+        android:id="@+id/b_change_pwd"
         style="@style/AndroidAppButton.White"
-        android:layout_width="match_parent"
+        android:layout_width="@dimen/dimen_320dp"
         android:layout_marginStart="@dimen/dimen_24dp"
         android:layout_marginEnd="@dimen/dimen_24dp"
         android:text="@string/button_change_password"
-        app:layout_constraintBottom_toTopOf="@+id/logout"
+        app:layout_constraintBottom_toTopOf="@+id/b_logout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/logout"
+        android:id="@+id/b_logout"
         style="@style/AndroidAppButton"
         android:layout_width="@dimen/dimen_320dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
         android:text="@string/button_logout"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintEnd_toEndOf="@+id/b_change_pwd"
+        app:layout_constraintStart_toStartOf="@+id/b_change_pwd" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -31,16 +31,16 @@ class ProfileActivity : BaseActivity<ActivityProfileBinding>() {
 
     override fun initAction() {
         binding.apply {
-            changePhoto.setOnClickListener {
+            fabChangePhoto.setOnClickListener {
 
             }
-            editProfile.setOnClickListener {
+            fabEditProfile.setOnClickListener {
                 EditProfileActivity.start(this@ProfileActivity)
             }
-            changePassword.setOnClickListener {
+            bChangePwd.setOnClickListener {
 
             }
-            logout.setOnClickListener {
+            bLogout.setOnClickListener {
 
             }
         }

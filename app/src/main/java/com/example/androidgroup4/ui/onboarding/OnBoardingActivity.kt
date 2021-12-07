@@ -11,6 +11,7 @@ import com.example.androidgroup4.databinding.ActivityOnBoardingBinding
 import com.example.androidgroup4.ui.adapter.PagerAdapter
 import com.example.androidgroup4.ui.auth.LoginActivity
 import com.example.androidgroup4.ui.profile.EditProfileActivity
+import com.example.androidgroup4.ui.profile.ProfileActivity
 
 class OnBoardingActivity : BaseActivity<ActivityOnBoardingBinding>() {
 
@@ -42,7 +43,7 @@ class OnBoardingActivity : BaseActivity<ActivityOnBoardingBinding>() {
             binding.vpOnBoarding.setCurrentItem(currentItemPosition + 1, true)
         }
         binding.btnSkip.setOnClickListener {
-            LoginActivity.start(this)
+            ProfileActivity.start(this)
         }
     }
 
