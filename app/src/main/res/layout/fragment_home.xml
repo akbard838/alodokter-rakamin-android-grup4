@@ -45,7 +45,7 @@
                 android:textColor="?attr/colorOnPrimary"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/dimen_6dp"
+                android:layout_marginTop="@dimen/dimen_20dp"
                 android:layout_marginEnd="@dimen/dimen_22dp"
                 android:layout_marginStart="@dimen/dimen_22dp"
                 android:background="@drawable/edittext_background"
@@ -64,7 +64,7 @@
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
+                android:layout_height="@dimen/dimen_86dp"
                 app:layout_collapseMode="pin"
                 android:background="@drawable/bg_rectangle_rounded_bottom"
                 app:popupTheme="@style/ThemeOverlay.MaterialComponents.Light" />
@@ -85,6 +85,7 @@
             android:layout_height="match_parent"
             android:scrollbars="vertical"
             tools:listitem="@layout/article_item" />
+
 
     </androidx.core.widget.NestedScrollView>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

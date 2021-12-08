@@ -1,14 +1,11 @@
 package com.example.androidgroup4.utils
 
-import android.widget.EditText
+import androidx.annotation.NonNull
 import com.example.androidgroup4.R
-import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 import com.wajahatkarim3.easyvalidation.core.view_ktx.nonEmpty
 import com.wajahatkarim3.easyvalidation.core.view_ktx.validEmail
 import com.wajahatkarim3.easyvalidation.core.view_ktx.validator
-
-private var isValid = true
 
 fun TextInputLayout.validateEmail() {
     if (this.editText?.text.toString().isEmpty()) {
@@ -47,14 +44,18 @@ fun TextInputLayout.validateConfirmPassword(password: String) {
     }
 }
 
-fun isFormValid(textInputLayout: TextInputLayout): Boolean {
-    if (textInputLayout.isErrorEnabled) return false
-    return true
+fun isFormValid(textInputLayout: TextInputLayout, @NonNull formValidListener: () -> Unit) {
+    if (!textInputLayout.isErrorEnabled) formValidListener.invoke()
 }
 
-fun isFormValid(listTextInputLayout: List<TextInputLayout>): Boolean {
+fun isFormValid(
+    listTextInputLayout: List<TextInputLayout>,
+    @NonNull formValidListener: () -> Unit
+) {
+    var isValid = true
     listTextInputLayout.forEach {
-        if (it.isErrorEnabled) return false
+        if (it.isErrorEnabled) isValid = false
     }
-    return true
+
+    if (isValid) formValidListener.invoke()
 }

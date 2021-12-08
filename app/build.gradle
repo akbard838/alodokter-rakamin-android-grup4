@@ -58,7 +58,7 @@ dependencies {
     //Validation
     implementation "com.wajahatkarim3.easyvalidation:easyvalidation-core:1.0.1"
 
-
+    //Carousel
     implementation 'com.synnapps:carouselview:0.1.5'
 
     //Scalable units
@@ -67,5 +67,8 @@ dependencies {
 
     //Dot indicator
     implementation 'com.tbuonomo.andrui:viewpagerdotsindicator:4.1.2'
+
+    //Circular ImageView
+    implementation 'de.hdodenhof:circleimageview:3.1.0'
 
 }

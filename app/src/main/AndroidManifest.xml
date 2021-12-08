@@ -12,8 +12,14 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AndroidGroup4">
         <activity
+
             android:name=".ui.detail.DetailArticleActivity"
             android:exported="true" />
+
+        <activity
+            android:name=".ui.profile.EditProfileActivity"
+            android:exported="false" />
+
         <activity
             android:name=".ui.splash.SplashScreenActivity"
             android:exported="true"
@@ -42,8 +48,13 @@
         <activity
             android:name=".ui.onboarding.OnBoardingActivity"
             android:exported="false" />
+
         <activity
-            android:name=".HomeActivity"
+            android:name=".ui.doctor.DoctorDetailActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".MainActivity"
             android:exported="false" />
     </application>
 

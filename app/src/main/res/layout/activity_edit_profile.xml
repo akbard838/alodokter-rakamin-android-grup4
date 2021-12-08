@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
+    tools:context=".ui.profile.EditProfileActivity">
+
+    <include
+        android:id="@+id/toolbarMain"
+        layout="@layout/layout_toolbar" />
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/input_edit_profile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dimen_16dp"
+        android:layout_marginTop="@dimen/dimen_32dp"
+        android:layout_marginEnd="@dimen/dimen_16dp"
+        app:cardCornerRadius="@dimen/dimen_8dp"
+        app:layout_constraintTop_toBottomOf="@+id/toolbarMain">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_400dp"
+            android:padding="@dimen/dimen_16dp">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilFullName"
+                style="@style/AndroidAppTextInputLayout"
+                android:layout_width="match_parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edtFullName"
+                    style="@style/AndroidAppEditText"
+                    android:backgroundTint="@color/colorTransparent"
+                    android:focusableInTouchMode="true"
+                    android:hint="@string/hint_full_name"
+                    android:imeOptions="actionNext"
+                    android:inputType="textEmailAddress" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilBirthDate"
+                style="@style/AndroidAppTextInputLayout"
+                android:layout_width="match_parent"
+                android:layout_marginTop="@dimen/dimen_16dp"
+                app:layout_constraintTop_toBottomOf="@id/tilFullName">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edtBirthDate"
+                    style="@style/AndroidAppEditText"
+                    android:backgroundTint="@color/colorTransparent"
+                    android:focusableInTouchMode="true"
+                    android:hint="@string/hint_birth_date"
+                    android:imeOptions="actionNext"
+                    android:inputType="textEmailAddress" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <ImageButton
+                android:id="@+id/ibDatePicker"
+                style="@style/Base.Widget.AppCompat.ImageButton"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:background="@color/white"
+                android:contentDescription="@string/cd_date_picker"
+                android:src="@drawable/ic_date_edit"
+                app:layout_constraintBottom_toBottomOf="@+id/tilBirthDate"
+                app:layout_constraintEnd_toEndOf="@+id/tilBirthDate"
+                app:layout_constraintTop_toTopOf="@+id/tilBirthDate" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvGender"
+                style="@style/AndroidAppText"
+                android:layout_width="match_parent"
+                android:layout_marginStart="@dimen/dimen_16dp"
+                android:layout_marginTop="@dimen/dimen_16dp"
+                android:text="@string/hint_gender"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tilBirthDate" />
+
+            <ToggleButton
+                android:id="@+id/btnMale"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/dimen_32dp"
+                android:layout_marginStart="@dimen/dimen_8dp"
+                android:layout_marginTop="@dimen/dimen_16dp"
+                android:background="@drawable/button_male_toggle"
+                android:focusableInTouchMode="false"
+                android:textOff=""
+                android:textOn=""
+                app:layout_constraintStart_toStartOf="@+id/tvGender"
+                app:layout_constraintTop_toBottomOf="@+id/tvGender" />
+
+            <ToggleButton
+                android:id="@+id/btnFemale"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/dimen_32dp"
+                android:layout_marginStart="@dimen/dimen_16dp"
+                android:layout_marginTop="@dimen/dimen_16dp"
+                android:background="@drawable/button_female_toggle"
+                android:focusableInTouchMode="false"
+                android:textOff=""
+                android:textOn=""
+                app:layout_constraintEnd_toEndOf="@+id/tvGender"
+                app:layout_constraintStart_toEndOf="@+id/btnMale"
+                app:layout_constraintTop_toBottomOf="@+id/tvGender" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilKtpNumber"
+                style="@style/AndroidAppTextInputLayout"
+                android:layout_width="match_parent"
+                android:layout_marginTop="@dimen/dimen_16dp"
+                app:layout_constraintTop_toBottomOf="@id/btnMale">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edtKtpNumber"
+                    style="@style/AndroidAppEditText"
+                    android:backgroundTint="@color/colorTransparent"
+                    android:focusableInTouchMode="true"
+
+                    android:hint="@string/hint_ktp_number"
+                    android:imeOptions="actionNext"
+                    android:inputType="textEmailAddress" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilAddress"
+                style="@style/AndroidAppTextInputLayout"
+                android:layout_width="match_parent"
+                android:layout_marginTop="@dimen/dimen_16dp"
+                app:layout_constraintTop_toBottomOf="@id/tilKtpNumber">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edtAddress"
+                    style="@style/AndroidAppEditText"
+                    android:backgroundTint="@color/colorTransparent"
+                    android:focusableInTouchMode="true"
+
+                    android:hint="@string/hint_address"
+                    android:imeOptions="actionNext"
+                    android:inputType="textEmailAddress" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnChangeData"
+        style="@style/AndroidAppButton.White"
+        android:layout_width="match_parent"
+        android:layout_marginStart="@dimen/dimen_16dp"
+        android:layout_marginEnd="@dimen/dimen_16dp"
+        android:layout_marginBottom="@dimen/dimen_16dp"
+        android:text="@string/button_change_data"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

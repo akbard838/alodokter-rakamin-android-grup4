@@ -7,6 +7,7 @@ import android.view.MenuItem
 import androidx.viewbinding.ViewBinding
 import com.example.androidgroup4.R
 import com.example.androidgroup4.base.BaseActivity
+import com.example.androidgroup4.data.model.Profile
 import com.example.androidgroup4.databinding.ActivityProfileBinding
 
 class ProfileActivity : BaseActivity<ActivityProfileBinding>() {
@@ -31,16 +32,22 @@ class ProfileActivity : BaseActivity<ActivityProfileBinding>() {
 
     override fun initAction() {
         binding.apply {
-            changePhoto.setOnClickListener {
+            fabChangePhoto.setOnClickListener {
 
             }
-            editProfile.setOnClickListener {
+            fabEditProfile.setOnClickListener {
+                val profile = Profile(
+                    getString(R.string.sample_name),
+                    getString(R.string.sample_date_of_birth),
+                    getString(R.string.sample_id_card_number),
+                    getString(R.string.sample_address)
+                )
+                EditProfileActivity.start(this@ProfileActivity, profile)
+            }
+            bChangePwd.setOnClickListener {
 
             }
-            changePassword.setOnClickListener {
-
-            }
-            logout.setOnClickListener {
+            bLogout.setOnClickListener {
 
             }
         }

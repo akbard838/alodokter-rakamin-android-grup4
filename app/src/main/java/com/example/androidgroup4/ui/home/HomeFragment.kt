@@ -19,6 +19,7 @@ import com.example.androidgroup4.Article
 import com.example.androidgroup4.R
 import com.example.androidgroup4.base.BaseFragment
 import com.example.androidgroup4.databinding.FragmentHomeBinding
+import com.example.androidgroup4.ui.adapter.ArticleAdapter
 import com.example.androidgroup4.ui.detail.DetailArticleActivity
 import com.synnapps.carouselview.ImageListener
 
@@ -38,7 +39,6 @@ class HomeFragment: BaseFragment<FragmentHomeBinding>() {
     override fun initUI() {
         (activity as AppCompatActivity?)?.setSupportActionBar(binding.toolbar)
         (activity as AppCompatActivity?)?.supportActionBar?.title = ""
-
 
         articleAdapter = ArticleAdapter()
         articleAdapter.setData(dummyData())
