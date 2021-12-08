@@ -4,9 +4,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.androidgroup4.Article
 import com.example.androidgroup4.R
 import com.example.androidgroup4.databinding.ArticleItemBinding
+import com.example.androidgroup4.utils.setImageUrl
 
 class ArticleAdapter: RecyclerView.Adapter<ArticleAdapter.ListViewHolder>() {
 
@@ -38,6 +40,11 @@ class ArticleAdapter: RecyclerView.Adapter<ArticleAdapter.ListViewHolder>() {
                 tvTitle.text = data.title
                 tvDescription.text = data.description
                 tvCategory.text = data.category
+
+                Glide.with(itemView.context)
+                    .load(data.image)
+                    .into(ivArticle)
+
             }
         }
 
