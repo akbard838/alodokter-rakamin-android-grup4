@@ -4,6 +4,7 @@
     <string name="hint_email">Email</string>
     <string name="hint_password">Password</string>
     <string name="label_login">Login</string>
+    <string name="label_edit_profile">Ubah Data Diri</string>
     <string name="label_profile">Profil</string>
     <string name="title_doctor_profile">Profil Dokter</string>
     <string name="button_forgot_password">Lupa Password?</string>
@@ -56,4 +57,15 @@
     <string name="title_no_data">Data Tidak Ditemukan</string>
     <string name="message_no_data">Tidak ada dokter yang cocok dengan nama yang anda masukkan</string>
     <string name="message_pick_schedule">*Untuk mengajukan konsultasi silahkan pilih salah satu jadwal konsultasi dengan melakukan klik pada jam konsultasi yang tersedia</string>
+    <string name="hint_full_name">Nama Lengkap</string>
+    <string name="hint_birth_date">Tanggal Lahir</string>
+    <string name="hint_gender">Jenis Kelamin</string>
+    <string name="hint_ktp_number">Nomor KTP</string>
+    <string name="hint_address">Alamat Sesuai KTP</string>
+    <string name="button_change_data">UBAH DATA</string>
+    <string name="button_male">Laki-laki</string>
+    <string name="hint_female">Perempuan</string>
+    <string name="cd_date_picker">Button untuk memilih tanggal</string>
+    <string name="cd_change_photo">Tombol untuk mengganti foto</string>
+    <string name="cd_edit_profile_button">Tombol untuk mengedit profile</string>
 </resources>
