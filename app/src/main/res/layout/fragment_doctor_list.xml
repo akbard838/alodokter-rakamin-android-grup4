@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorWhiteTwo"
-    tools:context=".ui.doctor.DoctorListActivity">
+    android:background="@color/colorWhiteTwo">
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/img_background_top"
@@ -23,7 +22,7 @@
         android:layout_marginEnd="@dimen/dimen_42dp"
         android:background="@drawable/bg_rectangle_white_rounded"
         android:hint="@string/hint_search_dokter"
-        android:imeOptions="actionDone"
+        android:imeOptions="actionSearch"
         android:inputType="text"
         android:maxLines="1"
         android:paddingStart="@dimen/dimen_8dp"

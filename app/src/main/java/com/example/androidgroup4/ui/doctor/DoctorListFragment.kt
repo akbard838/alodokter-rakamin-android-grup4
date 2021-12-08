@@ -1,9 +1,11 @@
 package com.example.androidgroup4.ui.doctor
 
+import android.content.Context
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.view.WindowManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewbinding.ViewBinding
 import com.example.androidgroup4.R
@@ -17,6 +19,17 @@ import com.example.androidgroup4.utils.gone
 import com.example.androidgroup4.utils.visible
 import java.util.*
 import java.util.regex.Pattern
+import android.view.inputmethod.EditorInfo
+import android.view.inputmethod.InputMethodManager
+
+import android.widget.TextView
+import android.widget.TextView.OnEditorActionListener
+import androidx.core.content.ContextCompat.getSystemService
+
+import android.widget.EditText
+import androidx.core.content.ContextCompat
+import com.example.androidgroup4.utils.hideSoftKeyboard
+
 
 class DoctorListFragment: BaseFragment<FragmentDoctorListBinding>() {
 
@@ -36,6 +49,15 @@ class DoctorListFragment: BaseFragment<FragmentDoctorListBinding>() {
     }
 
     override fun initAction() {
+        binding.edtSearchDoctor.setOnEditorActionListener(OnEditorActionListener { v, actionId, event ->
+            if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+                doctorAdapter.setData(getFilteredData())
+                checkIsDataEmpty(getFilteredData())
+                hideSoftKeyboard(requireContext(), binding.edtSearchDoctor)
+                return@OnEditorActionListener true
+            }
+            false
+        })
         doctorAdapter.onDoctorItemClicked = { doctor ->
             DoctorDetailActivity.start(requireContext(), doctor)
         }
@@ -43,6 +65,9 @@ class DoctorListFragment: BaseFragment<FragmentDoctorListBinding>() {
         binding.fabSearch.setOnClickListener {
             doctorAdapter.setData(getFilteredData())
             checkIsDataEmpty(getFilteredData())
+            activity?.window?.setSoftInputMode(
+                WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN
+            )
         }
 
         binding.edtSearchDoctor.addTextChangedListener(object : TextWatcher {
