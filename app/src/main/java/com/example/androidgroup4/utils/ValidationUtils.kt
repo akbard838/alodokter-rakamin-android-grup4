@@ -6,6 +6,7 @@ import com.google.android.material.textfield.TextInputLayout
 import com.wajahatkarim3.easyvalidation.core.view_ktx.nonEmpty
 import com.wajahatkarim3.easyvalidation.core.view_ktx.validEmail
 import com.wajahatkarim3.easyvalidation.core.view_ktx.validator
+import java.util.*
 
 fun TextInputLayout.validateEmail() {
     if (this.editText?.text.toString().isEmpty()) {
@@ -42,6 +43,22 @@ fun TextInputLayout.validateConfirmPassword(password: String) {
         if (this.editText?.text.toString() == password) this.isErrorEnabled = false
         else this.error = resources.getString(R.string.message_error_confirm_email)
     }
+}
+
+fun TextInputLayout.validateConfirmIdNumber() {
+    if (this.editText?.text.toString().isEmpty()) {
+        this.validateNonEmpty()
+    } else {
+        if (this.editText?.text.toString()
+                .validator()
+                .validNumber()
+                .minLength(16)
+                .maxLength(16)
+                .check()
+        ) this.isErrorEnabled = false
+        else this.error = resources.getString(R.string.message_error_id_number)
+    }
+
 }
 
 fun isFormValid(textInputLayout: TextInputLayout, @NonNull formValidListener: () -> Unit) {

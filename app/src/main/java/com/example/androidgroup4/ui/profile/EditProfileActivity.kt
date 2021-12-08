@@ -11,9 +11,8 @@ import com.example.androidgroup4.base.BaseActivity
 import com.example.androidgroup4.data.model.Doctor
 import com.example.androidgroup4.data.model.Profile
 import com.example.androidgroup4.databinding.ActivityEditProfileBinding
-import com.example.androidgroup4.utils.DatePickerFragment
+import com.example.androidgroup4.utils.*
 import com.example.androidgroup4.utils.constant.BundleKeys
-import com.example.androidgroup4.utils.setImageUrl
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -47,7 +46,11 @@ class EditProfileActivity : BaseActivity<ActivityEditProfileBinding>(), DatePick
     override fun initAction() {
         binding.apply {
             btnChangeData.setOnClickListener {
+                tilKtpNumber.validateConfirmIdNumber()
 
+                isFormValid(listOf(tilKtpNumber)) {
+                    finish()
+                }
             }
             ibDatePicker.setOnClickListener {
                 showDatePicker()
