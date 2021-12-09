@@ -15,11 +15,11 @@ import com.example.androidgroup4.ui.doctor.DoctorDetailActivity
 import com.example.androidgroup4.utils.constant.BundleKeys
 import com.example.androidgroup4.utils.setImageUrl
 
-class DetailArticleActivity : BaseActivity<ActivityDetailArticleBinding>() {
+class ArticleDetailActivity : BaseActivity<ActivityDetailArticleBinding>() {
 
     companion object {
         fun start(context: Context, article: Article) {
-            Intent(context, DoctorDetailActivity::class.java).apply {
+            Intent(context, ArticleDetailActivity::class.java).apply {
                 putExtra(BundleKeys.ARTICLE, article)
                 context.startActivity(this)
             }
@@ -39,7 +39,7 @@ class DetailArticleActivity : BaseActivity<ActivityDetailArticleBinding>() {
             setupToolbar(binding.toolbar, true, article.title)
 
             with(binding) {
-                ivDetailImage.setImageUrl(this@DetailArticleActivity, article.image, R.drawable.img_not_available)
+                ivDetailImage.setImageUrl(this@ArticleDetailActivity, article.image, R.drawable.img_not_available)
                 tvDescription.text = article.description
             }
         }

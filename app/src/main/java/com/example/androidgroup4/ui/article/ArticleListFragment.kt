@@ -73,7 +73,7 @@ class ArticleListFragment : BaseFragment<FragmentHomeBinding>() {
     @SuppressLint("ClickableViewAccessibility")
     override fun initAction() {
         articleAdapter.onItemClick = { article ->
-            DetailArticleActivity.start(requireContext(), article)
+            ArticleDetailActivity.start(requireContext(), article)
         }
 
         with(binding) {

@@ -23,7 +23,7 @@
             android:layout_height="@dimen/dimen_80dp"
             android:layout_marginStart="@dimen/dimen_22dp"
             android:scaleType="centerCrop"
-            android:src="@drawable/img_doctor"
+            tools:src="@drawable/img_doctor"
             app:layout_constraintBottom_toBottomOf="@id/img_distance"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@id/tv_doctor_name" />
@@ -130,7 +130,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:scaleType="centerCrop"
-                            android:src="@drawable/img_hospital" />
+                            tools:src="@drawable/img_hospital" />
 
                         <ProgressBar
                             android:id="@+id/pb_hospital"

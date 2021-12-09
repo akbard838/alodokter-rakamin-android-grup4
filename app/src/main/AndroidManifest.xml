@@ -14,7 +14,7 @@
         android:theme="@style/Theme.AndroidGroup4">
         <activity
 
-            android:name=".ui.article.DetailArticleActivity"
+            android:name=".ui.article.ArticleDetailActivity"
             android:exported="true" />
 
         <activity
