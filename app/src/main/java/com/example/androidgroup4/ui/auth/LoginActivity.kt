@@ -8,7 +8,7 @@ import androidx.viewbinding.ViewBinding
 import com.example.androidgroup4.R
 import com.example.androidgroup4.base.BaseActivity
 import com.example.androidgroup4.databinding.ActivityLoginBinding
-import com.example.androidgroup4.ui.MainActivity
+import com.example.androidgroup4.ui.main.MainActivity
 import com.example.androidgroup4.utils.constant.PreferenceKeys.IS_LOGIN
 import com.example.androidgroup4.utils.getAppPreferenceEditor
 import com.example.androidgroup4.utils.isFormValid

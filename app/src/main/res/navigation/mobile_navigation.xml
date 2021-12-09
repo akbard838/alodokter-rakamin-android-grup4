@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/navigation_home"
-        android:name="com.example.androidgroup4.ui.home.HomeFragment"
+        android:name="com.example.androidgroup4.ui.article.ArticleListFragment"
         android:label="@string/title_article"
         tools:layout="@layout/fragment_home">
         <action
@@ -31,7 +31,7 @@
         tools:layout="@layout/fragment_profile"/>
     <activity
         android:id="@+id/detailArticleActivity"
-        android:name="com.example.androidgroup4.ui.detail.DetailArticleActivity"
+        android:name="com.example.androidgroup4.ui.article.DetailArticleActivity"
         android:label="activity_detail_article"
         tools:layout="@layout/activity_detail_article" />
 

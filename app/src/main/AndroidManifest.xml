@@ -14,7 +14,7 @@
         android:theme="@style/Theme.AndroidGroup4">
         <activity
 
-            android:name=".ui.detail.DetailArticleActivity"
+            android:name=".ui.article.DetailArticleActivity"
             android:exported="true" />
 
         <activity
@@ -52,7 +52,7 @@
             android:exported="false" />
 
         <activity
-            android:name=".ui.MainActivity"
+            android:name=".ui.main.MainActivity"
             android:exported="false" />
     </application>
 

@@ -1,32 +1,41 @@
-package com.example.androidgroup4.ui.detail
+package com.example.androidgroup4.ui.article
 
+import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
-import androidx.core.content.ContextCompat
 import androidx.viewbinding.ViewBinding
-import com.example.androidgroup4.data.model.Article
 import com.example.androidgroup4.R
 import com.example.androidgroup4.base.BaseActivity
+import com.example.androidgroup4.data.model.Article
 import com.example.androidgroup4.databinding.ActivityDetailArticleBinding
+import com.example.androidgroup4.ui.doctor.DoctorDetailActivity
+import com.example.androidgroup4.utils.constant.BundleKeys
 import com.example.androidgroup4.utils.setImageUrl
 
 class DetailArticleActivity : BaseActivity<ActivityDetailArticleBinding>() {
 
     companion object {
-        const val EXTRA_ARTICLE = "extra_article"
+        fun start(context: Context, article: Article) {
+            Intent(context, DoctorDetailActivity::class.java).apply {
+                putExtra(BundleKeys.ARTICLE, article)
+                context.startActivity(this)
+            }
+        }
     }
+
+    private var article: Article? = null
 
     override val bindingInflater: (LayoutInflater) -> ViewBinding = ActivityDetailArticleBinding::inflate
 
     override fun initIntent() {
-
+        article = intent.getParcelableExtra(BundleKeys.ARTICLE)
     }
 
     override fun initUI() {
-        val articleObj = intent.getParcelableExtra<Article>(EXTRA_ARTICLE)
-        articleObj?.let { article ->
+        article?.let { article ->
             setupToolbar(binding.toolbar, true, article.title)
 
             with(binding) {
