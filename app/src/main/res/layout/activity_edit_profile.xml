@@ -53,8 +53,9 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/edtBirthDate"
                     style="@style/AndroidAppEditText"
+                    android:focusable="false"
                     android:backgroundTint="@color/colorTransparent"
-                    android:focusableInTouchMode="true"
+                    android:focusableInTouchMode="false"
                     android:hint="@string/hint_birth_date"
                     android:imeOptions="actionNext"
                     android:inputType="textEmailAddress" />
