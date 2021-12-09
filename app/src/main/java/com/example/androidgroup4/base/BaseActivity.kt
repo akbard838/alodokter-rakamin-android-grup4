@@ -1,15 +1,19 @@
 package com.example.androidgroup4.base
 
+import android.app.ProgressDialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.viewbinding.ViewBinding
+import com.example.androidgroup4.R
 import com.example.androidgroup4.utils.ContextProvider
 
 abstract class BaseActivity<VB : ViewBinding> : AppCompatActivity(), BaseView {
 
+    private var mProgressDialog: ProgressDialog? = null
     private var _binding: ViewBinding? = null
+
     abstract val bindingInflater: (LayoutInflater) -> ViewBinding
 
     @Suppress("UNCHECKED_CAST")
@@ -37,6 +41,23 @@ abstract class BaseActivity<VB : ViewBinding> : AppCompatActivity(), BaseView {
         if (supportActionBar != null) {
             supportActionBar!!.title = title
             supportActionBar!!.setDisplayHomeAsUpEnabled(isChild)
+        }
+    }
+
+    override fun showLoading() {
+        if (mProgressDialog == null) {
+            mProgressDialog = ProgressDialog(this)
+            mProgressDialog!!.setMessage(getString(R.string.message_please_wait))
+            mProgressDialog!!.isIndeterminate = true
+            mProgressDialog!!.setCancelable(false)
+            mProgressDialog!!.setCanceledOnTouchOutside(false)
+        }
+        mProgressDialog!!.show()
+    }
+
+    override fun hideLoading() {
+        if (mProgressDialog != null && mProgressDialog!!.isShowing) {
+            mProgressDialog!!.cancel()
         }
     }
 

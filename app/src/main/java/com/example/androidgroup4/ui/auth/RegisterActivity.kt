@@ -83,6 +83,7 @@ class RegisterActivity : BaseActivity<ActivityRegisterBinding>() {
             ).collect {
                 when (it) {
                     is ApiResponse.Success -> {
+                        hideLoading()
                         SuccessActivity.start(
                             this@RegisterActivity,
                             R.drawable.ic_done,
@@ -94,10 +95,11 @@ class RegisterActivity : BaseActivity<ActivityRegisterBinding>() {
                         finish()
                     }
                     is ApiResponse.Failure -> {
+                        hideLoading()
                         showToast(this@RegisterActivity, it.message)
                     }
                     is ApiResponse.Loading -> {
-
+                        showLoading()
                     }
                 }
             }

@@ -6,4 +6,8 @@ interface BaseView {
 
     fun setupToolbar(toolbar: Toolbar?, isChild : Boolean, title: String,)
 
+    fun showLoading()
+
+    fun hideLoading()
+
 }
