@@ -13,6 +13,7 @@ import com.example.androidgroup4.data.model.Profile
 import com.example.androidgroup4.databinding.ActivityEditProfileBinding
 import com.example.androidgroup4.utils.*
 import com.example.androidgroup4.utils.constant.BundleKeys
+import com.example.androidgroup4.utils.enum.GenderType
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -35,20 +36,20 @@ class EditProfileActivity : BaseActivity<ActivityEditProfileBinding>(), DatePick
         ActivityEditProfileBinding::inflate
 
     override fun initIntent() {
-        profile = intent.getParcelableExtra("PROFILE")
+        profile = intent.getParcelableExtra(BundleKeys.PROFILE)
     }
 
     override fun initUI() {
         setupToolbar(binding.toolbarMain.toolbar, true, getString(R.string.label_edit_profile))
-        initDummyData()
     }
 
     override fun initAction() {
         binding.apply {
             btnChangeData.setOnClickListener {
                 tilKtpNumber.validateConfirmIdNumber()
+                tilFullName.validateNonEmpty()
 
-                isFormValid(listOf(tilKtpNumber)) {
+                isFormValid(listOf(tilKtpNumber, tilFullName)) {
                     finish()
                 }
             }
@@ -61,34 +62,30 @@ class EditProfileActivity : BaseActivity<ActivityEditProfileBinding>(), DatePick
             tilBirthDate.setOnClickListener {
                 showDatePicker()
             }
-            btnMale.setOnCheckedChangeListener { _, isChecked ->
-                if (isChecked) {
-                    btnFemale.isChecked = false
-                } else {
-                    btnMale.isChecked = false
-                }
+            btnMale.setOnClickListener {
+                changeGenderToMale()
             }
-            btnFemale.setOnCheckedChangeListener { _, isChecked ->
-                if (isChecked) {
-                    btnMale.isChecked = false
-                } else {
-                    btnFemale.isChecked = false
-                }
+            btnFemale.setOnClickListener {
+                changeGenderToFemale()
             }
         }
     }
 
     override fun initProcess() {
-        binding.apply {
-            edtFullName.setText(profile?.name)
-            edtBirthDate.setText(profile?.birthDate)
-            edtKtpNumber.setText(profile?.ktpNumber)
-            edtAddress.setText(profile?.address)
-        }
+        initDummyData()
     }
 
     override fun initObservable() {
 
+    }
+
+    override fun onDialogDateSet(tag: String?, year: Int, month: Int, dayOfMonth: Int) {
+        val calendar = Calendar.getInstance()
+        calendar.set(year, month, dayOfMonth)
+        val dateFormat = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
+        binding.edtBirthDate.setText(dateFormat.format(calendar.time))
+
+        dueDateMillis = calendar.timeInMillis
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -101,7 +98,15 @@ class EditProfileActivity : BaseActivity<ActivityEditProfileBinding>(), DatePick
     }
 
     private fun initDummyData() {
+        binding.apply {
+            if (profile?.gender == GenderType.MALE.type) btnMale.isChecked = true
+            else btnFemale.isChecked = true
 
+            edtFullName.setText(profile?.name)
+            edtBirthDate.setText(profile?.birthDate)
+            edtKtpNumber.setText(profile?.ktpNumber)
+            edtAddress.setText(profile?.address)
+        }
     }
 
     private fun showDatePicker() {
@@ -109,13 +114,14 @@ class EditProfileActivity : BaseActivity<ActivityEditProfileBinding>(), DatePick
         dialogFragment.show(supportFragmentManager, "datePicker")
     }
 
-    override fun onDialogDateSet(tag: String?, year: Int, month: Int, dayOfMonth: Int) {
-        val calendar = Calendar.getInstance()
-        calendar.set(year, month, dayOfMonth)
-        val dateFormat = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
-        binding.edtBirthDate.setText(dateFormat.format(calendar.time))
+    private fun changeGenderToFemale(){
+        binding.btnMale.isChecked = false
+        binding.btnFemale.isChecked = true
+    }
 
-        dueDateMillis = calendar.timeInMillis
+    private fun changeGenderToMale(){
+        binding.btnMale.isChecked = true
+        binding.btnFemale.isChecked = false
     }
 
 }
