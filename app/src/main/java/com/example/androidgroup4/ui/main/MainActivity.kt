@@ -1,4 +1,4 @@
-package com.example.androidgroup4.ui
+package com.example.androidgroup4.ui.main
 
 import android.content.Context
 import android.content.Intent

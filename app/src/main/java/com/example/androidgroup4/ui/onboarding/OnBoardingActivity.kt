@@ -5,7 +5,7 @@ import android.content.Intent
 import android.view.LayoutInflater
 import androidx.viewbinding.ViewBinding
 import androidx.viewpager2.widget.ViewPager2
-import com.example.androidgroup4.ui.MainActivity
+import com.example.androidgroup4.ui.main.MainActivity
 import com.example.androidgroup4.R
 import com.example.androidgroup4.base.BaseActivity
 import com.example.androidgroup4.databinding.ActivityOnBoardingBinding
