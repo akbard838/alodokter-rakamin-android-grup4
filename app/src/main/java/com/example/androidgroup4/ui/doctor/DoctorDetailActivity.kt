@@ -36,7 +36,7 @@ class DoctorDetailActivity : BaseActivity<ActivityDoctorDetailBinding>() {
         ActivityDoctorDetailBinding::inflate
 
     override fun initIntent() {
-        doctor = intent.getParcelableExtra("DOCTOR")
+        doctor = intent.getParcelableExtra(BundleKeys.DOCTOR)
     }
 
     override fun initUI() {
