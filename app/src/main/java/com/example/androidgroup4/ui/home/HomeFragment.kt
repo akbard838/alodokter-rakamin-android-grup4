@@ -3,10 +3,7 @@ package com.example.androidgroup4.ui.home
 import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.MotionEvent
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.view.inputmethod.InputMethodManager
 import android.widget.ImageView
 import android.widget.Toast
@@ -15,12 +12,15 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewbinding.ViewBinding
 import com.bumptech.glide.Glide
-import com.example.androidgroup4.Article
+import com.example.androidgroup4.data.model.Article
+import com.example.androidgroup4.MainActivity
 import com.example.androidgroup4.R
 import com.example.androidgroup4.base.BaseFragment
 import com.example.androidgroup4.databinding.FragmentHomeBinding
 import com.example.androidgroup4.ui.adapter.ArticleAdapter
+import com.example.androidgroup4.ui.auth.LoginActivity
 import com.example.androidgroup4.ui.detail.DetailArticleActivity
+import com.example.androidgroup4.ui.profile.ProfileActivity
 import com.synnapps.carouselview.ImageListener
 
 class HomeFragment: BaseFragment<FragmentHomeBinding>() {
@@ -37,11 +37,12 @@ class HomeFragment: BaseFragment<FragmentHomeBinding>() {
     }
 
     override fun initUI() {
+        setHasOptionsMenu(true)
         (activity as AppCompatActivity?)?.setSupportActionBar(binding.toolbar)
-        (activity as AppCompatActivity?)?.supportActionBar?.title = ""
+
 
         articleAdapter = ArticleAdapter()
-        articleAdapter.setData(dummyData())
+        articleAdapter.setData(getDummyArticle())
         with(binding.rvArticle) {
             layoutManager = LinearLayoutManager(requireContext())
             setHasFixedSize(true)
@@ -111,18 +112,44 @@ class HomeFragment: BaseFragment<FragmentHomeBinding>() {
 
     }
 
-    //Create Dummy Data
-    private fun dummyData(): List<Article> {
-        val image = resources.getIdentifier("@drawable/img_article", null,activity?.packageName)
-        return listOf(
-            Article("kesehatan", "menjaga kesehatan", "hidup sehat", image),
-            Article("olahraga", "berolahraga", "olahraga", image),
-            Article("makanan", "makan siang", "food", image),
-            Article("kesehatan", "menjaga kesehatan", "hidup sehat", image),
-            Article("olahraga", "berolahraga", "olahraga", image),
-            Article("makanan", "makan siang","food", image),
-            Article("kesehatan", "menjaga kesehatan","hidup sehat", image),
-            Article("olahraga", "berolahraga", "olahraga", image)
-        )
+    private fun getDummyArticle(): ArrayList<Article> {
+        val articles = arrayListOf<Article>()
+
+        val titles = resources.getStringArray(R.array.list_of_title_article)
+        val descriptions = resources.getStringArray(R.array.list_of_description_article)
+        val category = resources.getStringArray(R.array.list_of_category_article)
+        val images = resources.getStringArray(R.array.list_of_image_article)
+
+        for (i in titles.indices) {
+            articles.add(
+                Article(titles[i], descriptions[i], category[i], images[i])
+            )
+        }
+        return articles
     }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+
+        if (MainActivity.getUserLoggedInStatus(requireContext()))
+            inflater.inflate(R.menu.profile_menu, menu)
+        else {
+            inflater.inflate(R.menu.login_menu, menu)
+            val menuItem = menu.findItem(R.id.menu_login)
+            menuItem.actionView.setOnClickListener {
+                onOptionsItemSelected(menuItem)
+            }
+        }
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+
+        when (item.itemId) {
+            R.id.menu_profile -> ProfileActivity.start(requireContext())
+            R.id.menu_login -> LoginActivity.start(requireContext())
+        }
+        return super.onOptionsItemSelected(item)
+
+    }
+
 }

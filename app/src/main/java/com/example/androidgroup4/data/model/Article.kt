@@ -1,4 +1,4 @@
-package com.example.androidgroup4
+package com.example.androidgroup4.data.model
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
@@ -8,5 +8,5 @@ data class Article(
     val title: String,
     val description: String,
     val category: String,
-    val image: Int
+    val image: String
 ) : Parcelable

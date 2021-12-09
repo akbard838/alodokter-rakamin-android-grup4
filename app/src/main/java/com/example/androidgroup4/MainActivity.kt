@@ -3,6 +3,7 @@ package com.example.androidgroup4
 import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
+import android.view.Menu
 import android.view.MenuItem
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
@@ -10,7 +11,9 @@ import androidx.viewbinding.ViewBinding
 import com.example.androidgroup4.base.BaseActivity
 import com.example.androidgroup4.databinding.ActivityMainBinding
 import com.example.androidgroup4.utils.constant.PreferenceKeys
+import com.example.androidgroup4.utils.constant.PreferenceKeys.IS_LOGIN
 import com.example.androidgroup4.utils.getAppPreferenceEditor
+import com.example.androidgroup4.utils.getAppSharedPreference
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : BaseActivity<ActivityMainBinding>() {
@@ -21,6 +24,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
                 context.startActivity(this)
             }
         }
+        fun getUserLoggedInStatus(context: Context) = getAppSharedPreference(context).getBoolean(IS_LOGIN, false)
     }
 
     override val bindingInflater: (LayoutInflater) -> ViewBinding = ActivityMainBinding::inflate
@@ -70,7 +74,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
                 onBackPressed()
             }
         }
-        return true
+        return false
     }
 
 }

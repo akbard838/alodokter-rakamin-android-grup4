@@ -81,4 +81,37 @@
         <item>20</item>
     </integer-array>
 
+
+    <string-array name="list_of_title_article">
+        <item>5 Penyebab Amandel Bengkak dan Cara Mengobatinya</item>
+        <item>Kenali 8 Penyebab Darah Rendah dan Cara Menanganinya</item>
+        <item>Inilah 6 Cara Menghilangkan Kerutan di Wajah secara Alami</item>
+        <item>Bunda, Ini Tips Mengatasi Rasa Sakit Saat BAB setelah Melahirkan</item>
+        <item>Bandwagon Effect, Istilah untuk Orang yang Suka Ikutan Tren</item>
+    </string-array>
+
+    <string-array name="list_of_description_article">
+        <item>Amandel bengkak sering kali menimbulkan rasa sakit dan tidak nyaman di kerongkongan, terutama saat menelan makanan. Kondisi ini kerap terjadi akibat adanya infeksi di mulut atau saluran pernapasan yang memengaruhi amandel. Amandel atau tonsil merupakan bagian dari sistem kekebalan tubuh untuk melawan infeksi kuman. Akan tetapi, amandel juga bisa mengalami gangguan yang ditandai dengan pembengkakan, sehingga tidak berfungsi dengan baik untuk melawan kuman.</item>
+        <item>Sama halnya dengan darah tinggi, kondisi darah rendah juga perlu Anda waspadai. Penyebab darah rendah bisa bermacam-macam dan dapat menjadi tanda adanya kondisi medis atau penyakit tertentu, seperti gangguan jantung atau infeksi berat. Darah rendah atau hipotensi adalah kondisi ketika tekanan darah seseorang berada di bawah nilai 90/60 mmHg. Padahal, tekanan darah normal pada orang dewasa adalah sekitar 120/80 mmHg.</item>
+        <item>Meski munculnya kerut sulit dihindari seiring pertambahan usia, ada cara menghilangkan kerutan di wajah secara alami yang bisa Anda coba. Anda pun dapat menggunakan bahan-bahan alami yang mudah ditemukan di rumah. Dengan begitu, kulit wajah sehat dan awet muda pun dapat Anda wujudkan. Selain bertambahnya usia, ada beberapa faktor lain yang dapat memicu munculnya keriput atau kerutan di wajah, seperti gaya hidup tidak sehat, paparan sinar matahari, kebiasaan merokok, hingga posisi tidur yang menekan wajah sehingga menimbulkan garis-garis halus.</item>
+        <item>Nyeri atau sakit saat buang air besar (BAB) menjadi salah satu keluhan yang cukup umum dialami oleh ibu yang baru saja melahirkan. Nah, bila Bunda mengalami hal ini, yuk simak tips yang bisa dilakukan untuk mengurangi rasa sakit saat BAB setelah melahirkan.Perasaan sakit atau nyeri saat BAB setelah melahirkan sebenarnya hal yang normal, kok. Namun, rasa nyeri ini terkadang membuat Bunda jadi nggak nyaman, bahkan cemas saat akan BAB. Sakit saat BAB setelah melahirkan bisa dialami oleh setiap wanita, baik yang melahirkan secara normal maupun dengan prosedur operasi caesar.</item>
+        <item>Apa kamu selalu merasa ingin membeli sesuatu yang sedang tren? Atau kamu ingin mengikuti style selebgram yang lagi naik daun? Fenomena ini dikenal dengan istilah bandwagon effect. Meski umumnya tidak berbahaya, namun perilaku ini bisa menimbulkan dampak buruk bagi kehidupanmu, lho. Bandwagon effect adalah istilah untuk menggambarkan fenomena di mana seseorang cenderung mengikuti suatu tren, mulai dari gaya hidup, perilaku, cara berpakaian, cara berbicara, atau konten di media sosial.</item>
+    </string-array>
+
+    <string-array name="list_of_category_article">
+        <item>Kesehatan</item>
+        <item>Kesehatan</item>
+        <item>Hidup Sehat</item>
+        <item>Keluarga</item>
+        <item>Hidup Sehat</item>
+    </string-array>
+
+    <string-array name="list_of_image_article">
+        <item>https://res.cloudinary.com/dk0z4ums3/image/upload/v1638935308/attached_image/5-penyebab-amandel-bengkak-dan-cara-mengobatinya-0-alodokter.jpg</item>
+        <item>https://res.cloudinary.com/dk0z4ums3/image/upload/v1638933526/attached_image/kenali-8-penyebab-darah-rendah-dan-cara-menanganinya-0-alodokter.jpg</item>
+        <item>https://res.cloudinary.com/dk0z4ums3/image/upload/v1638927541/attached_image/inilah-6-cara-menghilangkan-kerutan-di-wajah-secara-alami-0-alodokter.jpg</item>
+        <item>https://res.cloudinary.com/dk0z4ums3/image/upload/v1638792011/attached_image/bunda-ini-tips-mengatasi-rasa-sakit-saat-bab-setelah-melahirkan-0-alodokter.jpg</item>
+        <item>https://res.cloudinary.com/dk0z4ums3/image/upload/v1638881651/attached_image/bandwagon-effect-istilah-untuk-orang-yang-suka-ikutan-tren-0-alodokter.jpg</item>
+    </string-array>
+
 </resources>

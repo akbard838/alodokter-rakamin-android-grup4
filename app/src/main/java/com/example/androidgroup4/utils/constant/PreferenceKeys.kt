@@ -6,4 +6,6 @@ object PreferenceKeys {
 
     const val FIRST_TIME_LAUNCH: String = "first_time_launch"
 
+    const val IS_LOGIN: String = "is_login"
+
 }

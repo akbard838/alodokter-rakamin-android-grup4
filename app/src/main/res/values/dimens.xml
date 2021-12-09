@@ -39,5 +39,8 @@
     <dimen name="dimen_86dp">86dp</dimen>
     <dimen name="dimen_180dp">180dp</dimen>
     <dimen name="dimen_200dp">200dp</dimen>
+    <dimen name="dimen_90dp">90dp</dimen>
+    <dimen name="dimen_60dp">60dp</dimen>
+    <dimen name="dimen_30dp">30dp</dimen>
 
 </resources>

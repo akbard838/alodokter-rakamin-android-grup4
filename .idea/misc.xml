@@ -4,15 +4,21 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Alodokter/AlodokterApp/app/src/main/res/drawable-v24/edittext_background.xml" value="0.21510416666666668" />
+        <entry key="..\:/Alodokter/AlodokterApp/app/src/main/res/drawable/bg_button_menu_login.xml" value="0.21510416666666668" />
         <entry key="..\:/Alodokter/AlodokterApp/app/src/main/res/drawable/bg_rectangle_rounded_bottom.xml" value="0.21510416666666668" />
+        <entry key="..\:/Alodokter/AlodokterApp/app/src/main/res/drawable/bg_rectangle_white_rounded.xml" value="0.21510416666666668" />
         <entry key="..\:/Alodokter/AlodokterApp/app/src/main/res/drawable/ic_article.xml" value="0.21510416666666668" />
         <entry key="..\:/Alodokter/AlodokterApp/app/src/main/res/drawable/ic_baseline_share_24.xml" value="0.21510416666666668" />
+        <entry key="..\:/Alodokter/AlodokterApp/app/src/main/res/drawable/ic_login.xml" value="0.21510416666666668" />
+        <entry key="..\:/Alodokter/AlodokterApp/app/src/main/res/drawable/ic_login_button.xml" value="0.21510416666666668" />
+        <entry key="..\:/Alodokter/AlodokterApp/app/src/main/res/drawable/ic_option_login.xml" value="0.21510416666666668" />
         <entry key="..\:/Alodokter/AlodokterApp/app/src/main/res/drawable/ic_reset_password.xml" value="0.21510416666666668" />
         <entry key="..\:/Alodokter/AlodokterApp/app/src/main/res/drawable/ic_share.xml" value="0.21510416666666668" />
         <entry key="..\:/Alodokter/AlodokterApp/app/src/main/res/drawable/ic_share2.xml" value="0.21510416666666668" />
         <entry key="..\:/Alodokter/AlodokterApp/app/src/main/res/drawable/ic_welcome.xml" value="0.21510416666666668" />
         <entry key="..\:/Alodokter/AlodokterApp/app/src/main/res/drawable/profile_activity_bg.xml" value="0.21510416666666668" />
         <entry key="..\:/Alodokter/AlodokterApp/app/src/main/res/layout/activity_detail_article.xml" value="0.25" />
+        <entry key="..\:/Alodokter/AlodokterApp/app/src/main/res/layout/activity_doctor_detail.xml" value="0.19895833333333332" />
         <entry key="..\:/Alodokter/AlodokterApp/app/src/main/res/layout/activity_home.xml" value="0.19895833333333332" />
         <entry key="..\:/Alodokter/AlodokterApp/app/src/main/res/layout/activity_main.xml" value="0.19895833333333332" />
         <entry key="..\:/Alodokter/AlodokterApp/app/src/main/res/layout/activity_on_boarding.xml" value="0.19895833333333332" />
@@ -22,13 +28,21 @@
         <entry key="..\:/Alodokter/AlodokterApp/app/src/main/res/layout/activity_splash_screen.xml" value="0.19895833333333332" />
         <entry key="..\:/Alodokter/AlodokterApp/app/src/main/res/layout/activity_success.xml" value="0.19895833333333332" />
         <entry key="..\:/Alodokter/AlodokterApp/app/src/main/res/layout/article_item.xml" value="0.33" />
+        <entry key="..\:/Alodokter/AlodokterApp/app/src/main/res/layout/button_option_menu_login.xml" value="0.5" />
         <entry key="..\:/Alodokter/AlodokterApp/app/src/main/res/layout/fragment_dashboard.xml" value="0.19895833333333332" />
         <entry key="..\:/Alodokter/AlodokterApp/app/src/main/res/layout/fragment_detail_article.xml" value="0.25" />
+        <entry key="..\:/Alodokter/AlodokterApp/app/src/main/res/layout/fragment_doctor_list.xml" value="0.19895833333333332" />
         <entry key="..\:/Alodokter/AlodokterApp/app/src/main/res/layout/fragment_home.xml" value="0.25" />
         <entry key="..\:/Alodokter/AlodokterApp/app/src/main/res/layout/fragment_notifications.xml" value="0.19895833333333332" />
+        <entry key="..\:/Alodokter/AlodokterApp/app/src/main/res/layout/item_doctor.xml" value="0.5" />
         <entry key="..\:/Alodokter/AlodokterApp/app/src/main/res/layout/item_on_boarding.xml" value="0.19895833333333332" />
         <entry key="..\:/Alodokter/AlodokterApp/app/src/main/res/layout/layout_toolbar.xml" value="0.19895833333333332" />
         <entry key="..\:/Alodokter/AlodokterApp/app/src/main/res/menu/bottom_nav_menu.xml" value="0.19895833333333332" />
+        <entry key="..\:/Alodokter/AlodokterApp/app/src/main/res/menu/login_menu.xml" value="0.5" />
+        <entry key="..\:/Alodokter/AlodokterApp/app/src/main/res/menu/option_menu.xml" value="0.19895833333333332" />
+        <entry key="..\:/Alodokter/AlodokterApp/app/src/main/res/menu/profile_menu.xml" value="0.19895833333333332" />
+        <entry key="..\:/Alodokter/AlodokterApp/app/src/main/res/menu/share_menu.xml" value="0.19895833333333332" />
+        <entry key="..\:/Alodokter/AlodokterApp/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.21510416666666668" />
         <entry key="..\:/Users/akbar/Documents/AndroidProjects/AndroidGroup4/app/src/main/res/drawable/ic_back_white.xml" value="0.10989583333333333" />
         <entry key="..\:/Users/akbar/Documents/AndroidProjects/AndroidGroup4/app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="..\:/Users/akbar/Documents/AndroidProjects/AndroidGroup4/app/src/main/res/layout/fragment_list_doctor.xml" value="0.1" />

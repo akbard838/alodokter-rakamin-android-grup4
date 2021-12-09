@@ -9,6 +9,8 @@ import com.example.androidgroup4.R
 import com.example.androidgroup4.base.BaseActivity
 import com.example.androidgroup4.data.model.Profile
 import com.example.androidgroup4.databinding.ActivityProfileBinding
+import com.example.androidgroup4.utils.constant.PreferenceKeys
+import com.example.androidgroup4.utils.getAppPreferenceEditor
 
 class ProfileActivity : BaseActivity<ActivityProfileBinding>() {
 
@@ -48,7 +50,7 @@ class ProfileActivity : BaseActivity<ActivityProfileBinding>() {
 
             }
             bLogout.setOnClickListener {
-
+                getAppPreferenceEditor(this@ProfileActivity).putBoolean(PreferenceKeys.IS_LOGIN, false).commit()
             }
         }
     }
