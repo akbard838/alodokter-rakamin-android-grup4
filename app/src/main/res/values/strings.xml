@@ -21,7 +21,11 @@
     <string name="title_doctor">Doctor</string>
     <string name="title_profile">Profile</string>
     <string name="hint_article_image">article image</string>
+    <string name="hint_detail_article_image">detail article image</string>
     <string name="hint_search_article">Cari artikel...</string>
+
+    <string name="hint_button_share">button share</string>
+
     <string name="hint_confirm_password">Konfirmasi Password</string>
     <string name="button_register">Daftar</string>
     <string name="label_register_now">Daftar Sekarang</string>
@@ -50,6 +54,9 @@
     <string name="message_on_boarding_3">Lebih dari 20 ribu dokter siap berkonsultasi denganmu</string>
     <string name="message_on_boarding_2"><![CDATA[Panduan kesehatan terlengkap mulai dari artikel & tips kesehatan]]></string>
     <string name="message_on_boarding_1"><![CDATA[Konsultasi bersama dokter umum & spesialis, kapan pun, di mana pun]]></string>
+
+    <string name="sample_detail_desc">ALODOKTER adalah platform kesehatan digital nomor satu di Indonesia dengan lebih dari 26 juta pengguna aktif setiap bulannya, serta lebih dari 30 ribu dokter yang bergabung. Sejak tahun 2014, ALODOKTER telah unggul dalam menyediakan informasi kesehatan yang akurat, mudah dipahami, dan dapat diakses oleh siapa saja, kapan saja, dan di mana saja. Semua informasi kesehatan yang tersedia di ALODOKTER disusun dalam bahasa Indonesia yang mudah dimengerti dan ditinjau oleh tim dokter yang kompeten.</string>
+
     <string name="label_location">Lokasi</string>
     <string name="label_schedule">Jadwal Praktik</string>
     <string name="button_consultation">Ajukan Konsultasi</string>
@@ -69,4 +76,7 @@
     <string name="cd_date_picker">Button untuk memilih tanggal</string>
     <string name="cd_change_photo">Tombol untuk mengganti foto</string>
     <string name="cd_edit_profile_button">Tombol untuk mengedit profile</string>
+    <string name="option_menu_profile">profile</string>
+    <string name="option_menu_share">share</string>
+
 </resources>

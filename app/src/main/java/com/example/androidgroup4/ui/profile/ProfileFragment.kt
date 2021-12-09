@@ -7,6 +7,8 @@ import com.example.androidgroup4.R
 import com.example.androidgroup4.base.BaseFragment
 import com.example.androidgroup4.data.model.Profile
 import com.example.androidgroup4.databinding.FragmentProfileBinding
+import com.example.androidgroup4.utils.constant.PreferenceKeys.IS_LOGIN
+import com.example.androidgroup4.utils.getAppPreferenceEditor
 import com.example.androidgroup4.utils.enum.GenderType
 import com.example.androidgroup4.utils.setImageUrl
 
@@ -42,7 +44,7 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
 
             }
             btnLogout.setOnClickListener {
-
+                getAppPreferenceEditor(requireContext()).putBoolean(IS_LOGIN, false).commit()
             }
         }
     }

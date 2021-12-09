@@ -8,6 +8,8 @@ import androidx.viewbinding.ViewBinding
 import com.example.androidgroup4.R
 import com.example.androidgroup4.base.BaseActivity
 import com.example.androidgroup4.databinding.ActivityLoginBinding
+import com.example.androidgroup4.utils.constant.PreferenceKeys.IS_LOGIN
+import com.example.androidgroup4.utils.getAppPreferenceEditor
 import com.example.androidgroup4.utils.isFormValid
 import com.example.androidgroup4.utils.validateEmail
 import com.example.androidgroup4.utils.validateNonEmpty
@@ -44,6 +46,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
                 tilPassword.validateNonEmpty()
 
                 isFormValid(listOf(tilEmail, tilPassword)) {
+                    getAppPreferenceEditor(this@LoginActivity).putBoolean(IS_LOGIN, true).commit()
                     finish()
                 }
             }
