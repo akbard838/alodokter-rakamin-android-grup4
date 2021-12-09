@@ -33,8 +33,6 @@ class DetailArticleActivity : BaseActivity<ActivityDetailArticleBinding>() {
                 ivDetailImage.setImageUrl(this@DetailArticleActivity, article.image, R.drawable.img_not_available)
                 tvDescription.text = article.description
             }
-
-
         }
 
     }
@@ -59,7 +57,7 @@ class DetailArticleActivity : BaseActivity<ActivityDetailArticleBinding>() {
         return true
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.share_menu, menu)
         return super.onCreateOptionsMenu(menu)
     }

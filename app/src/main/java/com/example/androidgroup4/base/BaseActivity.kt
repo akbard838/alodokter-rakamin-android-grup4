@@ -23,9 +23,9 @@ abstract class BaseActivity<VB : ViewBinding> : AppCompatActivity(), BaseView {
         ContextProvider.initialize(applicationContext)
 
         initIntent()
-        initObservable()
         initUI()
         initAction()
+        initObservable()
         initProcess()
     }
 

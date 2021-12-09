@@ -29,9 +29,9 @@ abstract class BaseFragment<VB : ViewBinding> : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         initIntent()
-        initObservable()
         initUI()
         initAction()
+        initObservable()
         initProcess()
     }
 
