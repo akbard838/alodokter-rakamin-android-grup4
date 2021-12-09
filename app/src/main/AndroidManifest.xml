@@ -42,12 +42,8 @@
         <activity
             android:name=".ui.onboarding.OnBoardingActivity"
             android:exported="false" />
-            android:exported="false" />
         <activity
             android:name=".ui.doctor.DoctorDetailActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ui.doctor.DoctorListActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
