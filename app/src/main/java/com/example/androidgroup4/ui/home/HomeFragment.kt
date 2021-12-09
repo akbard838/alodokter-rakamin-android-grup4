@@ -13,13 +13,14 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewbinding.ViewBinding
 import com.bumptech.glide.Glide
 import com.example.androidgroup4.data.model.Article
-import com.example.androidgroup4.MainActivity
+import com.example.androidgroup4.ui.MainActivity
 import com.example.androidgroup4.R
 import com.example.androidgroup4.base.BaseFragment
 import com.example.androidgroup4.databinding.FragmentHomeBinding
 import com.example.androidgroup4.ui.adapter.ArticleAdapter
 import com.example.androidgroup4.ui.auth.LoginActivity
 import com.example.androidgroup4.ui.detail.DetailArticleActivity
+import com.example.androidgroup4.utils.emptyString
 import com.synnapps.carouselview.ImageListener
 
 class HomeFragment: BaseFragment<FragmentHomeBinding>() {
@@ -38,6 +39,7 @@ class HomeFragment: BaseFragment<FragmentHomeBinding>() {
     override fun initUI() {
         setHasOptionsMenu(true)
         (activity as AppCompatActivity?)?.setSupportActionBar(binding.toolbar)
+        (activity as AppCompatActivity?)?.supportActionBar?.title = emptyString()
 
 
         articleAdapter = ArticleAdapter()

@@ -1,13 +1,13 @@
-package com.example.androidgroup4
+package com.example.androidgroup4.ui
 
 import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
-import android.view.Menu
 import android.view.MenuItem
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 import androidx.viewbinding.ViewBinding
+import com.example.androidgroup4.R
 import com.example.androidgroup4.base.BaseActivity
 import com.example.androidgroup4.databinding.ActivityMainBinding
 import com.example.androidgroup4.utils.constant.PreferenceKeys
@@ -64,7 +64,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
         if (supportFragmentManager.backStackEntryCount > 0) {
             supportFragmentManager.popBackStack()
         } else {
-            super.onBackPressed()
+            finishAffinity()
         }
     }
 
