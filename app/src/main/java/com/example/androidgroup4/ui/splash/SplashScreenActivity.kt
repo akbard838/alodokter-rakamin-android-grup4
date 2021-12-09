@@ -5,7 +5,7 @@ import android.os.Handler
 import android.os.Looper
 import android.view.LayoutInflater
 import androidx.viewbinding.ViewBinding
-import com.example.androidgroup4.MainActivity
+import com.example.androidgroup4.ui.MainActivity
 import com.example.androidgroup4.base.BaseActivity
 import com.example.androidgroup4.databinding.ActivitySplashScreenBinding
 import com.example.androidgroup4.ui.onboarding.OnBoardingActivity
