@@ -1,8 +1,11 @@
 package com.example.androidgroup4.utils
 
+import android.app.Activity
 import android.content.Context
 import android.content.SharedPreferences
 import android.view.View
+import android.view.inputmethod.InputMethodManager
+import android.widget.EditText
 import android.widget.Toast
 import com.example.androidgroup4.utils.constant.PreferenceKeys
 
@@ -30,4 +33,10 @@ fun getAppSharedPreference(context: Context): SharedPreferences {
 
 fun getAppPreferenceEditor(context: Context): SharedPreferences.Editor {
     return context.getSharedPreferences(PreferenceKeys.PREFERENCE_NAME, Context.MODE_PRIVATE).edit()
+}
+
+fun hideSoftKeyboard(context: Context, input: EditText) {
+    val imm: InputMethodManager? =
+        context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager?
+    imm?.hideSoftInputFromWindow(input.windowToken, 0)
 }
