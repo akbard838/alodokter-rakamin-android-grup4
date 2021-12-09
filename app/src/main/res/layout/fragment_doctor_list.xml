@@ -22,7 +22,7 @@
         android:layout_marginEnd="@dimen/dimen_42dp"
         android:background="@drawable/bg_rectangle_white_rounded"
         android:hint="@string/hint_search_dokter"
-        android:imeOptions="actionDone"
+        android:imeOptions="actionSearch"
         android:inputType="text"
         android:maxLines="1"
         android:paddingStart="@dimen/dimen_8dp"

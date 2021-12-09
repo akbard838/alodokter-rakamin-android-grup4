@@ -23,7 +23,7 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/dimen_400dp"
+            android:layout_height="wrap_content"
             android:padding="@dimen/dimen_16dp">
 
             <com.google.android.material.textfield.TextInputLayout
@@ -39,7 +39,7 @@
                     android:focusableInTouchMode="true"
                     android:hint="@string/hint_full_name"
                     android:imeOptions="actionNext"
-                    android:inputType="textEmailAddress" />
+                    android:inputType="textPersonName" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -54,18 +54,19 @@
                     android:id="@+id/edtBirthDate"
                     style="@style/AndroidAppEditText"
                     android:backgroundTint="@color/colorTransparent"
-                    android:focusableInTouchMode="true"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"
                     android:hint="@string/hint_birth_date"
                     android:imeOptions="actionNext"
-                    android:inputType="textEmailAddress" />
+                    android:inputType="text" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
             <ImageButton
                 android:id="@+id/ibDatePicker"
                 style="@style/Base.Widget.AppCompat.ImageButton"
-                android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:background="@color/white"
                 android:contentDescription="@string/cd_date_picker"
                 android:src="@drawable/ic_date_edit"
@@ -122,10 +123,9 @@
                     style="@style/AndroidAppEditText"
                     android:backgroundTint="@color/colorTransparent"
                     android:focusableInTouchMode="true"
-
                     android:hint="@string/hint_ktp_number"
                     android:imeOptions="actionNext"
-                    android:inputType="textEmailAddress" />
+                    android:inputType="number" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -141,13 +141,14 @@
                     style="@style/AndroidAppEditText"
                     android:backgroundTint="@color/colorTransparent"
                     android:focusableInTouchMode="true"
-
                     android:hint="@string/hint_address"
-                    android:imeOptions="actionNext"
-                    android:inputType="textEmailAddress" />
+                    android:imeOptions="actionDone"
+                    android:inputType="text" />
 
             </com.google.android.material.textfield.TextInputLayout>
+
         </androidx.constraintlayout.widget.ConstraintLayout>
+
     </com.google.android.material.card.MaterialCardView>
 
     <com.google.android.material.button.MaterialButton

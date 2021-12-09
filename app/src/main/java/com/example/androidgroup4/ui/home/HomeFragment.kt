@@ -20,7 +20,6 @@ import com.example.androidgroup4.databinding.FragmentHomeBinding
 import com.example.androidgroup4.ui.adapter.ArticleAdapter
 import com.example.androidgroup4.ui.auth.LoginActivity
 import com.example.androidgroup4.ui.detail.DetailArticleActivity
-import com.example.androidgroup4.ui.profile.ProfileActivity
 import com.synnapps.carouselview.ImageListener
 
 class HomeFragment: BaseFragment<FragmentHomeBinding>() {
@@ -145,7 +144,7 @@ class HomeFragment: BaseFragment<FragmentHomeBinding>() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
 
         when (item.itemId) {
-            R.id.menu_profile -> ProfileActivity.start(requireContext())
+            R.id.menu_profile -> findNavController().navigate(R.id.action_navigation_home_to_navigation_profile)
             R.id.menu_login -> LoginActivity.start(requireContext())
         }
         return super.onOptionsItemSelected(item)
