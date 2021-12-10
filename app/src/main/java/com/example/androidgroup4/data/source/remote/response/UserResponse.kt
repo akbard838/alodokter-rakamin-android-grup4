@@ -1,5 +1,9 @@
 package com.example.androidgroup4.data.source.remote.response
 
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+
+@Parcelize
 data class UserResponse(
 	val createdAt: String,
 	val password: String,
@@ -11,4 +15,4 @@ data class UserResponse(
 	val email: String,
 	val tgl_lahir: String,
 	val alamat: String
-)
+): Parcelable
