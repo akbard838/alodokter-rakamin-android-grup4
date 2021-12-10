@@ -20,6 +20,8 @@ import com.example.androidgroup4.data.source.remote.network.ApiResponse
 import com.example.androidgroup4.databinding.FragmentDoctorListBinding
 import com.example.androidgroup4.ui.UserViewModel
 import com.example.androidgroup4.ui.adapter.DoctorAdapter
+import com.example.androidgroup4.ui.auth.LoginActivity
+import com.example.androidgroup4.ui.main.MainActivity
 import com.example.androidgroup4.utils.gone
 import com.example.androidgroup4.utils.hideSoftKeyboard
 import com.example.androidgroup4.utils.showToast
@@ -43,48 +45,56 @@ class DoctorListFragment: BaseFragment<FragmentDoctorListBinding>() {
     }
 
     override fun initUI() {
+        showLoggedInStateView()
         initRecyclerView()
     }
 
     override fun initAction() {
-        binding.edtSearchDoctor.setOnEditorActionListener(OnEditorActionListener { v, actionId, event ->
-            if (actionId == EditorInfo.IME_ACTION_SEARCH) {
-                doctorAdapter.setData(getFilteredData())
-                checkIsDataEmpty(getFilteredData())
-                hideSoftKeyboard(requireContext(), binding.edtSearchDoctor)
-                return@OnEditorActionListener true
-            }
-            false
-        })
         doctorAdapter.onDoctorItemClicked = { doctor ->
             DoctorDetailActivity.start(requireContext(), doctor)
         }
 
-        binding.fabSearch.setOnClickListener {
-            doctorAdapter.setData(getFilteredData())
-            checkIsDataEmpty(getFilteredData())
-            activity?.window?.setSoftInputMode(
-                WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN
-            )
-        }
+        binding.apply {
+            edtSearchDoctor.setOnEditorActionListener(OnEditorActionListener { v, actionId, event ->
+                if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+                    doctorAdapter.setData(getFilteredData())
+                    checkIsDataEmpty(getFilteredData())
+                    hideSoftKeyboard(requireContext(), binding.edtSearchDoctor)
+                    return@OnEditorActionListener true
+                }
+                false
+            })
 
-        binding.edtSearchDoctor.addTextChangedListener(object : TextWatcher {
-            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-
+            fabSearch.setOnClickListener {
+                doctorAdapter.setData(getFilteredData())
+                checkIsDataEmpty(getFilteredData())
+                activity?.window?.setSoftInputMode(
+                    WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN
+                )
             }
 
-            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                if (binding.edtSearchDoctor.text.toString().isEmpty()) {
-                    reloadData()
+            edtSearchDoctor.addTextChangedListener(object : TextWatcher {
+                override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+
                 }
 
+                override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                    if (binding.edtSearchDoctor.text.toString().isEmpty()) {
+                        reloadData()
+                    }
+
+                }
+
+                override fun afterTextChanged(p0: Editable?) {
+
+                }
+
+            })
+
+            layoutNotLoggedIn.btnLogin.setOnClickListener {
+                LoginActivity.start(requireContext())
             }
-
-            override fun afterTextChanged(p0: Editable?) {
-
-            }
-
-        })
+        }
     }
 
     override fun initProcess() {
@@ -95,6 +105,18 @@ class DoctorListFragment: BaseFragment<FragmentDoctorListBinding>() {
 
     override fun initObservable() {
 
+    }
+
+    private fun showLoggedInStateView() {
+        binding.apply {
+            if (MainActivity.getUserLoggedInStatus(requireContext())) {
+                groupDoctorList.visible()
+                binding.layoutNotLoggedIn.clParent.gone()
+            } else {
+                groupDoctorList.gone()
+                binding.layoutNotLoggedIn.clParent.visible()
+            }
+        }
     }
 
     private fun initRecyclerView() {

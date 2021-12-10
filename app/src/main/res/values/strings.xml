@@ -64,6 +64,8 @@
     <string name="format_yoe">Pengalaman %s tahun</string>
     <string name="hint_search_dokter">Cari dokter anda...</string>
     <string name="title_no_data">Data Tidak Ditemukan</string>
+    <string name="title_not_logged_in">Anda belum login</string>
+    <string name="message_not_logged_in">Silahkan login dengan akun anda untuk menggunakan fitur ini. Anda dapat login dengan melakukan klik pada tombol Login</string>
     <string name="message_no_data">Tidak ada dokter yang cocok dengan nama yang anda masukkan</string>
     <string name="message_pick_schedule">*Untuk mengajukan konsultasi silahkan pilih salah satu jadwal konsultasi dengan melakukan klik pada jam konsultasi yang tersedia</string>
     <string name="hint_full_name">Nama Lengkap</string>

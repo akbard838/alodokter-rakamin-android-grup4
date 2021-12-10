@@ -7,11 +7,14 @@ import com.example.androidgroup4.R
 import com.example.androidgroup4.base.BaseFragment
 import com.example.androidgroup4.data.model.Profile
 import com.example.androidgroup4.databinding.FragmentProfileBinding
+import com.example.androidgroup4.ui.auth.LoginActivity
 import com.example.androidgroup4.ui.main.MainActivity
 import com.example.androidgroup4.utils.constant.PreferenceKeys.IS_LOGIN
 import com.example.androidgroup4.utils.getAppPreferenceEditor
 import com.example.androidgroup4.utils.enum.GenderType
+import com.example.androidgroup4.utils.gone
 import com.example.androidgroup4.utils.setImageUrl
+import com.example.androidgroup4.utils.visible
 
 class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
 
@@ -23,15 +26,16 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
     }
 
     override fun initUI() {
+        showLoggedInStateView()
         initDataUser()
     }
 
     override fun initAction() {
         binding.apply {
-            changePhoto.setOnClickListener {
-
+            fabChangePhoto.setOnClickListener {
             }
-            editProfile.setOnClickListener {
+
+            fabEditProfile.setOnClickListener {
                 val profile = Profile(
                     getString(R.string.sample_name),
                     getString(R.string.sample_date_of_birth),
@@ -41,13 +45,18 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
                 )
                 EditProfileActivity.start(this@ProfileFragment.context, profile)
             }
-            btnChangePassword.setOnClickListener {
 
+            btnChangePassword.setOnClickListener {
             }
+
             btnLogout.setOnClickListener {
                 getAppPreferenceEditor(requireContext()).putBoolean(IS_LOGIN, false).commit()
                 MainActivity.start(requireContext())
                 activity?.finish()
+            }
+
+            layoutNotLoggedIn.btnLogin.setOnClickListener {
+                LoginActivity.start(requireContext())
             }
         }
     }
@@ -57,6 +66,18 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
     }
 
     override fun initObservable() {
+    }
+
+    private fun showLoggedInStateView() {
+        binding.apply {
+            if (MainActivity.getUserLoggedInStatus(requireContext())) {
+                groupProfile.visible()
+                binding.layoutNotLoggedIn.clParent.gone()
+            } else {
+                groupProfile.gone()
+                binding.layoutNotLoggedIn.clParent.visible()
+            }
+        }
     }
 
     private fun initDataUser() {

@@ -17,6 +17,10 @@ class UserViewModel @Inject constructor(
         return userRepository.getUsers()
     }
 
+    fun postLogin(email: String, password: String): Flow<ApiResponse<List<UserResponse>?>> {
+        return userRepository.postLogin(email)
+    }
+
     fun postRegister(email:String, password: String): Flow<ApiResponse<UserResponse?>> {
         return userRepository.postRegister(email, password)
     }

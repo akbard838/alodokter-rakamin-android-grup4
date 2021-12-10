@@ -2,10 +2,7 @@ package com.example.androidgroup4.data.source.remote.network
 
 import com.example.androidgroup4.data.source.remote.response.UserResponse
 import retrofit2.Response
-import retrofit2.http.Field
-import retrofit2.http.FormUrlEncoded
-import retrofit2.http.GET
-import retrofit2.http.POST
+import retrofit2.http.*
 
 interface UserApiService {
     companion object {
@@ -13,12 +10,15 @@ interface UserApiService {
     }
 
     @GET("users")
-    suspend fun getAllUsers() : Response<List<UserResponse>>
+    suspend fun getAllUsers(): Response<List<UserResponse>>
+
+    @GET("users")
+    suspend fun postLogin(@Query("email") email: String): Response<List<UserResponse>>
 
     @POST("users")
     @FormUrlEncoded
     suspend fun postRegister(
         @Field("email") email: String,
         @Field("password") password: String,
-    ) : Response<UserResponse>
+    ): Response<UserResponse>
 }

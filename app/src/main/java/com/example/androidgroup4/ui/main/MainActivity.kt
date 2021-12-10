@@ -21,6 +21,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
     companion object {
         fun start(context: Context) {
             Intent(context, MainActivity::class.java).apply {
+                flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
                 context.startActivity(this)
             }
         }
@@ -64,7 +65,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
         if (supportFragmentManager.backStackEntryCount > 0) {
             supportFragmentManager.popBackStack()
         } else {
-            finishAffinity()
+            super.onBackPressed()
         }
     }
 

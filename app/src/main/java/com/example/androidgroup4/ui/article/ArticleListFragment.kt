@@ -14,14 +14,16 @@ import com.bumptech.glide.Glide
 import com.example.androidgroup4.R
 import com.example.androidgroup4.base.BaseFragment
 import com.example.androidgroup4.data.model.Article
-import com.example.androidgroup4.databinding.FragmentHomeBinding
+import com.example.androidgroup4.databinding.FragmentArticleListBinding
 import com.example.androidgroup4.ui.main.MainActivity
 import com.example.androidgroup4.ui.adapter.ArticleAdapter
 import com.example.androidgroup4.ui.auth.LoginActivity
 import com.example.androidgroup4.utils.emptyString
+import com.example.androidgroup4.utils.gone
+import com.example.androidgroup4.utils.visible
 import com.synnapps.carouselview.ImageListener
 
-class ArticleListFragment : BaseFragment<FragmentHomeBinding>() {
+class ArticleListFragment : BaseFragment<FragmentArticleListBinding>() {
 
     private var imageArray: ArrayList<Int> = ArrayList()
 
@@ -39,7 +41,7 @@ class ArticleListFragment : BaseFragment<FragmentHomeBinding>() {
     private lateinit var articleAdapter: ArticleAdapter
 
     override val bindingInflater: (LayoutInflater, ViewGroup?, Boolean) -> ViewBinding =
-        FragmentHomeBinding::inflate
+        FragmentArticleListBinding::inflate
 
     override fun initIntent() {
 
