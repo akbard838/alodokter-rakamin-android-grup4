@@ -40,7 +40,7 @@
                 app:strokeWidth="@dimen/dimen_1dp" />
 
             <EditText
-                android:id="@+id/sv_article"
+                android:id="@+id/edt_search_article"
                 app:layout_collapseMode="pin"
                 android:textColor="?attr/colorOnPrimary"
                 android:layout_width="match_parent"
@@ -48,7 +48,8 @@
                 android:layout_marginTop="@dimen/dimen_20dp"
                 android:layout_marginEnd="@dimen/dimen_90dp"
                 android:layout_marginStart="@dimen/dimen_16dp"
-                android:background="@drawable/edittext_background"
+                android:imeOptions="actionSearch"
+                android:background="@drawable/bg_rectangle_white_rounded"
                 android:drawableEnd="?android:attr/actionModeWebSearchDrawable"
                 android:drawableTint="@color/colorSecondary"
                 android:elevation="@dimen/dimen_20dp"
@@ -88,7 +89,10 @@
             android:scrollbars="vertical"
             tools:listitem="@layout/article_item" />
 
-
     </androidx.core.widget.NestedScrollView>
+
+    <include
+        android:id="@+id/layout_empty"
+        layout="@layout/layout_empty" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
