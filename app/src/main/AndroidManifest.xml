@@ -13,14 +13,14 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AndroidGroup4">
         <activity
-
+            android:name=".ui.auth.ChangePasswordActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.article.ArticleDetailActivity"
             android:exported="true" />
-
         <activity
             android:name=".ui.profile.EditProfileActivity"
             android:exported="false" />
-
         <activity
             android:name=".ui.splash.SplashScreenActivity"
             android:exported="true"
@@ -46,11 +46,9 @@
         <activity
             android:name=".ui.onboarding.OnBoardingActivity"
             android:exported="false" />
-
         <activity
             android:name=".ui.doctor.DoctorDetailActivity"
             android:exported="false" />
-
         <activity
             android:name=".ui.main.MainActivity"
             android:exported="false" />

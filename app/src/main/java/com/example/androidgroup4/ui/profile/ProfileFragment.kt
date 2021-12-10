@@ -11,6 +11,7 @@ import com.example.androidgroup4.data.source.remote.network.ApiResponse
 import com.example.androidgroup4.data.source.remote.response.UserResponse
 import com.example.androidgroup4.databinding.FragmentProfileBinding
 import com.example.androidgroup4.ui.UserViewModel
+import com.example.androidgroup4.ui.auth.ChangePasswordActivity
 import com.example.androidgroup4.ui.auth.LoginActivity
 import com.example.androidgroup4.ui.main.MainActivity
 import com.example.androidgroup4.utils.*
@@ -51,7 +52,7 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
             }
 
             btnChangePassword.setOnClickListener {
-
+                ChangePasswordActivity.start(requireContext())
             }
 
             btnLogout.setOnClickListener {

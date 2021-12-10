@@ -29,6 +29,13 @@ class UserRepository @Inject constructor(private val userApiService: UserApiServ
         userApiService.putEditProfile(userId, fullName, dateOfBirth, gender, idCardNumber, address)
     }
 
+    fun putChangePassword(
+        userId: Int,
+        password: String
+    ) = result {
+        userApiService.putChangePassword(userId, password)
+    }
+
     fun postLogin(email: String) = result {
         userApiService.postLogin(email)
     }

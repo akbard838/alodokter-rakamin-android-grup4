@@ -40,6 +40,16 @@ class UserViewModel @Inject constructor(
         )
     }
 
+    fun putChangePassword(
+        userId: Int,
+        password: String
+    ): Flow<ApiResponse<UserResponse?>> {
+        return userRepository.putChangePassword(
+            userId,
+            password
+        )
+    }
+
     fun postLogin(email: String, password: String): Flow<ApiResponse<List<UserResponse>?>> {
         return userRepository.postLogin(email)
     }

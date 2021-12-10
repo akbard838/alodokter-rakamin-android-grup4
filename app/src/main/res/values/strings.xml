@@ -15,6 +15,8 @@
     <string name="message_error_id_number">"Nomor KTP harus berisi 16 angka"</string>
     <string name="message_please_wait">"Mohon Tunggu"</string>
     <string name="message_error_confirm_email">Konfirmasi email tidak sesuai</string>
+    <string name="message_error_confirm_password">Konfirmasi password tidak sesuai</string>
+    <string name="message_error_old_password">Password lama tidak sesuai</string>
     <string name="message_reset_password_success">Kami telah mengirim pesan ke email %s. Silahkan pesan kotak masuk pada email anda untuk melakukan reset password</string>
     <string name="message_error_empty_field">Form tidak boleh kosong</string>
     <string name="title_activity_home">Alodokter</string>
@@ -35,6 +37,7 @@
     <string name="title_register_success">Pendaftaran Berhasil</string>
     <string name="title_reset_password_success">Email Telah Terkirim</string>
     <string name="title_forget_password">Lupa Password</string>
+    <string name="title_change_password">Ubah Password</string>
     <string name="message_input_registered_email">Masukkan email yang terdaftar</string>
     <string name="message_we_will_send_email">Kami akan mengirimkan sebuah pesan melalui email anda terkait instruksi untuk reset password</string>
     <string name="button_recover_password">Pulihkan Password</string>
@@ -81,5 +84,8 @@
     <string name="cd_edit_profile_button">Tombol untuk mengedit profile</string>
     <string name="option_menu_profile">profile</string>
     <string name="option_menu_share">share</string>
+    <string name="hint_old_password">Password Lama</string>
+    <string name="hint_new_password">Password Baru</string>
+    <string name="hint_change_password">Ubah Password</string>
 
 </resources>

@@ -23,6 +23,13 @@ interface UserApiService {
         @Field("alamat") address: String
     ): Response<UserResponse>
 
+    @PUT("users/{id}")
+    @FormUrlEncoded
+    suspend fun putChangePassword(
+        @Path("id") userId: Int,
+        @Field("password") password: String,
+    ): Response<UserResponse>
+
     @GET("users/{id}")
     suspend fun getUserById(@Path("id") userId: Int): Response<UserResponse>
 

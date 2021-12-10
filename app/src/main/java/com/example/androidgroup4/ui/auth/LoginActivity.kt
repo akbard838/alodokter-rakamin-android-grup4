@@ -2,6 +2,7 @@ package com.example.androidgroup4.ui.auth
 
 import android.content.Context
 import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.MenuItem
 import androidx.activity.viewModels
@@ -96,6 +97,9 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
 //                                .putBoolean(IS_LOGIN, true).apply()
                             getAppPreferenceEditor(this@LoginActivity)
                                 .putInt(PreferenceKeys.USER_ID, userId?.toInt() ?: -1).apply()
+                            val password = it.data?.get(0)?.password
+                            getAppPreferenceEditor(this@LoginActivity)
+                                .putString(PreferenceKeys.PASSWORD, password).apply()
                             MainActivity.start(this@LoginActivity)
                             finish()
                         }

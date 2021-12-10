@@ -43,6 +43,19 @@
         <entry key="..\:/Alodokter/AlodokterApp/app/src/main/res/menu/profile_menu.xml" value="0.19895833333333332" />
         <entry key="..\:/Alodokter/AlodokterApp/app/src/main/res/menu/share_menu.xml" value="0.19895833333333332" />
         <entry key="..\:/Alodokter/AlodokterApp/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.21510416666666668" />
+        <entry key="..\:/Users/HP/AndroidStudioProjects/alodokter-rakamin-android-grup4/app/src/main/res/drawable/ic_change_password.xml" value="0.35234375" />
+        <entry key="..\:/Users/HP/AndroidStudioProjects/alodokter-rakamin-android-grup4/app/src/main/res/layout/activity_change_password.xml" value="0.33" />
+        <entry key="..\:/Users/HP/AndroidStudioProjects/alodokter-rakamin-android-grup4/app/src/main/res/layout/activity_detail_article.xml" value="0.5524193548387096" />
+        <entry key="..\:/Users/HP/AndroidStudioProjects/alodokter-rakamin-android-grup4/app/src/main/res/layout/activity_doctor_detail.xml" value="0.2784857571214393" />
+        <entry key="..\:/Users/HP/AndroidStudioProjects/alodokter-rakamin-android-grup4/app/src/main/res/layout/activity_edit_profile.xml" value="0.2784857571214393" />
+        <entry key="..\:/Users/HP/AndroidStudioProjects/alodokter-rakamin-android-grup4/app/src/main/res/layout/activity_login.xml" value="0.2784857571214393" />
+        <entry key="..\:/Users/HP/AndroidStudioProjects/alodokter-rakamin-android-grup4/app/src/main/res/layout/activity_main.xml" value="0.2784857571214393" />
+        <entry key="..\:/Users/HP/AndroidStudioProjects/alodokter-rakamin-android-grup4/app/src/main/res/layout/activity_on_boarding.xml" value="0.2784857571214393" />
+        <entry key="..\:/Users/HP/AndroidStudioProjects/alodokter-rakamin-android-grup4/app/src/main/res/layout/activity_register.xml" value="0.2784857571214393" />
+        <entry key="..\:/Users/HP/AndroidStudioProjects/alodokter-rakamin-android-grup4/app/src/main/res/layout/activity_reset_password.xml" value="0.2784857571214393" />
+        <entry key="..\:/Users/HP/AndroidStudioProjects/alodokter-rakamin-android-grup4/app/src/main/res/layout/activity_splash_screen.xml" value="0.5456989247311828" />
+        <entry key="..\:/Users/HP/AndroidStudioProjects/alodokter-rakamin-android-grup4/app/src/main/res/layout/activity_success.xml" value="0.5524193548387096" />
+        <entry key="..\:/Users/HP/AndroidStudioProjects/alodokter-rakamin-android-grup4/app/src/main/res/layout/article_item.xml" value="0.5524193548387096" />
         <entry key="..\:/Users/akbar/Documents/AndroidProjects/AndroidGroup4/app/src/main/res/drawable/ic_back_white.xml" value="0.10989583333333333" />
         <entry key="..\:/Users/akbar/Documents/AndroidProjects/AndroidGroup4/app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="..\:/Users/akbar/Documents/AndroidProjects/AndroidGroup4/app/src/main/res/layout/fragment_list_doctor.xml" value="0.1" />
@@ -51,7 +64,7 @@
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_15" project-jdk-name="11" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">
