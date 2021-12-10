@@ -14,6 +14,7 @@ import com.example.androidgroup4.databinding.ActivityRegisterBinding
 import com.example.androidgroup4.ui.UserViewModel
 import com.example.androidgroup4.ui.success.SuccessActivity
 import com.example.androidgroup4.utils.*
+import com.example.androidgroup4.utils.enum.GenderType
 import com.example.androidgroup4.utils.enum.SuccessType
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
@@ -40,20 +41,29 @@ class RegisterActivity : BaseActivity<ActivityRegisterBinding>() {
     override fun initUI() {
         setupToolbar(binding.toolbarMain.toolbar, true, emptyString())
 
+        binding.btnMale.isChecked = true
         initDummyData()
     }
 
     override fun initAction() {
         binding.apply {
             btnRegister.setOnClickListener {
+                tilFullName.validateNonEmpty()
                 tilEmail.validateEmail()
                 tilPassword.validatePassword()
                 tilConfirmPassword.validateConfirmPassword(edtPassword.text.toString())
 
-                isFormValid(listOf(tilEmail, tilPassword, tilConfirmPassword)) {
+                isFormValid(listOf(tilFullName, tilEmail, tilPassword, tilConfirmPassword)) {
                     postRegister()
                 }
+            }
 
+            btnMale.setOnClickListener {
+                changeGenderToMale()
+            }
+
+            btnFemale.setOnClickListener {
+                changeGenderToFemale()
             }
         }
     }
@@ -78,6 +88,8 @@ class RegisterActivity : BaseActivity<ActivityRegisterBinding>() {
     private fun postRegister() {
         lifecycleScope.launchWhenStarted {
             userViewModel.postRegister(
+                binding.edtFullName.text.toString(),
+                if (binding.btnMale.isChecked) GenderType.MALE.type else GenderType.FEMALE.type,
                 binding.edtEmail.text.toString(),
                 binding.edtPassword.text.toString()
             ).collect {
@@ -104,6 +116,16 @@ class RegisterActivity : BaseActivity<ActivityRegisterBinding>() {
                 }
             }
         }
+    }
+
+    private fun changeGenderToFemale() {
+        binding.btnMale.isChecked = false
+        binding.btnFemale.isChecked = true
+    }
+
+    private fun changeGenderToMale() {
+        binding.btnMale.isChecked = true
+        binding.btnFemale.isChecked = false
     }
 
     private fun initDummyData() {
