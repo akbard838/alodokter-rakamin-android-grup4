@@ -33,7 +33,12 @@ class UserRepository @Inject constructor(private val userApiService: UserApiServ
         userApiService.postLogin(email)
     }
 
-    fun postRegister(email: String, password: String) = result {
-        userApiService.postRegister(email, password)
+    fun postRegister(
+        fullName: String,
+        gender: String,
+        email: String,
+        password: String
+    ) = result {
+        userApiService.postRegister(fullName, gender, email, password)
     }
 }
