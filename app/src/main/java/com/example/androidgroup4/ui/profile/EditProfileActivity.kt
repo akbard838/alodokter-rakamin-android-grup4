@@ -9,16 +9,13 @@ import androidx.lifecycle.lifecycleScope
 import androidx.viewbinding.ViewBinding
 import com.example.androidgroup4.R
 import com.example.androidgroup4.base.BaseActivity
-import com.example.androidgroup4.data.model.User
 import com.example.androidgroup4.data.source.remote.network.ApiResponse
 import com.example.androidgroup4.data.source.remote.response.UserResponse
 import com.example.androidgroup4.databinding.ActivityEditProfileBinding
 import com.example.androidgroup4.ui.UserViewModel
-import com.example.androidgroup4.ui.success.SuccessActivity
 import com.example.androidgroup4.utils.*
 import com.example.androidgroup4.utils.constant.BundleKeys
 import com.example.androidgroup4.utils.enum.GenderType
-import com.example.androidgroup4.utils.enum.SuccessType
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 import java.text.SimpleDateFormat
@@ -82,7 +79,7 @@ class EditProfileActivity : BaseActivity<ActivityEditProfileBinding>(),
     }
 
     override fun initProcess() {
-        initDummyData()
+        initUserData()
     }
 
     override fun initObservable() {
@@ -107,13 +104,13 @@ class EditProfileActivity : BaseActivity<ActivityEditProfileBinding>(),
         return true
     }
 
-    private fun initDummyData() {
+    private fun initUserData() {
         binding.apply {
             if (user?.jenis_kelamin == GenderType.MALE.type) btnMale.isChecked = true
             else btnFemale.isChecked = true
 
             edtFullName.setText(user?.fullname)
-            edtBirthDate.setText(user?.tgl_lahir)
+            edtBirthDate.setText(getBirthDateFormat(user?.tgl_lahir ?: emptyString()))
             edtKtpNumber.setText(user?.no_ktp.toString())
             edtAddress.setText(user?.alamat)
         }
