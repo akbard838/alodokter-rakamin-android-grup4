@@ -61,15 +61,18 @@ class ArticleListFragment : BaseFragment<FragmentArticleListBinding>() {
             adapter = articleAdapter
         }
 
-        //carousel image
-        imageArray.add(R.drawable.img1)
-        imageArray.add(R.drawable.img2)
-        imageArray.add(R.drawable.img3)
-
+        addCarouselImage()
         with(binding) {
             carouselView.setImageListener(imageListener)
             carouselView.pageCount = imageArray.size
         }
+    }
+
+    private fun addCarouselImage() {
+        imageArray.clear()
+        imageArray.add(R.drawable.img1)
+        imageArray.add(R.drawable.img2)
+        imageArray.add(R.drawable.img3)
     }
 
     @SuppressLint("ClickableViewAccessibility")
