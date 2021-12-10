@@ -32,6 +32,8 @@ interface UserApiService {
     @POST("users")
     @FormUrlEncoded
     suspend fun postRegister(
+        @Field("fullname") fullName: String,
+        @Field("jenis_kelamin") gender: String,
         @Field("email") email: String,
         @Field("password") password: String,
     ): Response<UserResponse>

@@ -18,6 +18,8 @@ import com.example.androidgroup4.utils.constant.PreferenceKeys
 import com.example.androidgroup4.utils.constant.PreferenceKeys.USER_ID
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
+import java.text.SimpleDateFormat
+import java.util.*
 
 @AndroidEntryPoint
 class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
@@ -122,7 +124,8 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
                             )
                             tvName.text = it.data?.fullname
                             tvEmail.text = it.data?.email
-                            tvDateOfBirth.text = it.data?.tgl_lahir
+                            tvDateOfBirth.text =
+                                getBirthDateFormat(it.data?.tgl_lahir ?: emptyString())
                             tvIdCard.text = it.data?.no_ktp.toString()
                             tvAddress.text = it.data?.alamat
                         }
