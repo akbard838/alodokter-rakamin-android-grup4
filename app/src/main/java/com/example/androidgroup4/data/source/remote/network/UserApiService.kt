@@ -12,6 +12,17 @@ interface UserApiService {
     @GET("users")
     suspend fun getAllUsers(): Response<List<UserResponse>>
 
+    @PUT("users/{id}")
+    @FormUrlEncoded
+    suspend fun putEditProfile(
+        @Path("id") userId: Int,
+        @Field("fullname") fullName: String,
+        @Field("tgl_lahir") dateOfBirth: String,
+        @Field("jenis_kelamin") gender: String,
+        @Field("no_ktp") idCardNumber: Long,
+        @Field("alamat") address: String
+    ): Response<UserResponse>
+
     @GET("users/{id}")
     suspend fun getUserById(@Path("id") userId: Int): Response<UserResponse>
 

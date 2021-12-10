@@ -2,23 +2,20 @@ package com.example.androidgroup4.ui.profile
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.activity.viewModels
-import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.viewbinding.ViewBinding
 import com.example.androidgroup4.R
 import com.example.androidgroup4.base.BaseFragment
-import com.example.androidgroup4.data.model.Profile
 import com.example.androidgroup4.data.source.remote.network.ApiResponse
+import com.example.androidgroup4.data.source.remote.response.UserResponse
 import com.example.androidgroup4.databinding.FragmentProfileBinding
 import com.example.androidgroup4.ui.UserViewModel
 import com.example.androidgroup4.ui.auth.LoginActivity
 import com.example.androidgroup4.ui.main.MainActivity
 import com.example.androidgroup4.utils.*
 import com.example.androidgroup4.utils.constant.PreferenceKeys
-import com.example.androidgroup4.utils.constant.PreferenceKeys.IS_LOGIN
-import com.example.androidgroup4.utils.enum.GenderType
+import com.example.androidgroup4.utils.constant.PreferenceKeys.USER_ID
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 
@@ -26,6 +23,8 @@ import kotlinx.coroutines.flow.collect
 class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
 
     private val userViewModel: UserViewModel by viewModels()
+
+    private var user: UserResponse? = null
 
     override val bindingInflater: (LayoutInflater, ViewGroup?, Boolean) -> ViewBinding =
         FragmentProfileBinding::inflate
@@ -44,21 +43,17 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
             }
 
             fabEditProfile.setOnClickListener {
-                val profile = Profile(
-                    getString(R.string.sample_name),
-                    getString(R.string.sample_date_of_birth),
-                    GenderType.MALE.type,
-                    getString(R.string.sample_id_card_number),
-                    getString(R.string.sample_address)
-                )
-                EditProfileActivity.start(this@ProfileFragment.context, profile)
+                user?.let {
+                    EditProfileActivity.start(this@ProfileFragment.context, it)
+                }
             }
 
             btnChangePassword.setOnClickListener {
+
             }
 
             btnLogout.setOnClickListener {
-                getAppPreferenceEditor(requireContext()).putBoolean(IS_LOGIN, false).commit()
+                getAppPreferenceEditor(requireContext()).putInt(USER_ID, -1).apply()
                 MainActivity.start(requireContext())
                 activity?.finish()
             }
@@ -70,10 +65,15 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
     }
 
     override fun initProcess() {
-        getUserData()
+
     }
 
     override fun initObservable() {
+    }
+
+    override fun onResume() {
+        super.onResume()
+        if (MainActivity.getUserLoggedInStatus(requireContext())) getUserData()
     }
 
     private fun showLoggedInStateView() {
@@ -113,6 +113,7 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
                     is ApiResponse.Success -> {
                         hideLoading()
                         binding.apply {
+                            user = it.data
                             imgProfileUser.setImageUrl(
                                 requireContext(),
                                 getString(R.string.sample_image_url),
