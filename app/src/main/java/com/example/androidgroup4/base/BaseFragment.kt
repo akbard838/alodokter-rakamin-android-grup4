@@ -1,15 +1,20 @@
 package com.example.androidgroup4.base
 
+import android.app.ProgressDialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import androidx.viewbinding.ViewBinding
+import com.example.androidgroup4.R
 
-abstract class BaseFragment<VB : ViewBinding> : Fragment() {
+abstract class BaseFragment<VB : ViewBinding> : Fragment(), BaseView {
 
+    private var mProgressDialog: ProgressDialog? = null
     private var _binding: ViewBinding? = null
+
     abstract val bindingInflater: (LayoutInflater, ViewGroup?, Boolean) -> ViewBinding
 
     @Suppress("UNCHECKED_CAST")
@@ -33,6 +38,26 @@ abstract class BaseFragment<VB : ViewBinding> : Fragment() {
         initAction()
         initObservable()
         initProcess()
+    }
+
+    override fun setupToolbar(toolbar: Toolbar?, isChild: Boolean, title: String) {
+    }
+
+    override fun showLoading() {
+        if (mProgressDialog == null) {
+            mProgressDialog = ProgressDialog(requireContext())
+            mProgressDialog!!.setMessage(getString(R.string.message_please_wait))
+            mProgressDialog!!.isIndeterminate = true
+            mProgressDialog!!.setCancelable(false)
+            mProgressDialog!!.setCanceledOnTouchOutside(false)
+        }
+        mProgressDialog!!.show()
+    }
+
+    override fun hideLoading() {
+        if (mProgressDialog != null && mProgressDialog!!.isShowing) {
+            mProgressDialog!!.cancel()
+        }
     }
 
     abstract fun initIntent()

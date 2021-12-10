@@ -9,6 +9,10 @@ class UserRepository @Inject constructor(private val userApiService: UserApiServ
         userApiService.getAllUsers()
     }
 
+    fun getUserById(userId: Int) = result {
+        userApiService.getUserById(userId)
+    }
+
     fun postLogin(email: String) = result {
         userApiService.postLogin(email)
     }

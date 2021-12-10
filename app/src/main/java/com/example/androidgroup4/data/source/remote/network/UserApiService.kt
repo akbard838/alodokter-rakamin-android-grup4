@@ -12,6 +12,9 @@ interface UserApiService {
     @GET("users")
     suspend fun getAllUsers(): Response<List<UserResponse>>
 
+    @GET("users/{id}")
+    suspend fun getUserById(@Path("id") userId: Int): Response<UserResponse>
+
     @GET("users")
     suspend fun postLogin(@Query("email") email: String): Response<List<UserResponse>>
 

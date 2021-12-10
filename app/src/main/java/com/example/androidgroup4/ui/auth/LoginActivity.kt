@@ -15,7 +15,7 @@ import com.example.androidgroup4.databinding.ActivityLoginBinding
 import com.example.androidgroup4.ui.UserViewModel
 import com.example.androidgroup4.ui.main.MainActivity
 import com.example.androidgroup4.utils.*
-import com.example.androidgroup4.utils.constant.PreferenceKeys.IS_LOGIN
+import com.example.androidgroup4.utils.constant.PreferenceKeys
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 
@@ -91,7 +91,11 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
                     is ApiResponse.Success -> {
                         hideLoading()
                         if (isEmailAndPasswordVerified(it.data)){
-                            getAppPreferenceEditor(this@LoginActivity).putBoolean(IS_LOGIN, true).commit()
+                            val userId = it.data?.get(0)?.user_id
+//                            getAppPreferenceEditor(this@LoginActivity)
+//                                .putBoolean(IS_LOGIN, true).apply()
+                            getAppPreferenceEditor(this@LoginActivity)
+                                .putInt(PreferenceKeys.USER_ID, userId?.toInt() ?: -1).apply()
                             MainActivity.start(this@LoginActivity)
                             finish()
                         }
