@@ -8,4 +8,6 @@ object PreferenceKeys {
 
     const val IS_LOGIN: String = "is_login"
 
+    const val USER_ID: String = "user_id"
+
 }

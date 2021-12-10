@@ -11,11 +11,13 @@ import com.example.androidgroup4.R
 import com.example.androidgroup4.base.BaseActivity
 import com.example.androidgroup4.databinding.ActivityMainBinding
 import com.example.androidgroup4.utils.constant.PreferenceKeys
-import com.example.androidgroup4.utils.constant.PreferenceKeys.IS_LOGIN
+import com.example.androidgroup4.utils.constant.PreferenceKeys.USER_ID
 import com.example.androidgroup4.utils.getAppPreferenceEditor
 import com.example.androidgroup4.utils.getAppSharedPreference
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : BaseActivity<ActivityMainBinding>() {
 
     companion object {
@@ -25,7 +27,10 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
                 context.startActivity(this)
             }
         }
-        fun getUserLoggedInStatus(context: Context) = getAppSharedPreference(context).getBoolean(IS_LOGIN, false)
+
+        fun getUserLoggedInStatus(context: Context): Boolean {
+            return getAppSharedPreference(context).getInt(USER_ID, -1) != -1
+        }
     }
 
     override val bindingInflater: (LayoutInflater) -> ViewBinding = ActivityMainBinding::inflate
