@@ -2,8 +2,8 @@ package com.example.androidgroup4.ui.auth
 
 import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
+import android.content.SharedPreferences
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.MenuItem
 import androidx.activity.viewModels
@@ -14,13 +14,9 @@ import com.example.androidgroup4.base.BaseActivity
 import com.example.androidgroup4.data.source.remote.network.ApiResponse
 import com.example.androidgroup4.data.source.remote.response.UserResponse
 import com.example.androidgroup4.databinding.ActivityChangePasswordBinding
-import com.example.androidgroup4.databinding.ActivityResetPasswordBinding
 import com.example.androidgroup4.ui.UserViewModel
-import com.example.androidgroup4.ui.success.SuccessActivity
 import com.example.androidgroup4.utils.*
 import com.example.androidgroup4.utils.constant.PreferenceKeys
-import com.example.androidgroup4.utils.enum.GenderType
-import com.example.androidgroup4.utils.enum.SuccessType
 import kotlinx.coroutines.flow.collect
 
 class ChangePasswordActivity : BaseActivity<ActivityChangePasswordBinding>() {
@@ -32,6 +28,8 @@ class ChangePasswordActivity : BaseActivity<ActivityChangePasswordBinding>() {
             }
         }
     }
+    private val sharedPreferences: SharedPreferences = applicationContext.getSharedPreferences(PreferenceKeys.PREFERENCE_NAME, Context.MODE_PRIVATE)
+    private val password = sharedPreferences.getString(PreferenceKeys.PASSWORD, "Password")
 
     private var user: UserResponse? = null
 
@@ -56,6 +54,9 @@ class ChangePasswordActivity : BaseActivity<ActivityChangePasswordBinding>() {
     override fun initAction() {
         binding.apply {
             btnChangePassword.setOnClickListener {
+                if (password != null) {
+                    Log.d("Password", password)
+                }
                 tilOldPassword.validateOldPassword(PreferenceKeys.PASSWORD)
                 tilNewPassword.validatePassword()
                 tilConfirmPassword.validateConfirmPassword(edtNewPassword.text.toString())
