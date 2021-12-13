@@ -9,6 +9,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.widget.doAfterTextChanged
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewbinding.ViewBinding
@@ -110,16 +111,9 @@ class ArticleListFragment : BaseFragment<FragmentArticleListBinding>() {
                 } else false
             }
 
-            edtSearchArticle.addTextChangedListener(object : TextWatcher {
-                override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) = Unit
-
-                override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                    if (edtSearchArticle.text.toString().isEmpty())
-                        reloadData()
-                }
-
-                override fun afterTextChanged(s: Editable?) = Unit
-            })
+            edtSearchArticle.doAfterTextChanged {
+                if (edtSearchArticle.text.toString().isEmpty()) reloadData()
+            }
 
         }
 

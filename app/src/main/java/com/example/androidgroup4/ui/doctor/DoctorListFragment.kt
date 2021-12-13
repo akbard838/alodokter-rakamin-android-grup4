@@ -7,8 +7,7 @@ import android.view.ViewGroup
 import android.view.WindowManager
 import android.view.inputmethod.EditorInfo
 import android.widget.TextView.OnEditorActionListener
-import androidx.fragment.app.viewModels
-import androidx.lifecycle.lifecycleScope
+import androidx.core.widget.doAfterTextChanged
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewbinding.ViewBinding
 import com.example.androidgroup4.R
@@ -16,18 +15,13 @@ import com.example.androidgroup4.base.BaseFragment
 import com.example.androidgroup4.data.model.Doctor
 import com.example.androidgroup4.data.model.Location
 import com.example.androidgroup4.data.model.Schedule
-import com.example.androidgroup4.data.source.remote.network.ApiResponse
 import com.example.androidgroup4.databinding.FragmentDoctorListBinding
-import com.example.androidgroup4.ui.UserViewModel
 import com.example.androidgroup4.ui.adapter.DoctorAdapter
 import com.example.androidgroup4.ui.auth.LoginActivity
 import com.example.androidgroup4.ui.main.MainActivity
 import com.example.androidgroup4.utils.gone
 import com.example.androidgroup4.utils.hideSoftKeyboard
-import com.example.androidgroup4.utils.showToast
 import com.example.androidgroup4.utils.visible
-import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.collect
 import java.util.*
 import java.util.regex.Pattern
 
@@ -73,23 +67,11 @@ class DoctorListFragment: BaseFragment<FragmentDoctorListBinding>() {
                 )
             }
 
-            edtSearchDoctor.addTextChangedListener(object : TextWatcher {
-                override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-
+            edtSearchDoctor.doAfterTextChanged {
+                if (binding.edtSearchDoctor.text.toString().isEmpty()) {
+                    reloadData()
                 }
-
-                override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                    if (binding.edtSearchDoctor.text.toString().isEmpty()) {
-                        reloadData()
-                    }
-
-                }
-
-                override fun afterTextChanged(p0: Editable?) {
-
-                }
-
-            })
+            }
 
             layoutNotLoggedIn.btnLogin.setOnClickListener {
                 LoginActivity.start(requireContext())
