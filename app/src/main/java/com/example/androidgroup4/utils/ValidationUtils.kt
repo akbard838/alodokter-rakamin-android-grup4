@@ -58,7 +58,20 @@ fun TextInputLayout.validateConfirmIdNumber() {
         ) this.isErrorEnabled = false
         else this.error = resources.getString(R.string.message_error_id_number)
     }
+}
 
+fun TextInputLayout.validateMinLength(minLength: Int) {
+    if (this.editText?.text.toString().isEmpty()) {
+        this.validateNonEmpty()
+    } else {
+        if (this.editText?.text.toString()
+                .validator()
+                .minLength(minLength)
+                .check()
+        ) this.isErrorEnabled = false
+        else this.error =
+            String.format(resources.getString(R.string.format_error_min_length), minLength)
+    }
 }
 
 fun isFormValid(textInputLayout: TextInputLayout, @NonNull formValidListener: () -> Unit) {

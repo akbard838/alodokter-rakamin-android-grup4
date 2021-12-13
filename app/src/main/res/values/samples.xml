@@ -16,6 +16,7 @@
     <string name="sample_yoe">Pengalaman 20 tahun</string>
     <string name="sample_email">akbard838@gmail.com</string>
     <string name="sample_image_url">https://wallpaperaccess.com/full/2213424.jpg</string>
+    <string name="sample_title_article">Bunda, ini tips mengatasi rasa sakit saat BAB setelah melahirkan</string>
 
     <string-array name="list_of_day">
         <item>Senin</item>

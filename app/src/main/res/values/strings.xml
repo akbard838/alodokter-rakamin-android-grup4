@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">HiDokter</string>
+    <string name="app_name">Alodokter</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="hint_email">Email</string>
     <string name="hint_password">Password</string>
@@ -14,6 +14,7 @@
     <string name="message_error_email">Format email tidak sesuai</string>
     <string name="message_error_password">Password harus mengandung setidaknya satu angka dan satu huruf kapital</string>
     <string name="message_error_id_number">"Nomor KTP harus berisi 16 angka"</string>
+    <string name="format_error_min_length">"Minimal %d karakter"</string>
     <string name="message_please_wait">"Mohon Tunggu"</string>
     <string name="message_error_confirm_email">Konfirmasi email tidak sesuai</string>
     <string name="message_reset_password_success">Kami telah mengirim pesan ke email %s. Silahkan pesan kotak masuk pada email anda untuk melakukan reset password</string>
@@ -67,7 +68,7 @@
     <string name="title_no_data">Data Tidak Ditemukan</string>
     <string name="title_not_logged_in">Anda belum login</string>
     <string name="message_not_logged_in">Silahkan login dengan akun anda untuk menggunakan fitur ini. Anda dapat login dengan melakukan klik pada tombol Login</string>
-    <string name="message_no_data">Tidak ada dokter yang cocok dengan nama yang anda masukkan</string>
+    <string name="message_no_data">Tidak ada data yang cocok dengan kata kunci yang anda masukkan</string>
     <string name="message_pick_schedule">*Untuk mengajukan konsultasi silahkan pilih salah satu jadwal konsultasi dengan melakukan klik pada jam konsultasi yang tersedia</string>
     <string name="hint_full_name">Nama Lengkap</string>
     <string name="hint_birth_date">Tanggal Lahir</string>

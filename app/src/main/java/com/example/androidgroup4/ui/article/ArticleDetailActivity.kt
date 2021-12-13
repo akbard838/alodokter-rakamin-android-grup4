@@ -13,6 +13,7 @@ import com.example.androidgroup4.data.model.Article
 import com.example.androidgroup4.databinding.ActivityDetailArticleBinding
 import com.example.androidgroup4.ui.doctor.DoctorDetailActivity
 import com.example.androidgroup4.utils.constant.BundleKeys
+import com.example.androidgroup4.utils.emptyString
 import com.example.androidgroup4.utils.setImageUrl
 
 class ArticleDetailActivity : BaseActivity<ActivityDetailArticleBinding>() {
@@ -36,10 +37,11 @@ class ArticleDetailActivity : BaseActivity<ActivityDetailArticleBinding>() {
 
     override fun initUI() {
         article?.let { article ->
-            setupToolbar(binding.toolbar, true, article.title)
+            setupToolbar(binding.toolbar, true, emptyString())
 
             with(binding) {
                 ivDetailImage.setImageUrl(this@ArticleDetailActivity, article.image, R.drawable.img_not_available)
+                tvTitle.text = article.title
                 tvDescription.text = article.description
             }
         }
