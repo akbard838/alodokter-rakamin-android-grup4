@@ -28,6 +28,10 @@
     <style name="AndroidAppTextTitleToolbar">
         <item name="android:fontFamily">@font/lato_bold</item>
         <item name="android:textSize">@dimen/text_size_20sp</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:ellipsize">marquee</item>
+        <item name="android:marqueeRepeatLimit">marquee_forever</item>
+        <item name="android:scrollHorizontally">true</item>
     </style>
 
     <style name="AndroidAppText.Italic">
