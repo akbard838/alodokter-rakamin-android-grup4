@@ -93,8 +93,6 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
                         hideLoading()
                         if (isEmailAndPasswordVerified(it.data)){
                             val userId = it.data?.get(0)?.user_id
-//                            getAppPreferenceEditor(this@LoginActivity)
-//                                .putBoolean(IS_LOGIN, true).apply()
                             getAppPreferenceEditor(this@LoginActivity)
                                 .putInt(PreferenceKeys.USER_ID, userId?.toInt() ?: -1).apply()
                             val password = it.data?.get(0)?.password

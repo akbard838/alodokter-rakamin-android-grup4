@@ -79,6 +79,11 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
         if (MainActivity.getUserLoggedInStatus(requireContext())) getUserData()
     }
 
+    override fun onDestroy() {
+        hideLoading()
+        super.onDestroy()
+    }
+
     private fun showLoggedInStateView() {
         binding.apply {
             if (MainActivity.getUserLoggedInStatus(requireContext())) {

@@ -1,12 +1,15 @@
 package com.example.androidgroup4.ui.article
 
 import android.annotation.SuppressLint
-import android.content.Context
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.*
-import android.view.inputmethod.InputMethodManager
+import android.view.inputmethod.EditorInfo
 import android.widget.ImageView
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.widget.doAfterTextChanged
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewbinding.ViewBinding
@@ -15,13 +18,15 @@ import com.example.androidgroup4.R
 import com.example.androidgroup4.base.BaseFragment
 import com.example.androidgroup4.data.model.Article
 import com.example.androidgroup4.databinding.FragmentArticleListBinding
-import com.example.androidgroup4.ui.main.MainActivity
 import com.example.androidgroup4.ui.adapter.ArticleAdapter
 import com.example.androidgroup4.ui.auth.LoginActivity
+import com.example.androidgroup4.ui.main.MainActivity
 import com.example.androidgroup4.utils.emptyString
 import com.example.androidgroup4.utils.gone
+import com.example.androidgroup4.utils.hideSoftKeyboard
 import com.example.androidgroup4.utils.visible
 import com.synnapps.carouselview.ImageListener
+import java.util.regex.Pattern
 
 class ArticleListFragment : BaseFragment<FragmentArticleListBinding>() {
 
@@ -82,30 +87,41 @@ class ArticleListFragment : BaseFragment<FragmentArticleListBinding>() {
         }
 
         with(binding) {
-            svArticle.setOnTouchListener { v, event ->
+
+            edtSearchArticle.setOnEditorActionListener(TextView.OnEditorActionListener { v, actionId, event ->
+                if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+                    articleAdapter.setData(getFilteredData())
+                    checkIsDataEmpty(getFilteredData())
+                    hideSoftKeyboard(requireContext(), binding.edtSearchArticle)
+                    return@OnEditorActionListener true
+                }
+                false
+            })
+
+            edtSearchArticle.setOnTouchListener { v, event ->
                 if (event.action == MotionEvent.ACTION_DOWN) {
                     v.performClick()
                     view?.clearFocus()
-                    v.hideKeyboard()
-                    if (event.rawX >= svArticle.right - svArticle.compoundDrawables[2].bounds.width()) {
-                        Toast.makeText(requireContext(), "search diklik", Toast.LENGTH_SHORT).show()
-                        // search article code
-
+                    hideSoftKeyboard(requireContext(), edtSearchArticle)
+                    if (event.rawX >= edtSearchArticle.right - edtSearchArticle.compoundDrawables[2].bounds.width()) {
+                        articleAdapter.setData(getFilteredData())
+                        checkIsDataEmpty(getFilteredData())
                         true
                     } else false
                 } else false
             }
+
+            edtSearchArticle.doAfterTextChanged {
+                if (edtSearchArticle.text.toString().isEmpty()) reloadData()
+            }
+
         }
 
 
     }
 
-    fun View.hideKeyboard() {
-        val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-        imm.hideSoftInputFromWindow(windowToken, 0)
-    }
-
     override fun initProcess() {
+        checkIsDataEmpty(getDummyArticle())
 
     }
 
@@ -127,6 +143,36 @@ class ArticleListFragment : BaseFragment<FragmentArticleListBinding>() {
             )
         }
         return articles
+    }
+
+    private fun getFilteredData(): List<Article> {
+        val filtered = getDummyArticle().filter {
+            Pattern.compile(
+                Pattern.quote(binding.edtSearchArticle.text.toString()),
+                Pattern.CASE_INSENSITIVE
+            ).matcher(it.title).find()
+        }
+
+        return filtered
+    }
+
+    private fun checkIsDataEmpty(articles: List<Article>) {
+        binding.apply {
+            if (articles.isEmpty()) {
+                rvArticle.gone()
+                layoutEmpty.layoutEmpty.visible()
+                carouselView.gone()
+            } else {
+                rvArticle.visible()
+                layoutEmpty.layoutEmpty.gone()
+                carouselView.visible()
+            }
+        }
+    }
+
+    private fun reloadData() {
+        articleAdapter.setData(getDummyArticle())
+        checkIsDataEmpty(getDummyArticle())
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
