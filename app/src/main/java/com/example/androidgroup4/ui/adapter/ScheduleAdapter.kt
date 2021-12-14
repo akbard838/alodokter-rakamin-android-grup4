@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.androidgroup4.data.model.Schedule
 import com.example.androidgroup4.databinding.ItemScheduleBinding
+import com.example.androidgroup4.ui.doctor.PatientActivity
 
 class ScheduleAdapter(private val items: ArrayList<Schedule>) :
     RecyclerView.Adapter<ScheduleAdapter.ScheduleViewHolder>() {
@@ -33,6 +34,12 @@ class ScheduleAdapter(private val items: ArrayList<Schedule>) :
             binding.tvDate.text = data.date
             binding.chipHourOne.text = data.hourOne
             binding.chipHourTwo.text = data.hourTwo
+            binding.chipHourOne.setOnClickListener {
+                PatientActivity.start(itemView.context)
+            }
+            binding.chipHourTwo.setOnClickListener {
+                PatientActivity.start(itemView.context)
+            }
         }
     }
 
