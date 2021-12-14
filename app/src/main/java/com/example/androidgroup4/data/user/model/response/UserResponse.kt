@@ -1,4 +1,4 @@
-package com.example.androidgroup4.data.source.remote.response
+package com.example.androidgroup4.data.user.model.response
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
