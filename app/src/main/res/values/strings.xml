@@ -88,5 +88,10 @@
     <string name="hint_old_password">Password Lama</string>
     <string name="hint_new_password">Password Baru</string>
     <string name="hint_change_password">Ubah Password</string>
+    <string name="error_email_exist">User already exists</string>
+    <string name="error_email_exist_id">Email sudah terdaftar</string>
+    <string name="error_email_or_password">Incorrect email or password</string>
+    <string name="error_email_or_password_id">Email atau password salah</string>
+    <string name="label_error">error</string>
 
 </resources>

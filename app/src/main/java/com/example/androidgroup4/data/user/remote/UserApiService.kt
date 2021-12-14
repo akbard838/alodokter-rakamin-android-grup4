@@ -1,14 +1,37 @@
-package com.example.androidgroup4.data.source.remote.network
+package com.example.androidgroup4.data.user.remote
 
-import com.example.androidgroup4.data.source.remote.response.UserResponse
+import com.example.androidgroup4.base.BaseApiResponse
+import com.example.androidgroup4.data.user.model.response.UserResponse
 import retrofit2.Response
 import retrofit2.http.*
 
 interface UserApiService {
+
     companion object {
-        const val BASE_URL = "https://61aee28d2cdd90001740764c.mockapi.io/api/v1/"
+        const val BASE_URL = "https://alodokter-rakamin-fsw-grup4.herokuapp.com/api/v1/"
     }
 
+    @POST("login")
+    @FormUrlEncoded
+    suspend fun postLogin(
+        @Field("email") email: String,
+        @Field("password") password: String
+    ): Response<BaseApiResponse<String>>
+
+    @POST("users")
+    @FormUrlEncoded
+    suspend fun postRegister(
+        @Field("fullname") name: String,
+        @Field("email") email: String,
+        @Field("password") password: String,
+        @Field("address") address: String,
+        @Field("IdCardNumber") idCardNumber: String,
+        @Field("BirthDate") birthDate: String,
+        @Field("gender") gender: String
+    ): Response<BaseApiResponse<UserResponse>>
+
+
+    //API MOCK
     @GET("users")
     suspend fun getAllUsers(): Response<List<UserResponse>>
 
@@ -35,13 +58,4 @@ interface UserApiService {
 
     @GET("users")
     suspend fun postLogin(@Query("email") email: String): Response<List<UserResponse>>
-
-    @POST("users")
-    @FormUrlEncoded
-    suspend fun postRegister(
-        @Field("fullname") fullName: String,
-        @Field("jenis_kelamin") gender: String,
-        @Field("email") email: String,
-        @Field("password") password: String,
-    ): Response<UserResponse>
 }
