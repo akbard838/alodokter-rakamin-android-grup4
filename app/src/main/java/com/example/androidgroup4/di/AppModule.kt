@@ -1,6 +1,6 @@
 package com.example.androidgroup4.di
 
-import com.example.androidgroup4.data.source.remote.network.UserApiService
+import com.example.androidgroup4.data.user.remote.UserApiService
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import dagger.Module

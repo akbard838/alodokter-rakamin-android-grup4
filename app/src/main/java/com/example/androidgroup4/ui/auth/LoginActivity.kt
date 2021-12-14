@@ -4,20 +4,17 @@ import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.MenuItem
+import android.widget.Toast
 import androidx.activity.viewModels
-import androidx.lifecycle.lifecycleScope
 import androidx.viewbinding.ViewBinding
 import com.example.androidgroup4.R
 import com.example.androidgroup4.base.BaseActivity
-import com.example.androidgroup4.data.source.remote.network.ApiResponse
-import com.example.androidgroup4.data.source.remote.response.UserResponse
 import com.example.androidgroup4.databinding.ActivityLoginBinding
-import com.example.androidgroup4.ui.UserViewModel
 import com.example.androidgroup4.ui.main.MainActivity
+import com.example.androidgroup4.ui.viewmodel.UserViewModel
 import com.example.androidgroup4.utils.*
 import com.example.androidgroup4.utils.constant.PreferenceKeys
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.collect
 
 @AndroidEntryPoint
 class LoginActivity : BaseActivity<ActivityLoginBinding>() {
@@ -30,7 +27,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
         }
     }
 
-    private val userViewModel: UserViewModel by viewModels()
+    private val viewModel: UserViewModel by viewModels()
 
     override val bindingInflater: (LayoutInflater) -> ViewBinding = ActivityLoginBinding::inflate
 
@@ -54,7 +51,10 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
                 tilPassword.validateNonEmpty()
 
                 isFormValid(listOf(tilEmail, tilPassword)) {
-                    postLogin()
+                    viewModel.postLogin(
+                        binding.edtEmail.text.toString(),
+                        binding.edtPassword.text.toString()
+                    )
                 }
             }
 
@@ -69,7 +69,31 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
     }
 
     override fun initObservable() {
-
+        viewModel.login.observe(this, {
+            when (it) {
+                is Resource.Loading -> {
+                    showLoading()
+                    binding.tvError.gone()
+                }
+                is Resource.Success -> {
+                    hideLoading()
+                    getAppPreferenceEditor(this@LoginActivity)
+                        .putString(PreferenceKeys.USER_TOKEN, it.data.token).apply()
+                    MainActivity.start(this@LoginActivity)
+                    finish()
+                }
+                is Resource.Error -> {
+                    hideLoading()
+                    if (it.apiError.status == getString(R.string.label_error)) {
+                        binding.tvError.text = it.apiError.message
+                        binding.tvError.visible()
+                    } else {
+                        Toast.makeText(this, it.apiError.message, Toast.LENGTH_SHORT).show()
+                    }
+                }
+                else -> {}
+            }
+        })
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -79,57 +103,6 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
             }
         }
         return true
-    }
-
-    private fun postLogin() {
-        lifecycleScope.launchWhenStarted {
-            userViewModel.postLogin(
-                binding.edtEmail.text.toString(),
-                binding.edtPassword.text.toString()
-            ).collect {
-                when (it) {
-                    is ApiResponse.Success -> {
-                        hideLoading()
-                        if (isEmailAndPasswordVerified(it.data)){
-                            val userId = it.data?.get(0)?.user_id
-                            getAppPreferenceEditor(this@LoginActivity)
-                                .putInt(PreferenceKeys.USER_ID, userId?.toInt() ?: -1).apply()
-                            MainActivity.start(this@LoginActivity)
-                            finish()
-                        }
-                    }
-                    is ApiResponse.Failure -> {
-                        hideLoading()
-                        showToast(this@LoginActivity, it.message)
-                    }
-                    is ApiResponse.Loading -> {
-                        showLoading()
-                    }
-                }
-            }
-        }
-    }
-
-    private fun isEmailAndPasswordVerified(user: List<UserResponse>?): Boolean {
-        return if (user.isNullOrEmpty()) {
-            binding.tilEmail.error = "Email tidak terdaftar"
-            false
-        } else {
-            binding.tilEmail.isErrorEnabled = false
-            if (user[0].email != binding.edtEmail.text.toString()) {
-                binding.tilEmail.error = "Email tidak terdaftar"
-                false
-            } else {
-                binding.tilEmail.isErrorEnabled = false
-                if (user[0].password != binding.edtPassword.text.toString()) {
-                    binding.tilPassword.error = "Password tidak sesuai"
-                    false
-                } else {
-                    binding.tilPassword.isErrorEnabled = false
-                    true
-                }
-            }
-        }
     }
 
     private fun initDummyData() {
