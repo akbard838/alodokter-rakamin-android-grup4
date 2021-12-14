@@ -2,22 +2,15 @@ package com.example.androidgroup4.ui.auth
 
 import android.content.Context
 import android.content.Intent
-import android.content.SharedPreferences
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.MenuItem
-import androidx.activity.viewModels
-import androidx.lifecycle.lifecycleScope
 import androidx.viewbinding.ViewBinding
 import com.example.androidgroup4.R
 import com.example.androidgroup4.base.BaseActivity
-import com.example.androidgroup4.data.source.remote.network.ApiResponse
-import com.example.androidgroup4.data.source.remote.response.UserResponse
 import com.example.androidgroup4.databinding.ActivityChangePasswordBinding
-import com.example.androidgroup4.ui.UserViewModel
-import com.example.androidgroup4.utils.*
-import com.example.androidgroup4.utils.constant.PreferenceKeys
-import kotlinx.coroutines.flow.collect
+import com.example.androidgroup4.utils.isFormValid
+import com.example.androidgroup4.utils.validateConfirmPassword
+import com.example.androidgroup4.utils.validatePassword
 
 class ChangePasswordActivity : BaseActivity<ActivityChangePasswordBinding>() {
 
@@ -28,12 +21,6 @@ class ChangePasswordActivity : BaseActivity<ActivityChangePasswordBinding>() {
             }
         }
     }
-    private val sharedPreferences: SharedPreferences = applicationContext.getSharedPreferences(PreferenceKeys.PREFERENCE_NAME, Context.MODE_PRIVATE)
-    private val password = sharedPreferences.getString(PreferenceKeys.PASSWORD, "Password")
-
-    private var user: UserResponse? = null
-
-    private val userViewModel: UserViewModel by viewModels()
 
     override val bindingInflater: (LayoutInflater) -> ViewBinding =
         ActivityChangePasswordBinding::inflate
@@ -54,15 +41,12 @@ class ChangePasswordActivity : BaseActivity<ActivityChangePasswordBinding>() {
     override fun initAction() {
         binding.apply {
             btnChangePassword.setOnClickListener {
-                if (password != null) {
-                    Log.d("Password", password)
-                }
-                tilOldPassword.validateOldPassword(PreferenceKeys.PASSWORD)
+                tilOldPassword.validatePassword()
                 tilNewPassword.validatePassword()
                 tilConfirmPassword.validateConfirmPassword(edtNewPassword.text.toString())
 
                 isFormValid(listOf(tilOldPassword, tilNewPassword, tilConfirmPassword)) {
-                    putChangePassword()
+
                 }
             }
         }
@@ -84,7 +68,7 @@ class ChangePasswordActivity : BaseActivity<ActivityChangePasswordBinding>() {
         }
         return true
     }
-
+/*
     private fun putChangePassword(){
         lifecycleScope.launchWhenStarted {
             userViewModel.putChangePassword(
@@ -92,21 +76,21 @@ class ChangePasswordActivity : BaseActivity<ActivityChangePasswordBinding>() {
                 password = binding.edtNewPassword.toString(),
             ).collect {
                 when (it) {
-                    is ApiResponse.Success -> {
+                    is Resource.Success -> {
                         hideLoading()
                         showToast(this@ChangePasswordActivity, "Password berhasil diubah")
                         finish()
                     }
-                    is ApiResponse.Failure -> {
+                    is Resource.Failure -> {
                         hideLoading()
                         showToast(this@ChangePasswordActivity, it.message)
                     }
-                    is ApiResponse.Loading -> {
+                    is Resource.Loading -> {
                         showLoading()
                     }
                 }
             }
         }
     }
-
+*/
 }
