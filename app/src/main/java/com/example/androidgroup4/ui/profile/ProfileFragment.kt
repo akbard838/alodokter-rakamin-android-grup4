@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import androidx.viewbinding.ViewBinding
 import com.example.androidgroup4.R
 import com.example.androidgroup4.base.BaseFragment
+import com.example.androidgroup4.data.model.User
 import com.example.androidgroup4.data.user.model.response.UserResponse
 import com.example.androidgroup4.databinding.FragmentProfileBinding
 import com.example.androidgroup4.ui.auth.LoginActivity
@@ -20,7 +21,7 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
 
 //    private val userViewModel: UserViewModel by viewModels()
 
-    private var user: UserResponse? = null
+    private var user: User? = null
 
     override val bindingInflater: (LayoutInflater, ViewGroup?, Boolean) -> ViewBinding =
         FragmentProfileBinding::inflate
@@ -36,6 +37,7 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
     override fun initAction() {
         binding.apply {
             fabChangePhoto.setOnClickListener {
+
             }
 
             fabEditProfile.setOnClickListener {

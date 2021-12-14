@@ -1,7 +1,7 @@
 package com.example.androidgroup4.data.user.remote
 
+import com.example.androidgroup4.base.BaseApiResponse
 import com.example.androidgroup4.data.user.model.response.UserResponse
-import com.example.androidgroup4.data.user.model.response.LoginResponse
 import retrofit2.Response
 import retrofit2.http.*
 
@@ -16,7 +16,19 @@ interface UserApiService {
     suspend fun postLogin(
         @Field("email") email: String,
         @Field("password") password: String
-    ): Response<LoginResponse>
+    ): Response<BaseApiResponse<String>>
+
+    @POST("users")
+    @FormUrlEncoded
+    suspend fun postRegister(
+        @Field("fullname") name: String,
+        @Field("email") email: String,
+        @Field("password") password: String,
+        @Field("address") address: String,
+        @Field("IdCardNumber") idCardNumber: String,
+        @Field("BirthDate") birthDate: String,
+        @Field("gender") gender: String
+    ): Response<BaseApiResponse<UserResponse>>
 
 
     //API MOCK
@@ -39,13 +51,4 @@ interface UserApiService {
 
     @GET("users")
     suspend fun postLogin(@Query("email") email: String): Response<List<UserResponse>>
-
-    @POST("users")
-    @FormUrlEncoded
-    suspend fun postRegister(
-        @Field("fullname") fullName: String,
-        @Field("jenis_kelamin") gender: String,
-        @Field("email") email: String,
-        @Field("password") password: String,
-    ): Response<UserResponse>
 }

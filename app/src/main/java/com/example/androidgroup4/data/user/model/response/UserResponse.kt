@@ -1,18 +1,25 @@
 package com.example.androidgroup4.data.user.model.response
 
-import android.os.Parcelable
-import kotlinx.parcelize.Parcelize
+import com.example.androidgroup4.data.model.User
 
-@Parcelize
 data class UserResponse(
-	val createdAt: String,
-	val password: String,
-	val deletedAt: String,
-	val user_id: String,
-	val no_ktp: Long,
+	val id: Int,
+	val IdCardNumber: String,
 	val fullname: String,
-	val jenis_kelamin: String,
+	val gender: String,
 	val email: String,
-	val tgl_lahir: String,
-	val alamat: String
-): Parcelable
+	val BirthDate: String,
+	val address: String
+) {
+	fun toUser(): User{
+		return User(
+			id = id,
+			name = fullname,
+			email = email,
+			birthDate = BirthDate,
+			gender = gender,
+			idCardNumber = IdCardNumber,
+			address = address
+		)
+	}
+}

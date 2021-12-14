@@ -82,7 +82,10 @@
     <string name="cd_edit_profile_button">Tombol untuk mengedit profile</string>
     <string name="option_menu_profile">profile</string>
     <string name="option_menu_share">share</string>
+    <string name="error_email_exist">User already exists</string>
+    <string name="error_email_exist_id">Email sudah terdaftar</string>
     <string name="error_email_or_password">Incorrect email or password</string>
+    <string name="error_email_or_password_id">Email atau password salah</string>
     <string name="label_error">error</string>
 
 </resources>

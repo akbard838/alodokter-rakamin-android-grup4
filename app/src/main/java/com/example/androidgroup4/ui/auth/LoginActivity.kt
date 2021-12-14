@@ -27,7 +27,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
         }
     }
 
-    private val viewModel: UserViewModel by viewModels()
+    private val userViewModel: UserViewModel by viewModels()
 
     override val bindingInflater: (LayoutInflater) -> ViewBinding = ActivityLoginBinding::inflate
 
@@ -51,7 +51,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
                 tilPassword.validateNonEmpty()
 
                 isFormValid(listOf(tilEmail, tilPassword)) {
-                    viewModel.postLogin(
+                    userViewModel.postLogin(
                         binding.edtEmail.text.toString(),
                         binding.edtPassword.text.toString()
                     )
@@ -69,7 +69,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
     }
 
     override fun initObservable() {
-        viewModel.login.observe(this, {
+        userViewModel.login.observe(this, {
             when (it) {
                 is Resource.Loading -> {
                     showLoading()
@@ -78,14 +78,14 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
                 is Resource.Success -> {
                     hideLoading()
                     getAppPreferenceEditor(this@LoginActivity)
-                        .putString(PreferenceKeys.USER_TOKEN, it.data.token).apply()
+                        .putString(PreferenceKeys.USER_TOKEN, it.data).apply()
                     MainActivity.start(this@LoginActivity)
                     finish()
                 }
                 is Resource.Error -> {
                     hideLoading()
-                    if (it.apiError.status == getString(R.string.label_error)) {
-                        binding.tvError.text = it.apiError.message
+                    if (it.apiError.message == getString(R.string.error_email_or_password)) {
+                        binding.tvError.text = getString(R.string.error_email_or_password_id)
                         binding.tvError.visible()
                     } else {
                         Toast.makeText(this, it.apiError.message, Toast.LENGTH_SHORT).show()
@@ -108,7 +108,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
     private fun initDummyData() {
         binding.apply {
             edtEmail.setText("akbard838@gmail.com")
-            edtPassword.setText("Dino123")
+            edtPassword.setText("Dino1234")
         }
     }
 
