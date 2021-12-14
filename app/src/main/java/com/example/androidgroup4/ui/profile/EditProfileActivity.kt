@@ -7,6 +7,7 @@ import android.view.MenuItem
 import androidx.viewbinding.ViewBinding
 import com.example.androidgroup4.R
 import com.example.androidgroup4.base.BaseActivity
+import com.example.androidgroup4.data.model.User
 import com.example.androidgroup4.data.user.model.response.UserResponse
 import com.example.androidgroup4.databinding.ActivityEditProfileBinding
 import com.example.androidgroup4.utils.*
@@ -24,7 +25,7 @@ class EditProfileActivity : BaseActivity<ActivityEditProfileBinding>(),
     private var dueDateMillis: Long = System.currentTimeMillis()
 
     companion object {
-        fun start(context: Context?, user: UserResponse) {
+        fun start(context: Context?, user: User) {
             Intent(context, EditProfileActivity::class.java).apply {
                 putExtra(BundleKeys.PROFILE, user)
                 context?.startActivity(this)
@@ -32,7 +33,7 @@ class EditProfileActivity : BaseActivity<ActivityEditProfileBinding>(),
         }
     }
 
-    private var user: UserResponse? = null
+    private var user: User? = null
 
     override val bindingInflater: (LayoutInflater) -> ViewBinding =
         ActivityEditProfileBinding::inflate
@@ -101,13 +102,13 @@ class EditProfileActivity : BaseActivity<ActivityEditProfileBinding>(),
 
     private fun initUserData() {
         binding.apply {
-            if (user?.jenis_kelamin == GenderType.MALE.type) btnMale.isChecked = true
+            if (user?.gender == GenderType.MALE.type) btnMale.isChecked = true
             else btnFemale.isChecked = true
 
-            edtFullName.setText(user?.fullname)
-            edtBirthDate.setText(getBirthDateFormat(user?.tgl_lahir ?: emptyString()))
-            edtKtpNumber.setText(user?.no_ktp.toString())
-            edtAddress.setText(user?.alamat)
+            edtFullName.setText(user?.name)
+            edtBirthDate.setText(getBirthDateFormat(user?.birthDate ?: emptyString()))
+            edtKtpNumber.setText(user?.idCardNumber.toString())
+            edtAddress.setText(user?.address)
         }
     }
 
