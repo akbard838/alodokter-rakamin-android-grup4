@@ -16,6 +16,9 @@
             android:name=".ui.doctor.PatientActivity"
             android:exported="false" />
         <activity
+            android:name=".ui.auth.ChangePasswordActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.article.ArticleDetailActivity"
             android:exported="true" />
         <activity

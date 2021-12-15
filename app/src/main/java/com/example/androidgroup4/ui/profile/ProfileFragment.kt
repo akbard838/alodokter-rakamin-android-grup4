@@ -6,12 +6,11 @@ import androidx.viewbinding.ViewBinding
 import com.example.androidgroup4.R
 import com.example.androidgroup4.base.BaseFragment
 import com.example.androidgroup4.data.model.User
-import com.example.androidgroup4.data.user.model.response.UserResponse
 import com.example.androidgroup4.databinding.FragmentProfileBinding
+import com.example.androidgroup4.ui.auth.ChangePasswordActivity
 import com.example.androidgroup4.ui.auth.LoginActivity
 import com.example.androidgroup4.ui.main.MainActivity
 import com.example.androidgroup4.utils.*
-import com.example.androidgroup4.utils.constant.PreferenceKeys.USER_ID
 import com.example.androidgroup4.utils.constant.PreferenceKeys.USER_TOKEN
 import dagger.hilt.android.AndroidEntryPoint
 import java.util.*
@@ -47,7 +46,7 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
             }
 
             btnChangePassword.setOnClickListener {
-
+                ChangePasswordActivity.start(requireContext())
             }
 
             btnLogout.setOnClickListener {
