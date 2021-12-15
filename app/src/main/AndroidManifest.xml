@@ -13,6 +13,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AndroidGroup4">
         <activity
+            android:name=".ui.doctor.PatientActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.auth.ChangePasswordActivity"
             android:exported="false" />
         <activity
