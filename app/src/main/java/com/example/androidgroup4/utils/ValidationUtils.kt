@@ -41,7 +41,16 @@ fun TextInputLayout.validateConfirmPassword(password: String) {
         this.validateNonEmpty()
     } else {
         if (this.editText?.text.toString() == password) this.isErrorEnabled = false
-        else this.error = resources.getString(R.string.message_error_confirm_email)
+        else this.error = resources.getString(R.string.message_error_confirm_password)
+    }
+}
+
+fun TextInputLayout.validateOldPassword(password: String) {
+    if (this.editText?.text.toString().isEmpty()) {
+        this.validateNonEmpty()
+    } else {
+        if (this.editText?.text.toString() == password) this.isErrorEnabled = false
+        else this.error = resources.getString(R.string.message_error_old_password)
     }
 }
 
