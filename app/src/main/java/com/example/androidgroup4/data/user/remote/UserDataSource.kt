@@ -76,4 +76,40 @@ class UserDataSource @Inject constructor(private val userApiService: UserApiServ
 
     }
 
+    suspend fun postResetPassword(token: String, password: String): Resource<Model> {
+        return try {
+            val response = userApiService.postResetPassword(token, password, password)
+            if (response.isSuccessful) {
+                val body = response.body()
+                body?.let {
+                    withContext(Dispatchers.IO) {
+                        Resource.success(Model())
+                    }
+                } ?: Resource.empty()
+            } else {
+                Resource.error(ApiErrorOperator.parseError(response))
+            }
+        } catch (e: Exception) {
+            Resource.error(BaseApiErrorResponse(message = e.message.toString()))
+        }
+    }
+
+    suspend fun postForgotPassword(email: String): Resource<Model> {
+        return try {
+            val response = userApiService.postForgotPassword(email)
+            if (response.isSuccessful) {
+                val body = response.body()
+                body?.let {
+                    withContext(Dispatchers.IO) {
+                        Resource.success(Model())
+                    }
+                } ?: Resource.empty()
+            } else {
+                Resource.error(ApiErrorOperator.parseError(response))
+            }
+        } catch (e: Exception) {
+            Resource.error(BaseApiErrorResponse(message = e.message.toString()))
+        }
+    }
+
 }

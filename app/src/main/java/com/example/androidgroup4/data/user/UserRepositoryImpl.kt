@@ -22,4 +22,12 @@ class UserRepositoryImpl @Inject constructor(private val userData: UserDataSourc
         return userData.getUserProfile(email)
     }
 
+    override suspend fun postResetPassword(token: String, password: String): Resource<Model> {
+        return userData.postResetPassword(token, password)
+    }
+
+    override suspend fun postForgotPassword(email: String): Resource<Model> {
+        return userData.postForgotPassword(email)
+    }
+
 }

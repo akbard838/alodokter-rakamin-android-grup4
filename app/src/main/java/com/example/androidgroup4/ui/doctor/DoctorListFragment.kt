@@ -142,6 +142,7 @@ class DoctorListFragment: BaseFragment<FragmentDoctorListBinding>() {
         names.forEachIndexed { i, _ ->
             doctors.add(
                 Doctor(
+                    id = id,
                     imageUrl = images[i],
                     name = names[i],
                     specialist = specialists[i],

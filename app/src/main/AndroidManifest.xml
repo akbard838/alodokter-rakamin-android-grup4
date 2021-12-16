@@ -17,7 +17,18 @@
             android:exported="false" />
         <activity
             android:name=".ui.auth.ChangePasswordActivity"
-            android:exported="false" />
+            android:exported="true">
+
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"></action>
+                <category android:name="android.intent.category.DEFAULT"></category>
+                <category android:name="android.intent.category.BROWSABLE"></category>
+
+                <data android:scheme="https"
+                    android:host="fsw-api-grup4.herokuapp.com"></data>
+            </intent-filter>
+
+        </activity>
         <activity
             android:name=".ui.article.ArticleDetailActivity"
             android:exported="true" />
@@ -44,8 +55,8 @@
             android:name=".ui.success.SuccessActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.auth.ResetPasswordActivity"
-            android:exported="false" />
+            android:name=".ui.auth.ForgotPasswordActivity"
+            android:exported="true"/>
         <activity
             android:name=".ui.onboarding.OnBoardingActivity"
             android:exported="false" />
