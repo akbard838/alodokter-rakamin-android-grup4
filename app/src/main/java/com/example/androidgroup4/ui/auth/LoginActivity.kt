@@ -4,7 +4,6 @@ import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.MenuItem
-import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.viewbinding.ViewBinding
 import com.example.androidgroup4.R
@@ -43,7 +42,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
     override fun initAction() {
         binding.apply {
             btnForgotPassword.setOnClickListener {
-                ResetPasswordActivity.start(this@LoginActivity)
+                ForgotPasswordActivity.start(this@LoginActivity)
             }
 
             btnLogin.setOnClickListener {

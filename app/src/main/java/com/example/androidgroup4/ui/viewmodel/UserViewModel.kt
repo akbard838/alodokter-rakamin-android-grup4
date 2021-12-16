@@ -31,6 +31,12 @@ class UserViewModel @Inject constructor(
     private val _profile = MutableLiveData<Resource<UserResponse?>>()
     val profile: LiveData<Resource<UserResponse?>> by lazy { _profile }
 
+    private val _resetPassword = MutableLiveData<Resource<Model>>()
+    val resetPassword: LiveData<Resource<Model>> by lazy { _resetPassword }
+
+    private val _forgotPassword = MutableLiveData<Resource<Model>>()
+    val forgotPassword: LiveData<Resource<Model>> by lazy { _forgotPassword }
+
     private val _update = MutableLiveData<Resource<User>>()
     val update: LiveData<Resource<User>> by lazy { _update }
 
@@ -38,6 +44,7 @@ class UserViewModel @Inject constructor(
         _login.value = init()
         _register.value = init()
         _profile.value = init()
+        _resetPassword.value = init()
     }
 
     fun postLogin(email: String, password: String) {
@@ -64,6 +71,22 @@ class UserViewModel @Inject constructor(
         }
     }
 
+    fun postResetPassword(token: String, password: String) {
+        viewModelScope.launch {
+            _resetPassword.value = loading()
+            val data = userRepository.postResetPassword(token, password)
+            _resetPassword.value = data
+        }
+    }
+
+    fun postForgotPassword(email: String) {
+        viewModelScope.launch {
+            _forgotPassword.value = loading()
+            val data = userRepository.postForgotPassword(email)
+            _forgotPassword.value = data
+        }
+    }
+    
     fun putUpdateProfile(userRequest: UserRequest) {
         viewModelScope.launch {
             _update.value = loading()
@@ -71,4 +94,5 @@ class UserViewModel @Inject constructor(
             _update.value = data
         }
     }
+
 }

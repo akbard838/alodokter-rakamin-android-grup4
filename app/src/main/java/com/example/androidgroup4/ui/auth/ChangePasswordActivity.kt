@@ -4,14 +4,17 @@ import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.MenuItem
+import androidx.activity.viewModels
 import androidx.viewbinding.ViewBinding
 import com.example.androidgroup4.R
 import com.example.androidgroup4.base.BaseActivity
 import com.example.androidgroup4.databinding.ActivityChangePasswordBinding
-import com.example.androidgroup4.utils.isFormValid
-import com.example.androidgroup4.utils.validateConfirmPassword
-import com.example.androidgroup4.utils.validatePassword
+import com.example.androidgroup4.ui.main.MainActivity
+import com.example.androidgroup4.ui.viewmodel.UserViewModel
+import com.example.androidgroup4.utils.*
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class ChangePasswordActivity : BaseActivity<ActivityChangePasswordBinding>() {
 
     companion object {
@@ -22,11 +25,18 @@ class ChangePasswordActivity : BaseActivity<ActivityChangePasswordBinding>() {
         }
     }
 
+    private val userViewModel: UserViewModel by viewModels()
+
+    private var path: String? = emptyString()
+
     override val bindingInflater: (LayoutInflater) -> ViewBinding =
         ActivityChangePasswordBinding::inflate
 
     override fun initIntent() {
-
+        val uri = intent.data
+        uri?.let {
+            path = it.toString().substringAfterLast("=")
+        }
     }
 
     override fun initUI() {
@@ -41,12 +51,14 @@ class ChangePasswordActivity : BaseActivity<ActivityChangePasswordBinding>() {
     override fun initAction() {
         binding.apply {
             btnChangePassword.setOnClickListener {
-                tilOldPassword.validatePassword()
                 tilNewPassword.validatePassword()
                 tilConfirmPassword.validateConfirmPassword(edtNewPassword.text.toString())
 
-                isFormValid(listOf(tilOldPassword, tilNewPassword, tilConfirmPassword)) {
-
+                isFormValid(listOf(tilNewPassword, tilConfirmPassword)) {
+                    userViewModel.postResetPassword(
+                        path ?: emptyString(),
+                        edtConfirmPasword.text.toString()
+                    )
                 }
             }
         }
@@ -57,7 +69,23 @@ class ChangePasswordActivity : BaseActivity<ActivityChangePasswordBinding>() {
     }
 
     override fun initObservable() {
-
+        userViewModel.resetPassword.observe(this, {
+            when (it) {
+                is Resource.Loading -> {
+                    showLoading()
+                }
+                is Resource.Success -> {
+                    hideLoading()
+                    MainActivity.start(this@ChangePasswordActivity)
+                    finish()
+                }
+                is Resource.Error -> {
+                    hideLoading()
+                    showToast(this, it.apiError.message)
+                }
+                else -> {}
+            }
+        })
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

@@ -4,27 +4,35 @@ import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.MenuItem
+import androidx.activity.viewModels
 import androidx.viewbinding.ViewBinding
 import com.example.androidgroup4.R
 import com.example.androidgroup4.base.BaseActivity
-import com.example.androidgroup4.databinding.ActivityResetPasswordBinding
+import com.example.androidgroup4.databinding.ActivityForgotPasswordBinding
 import com.example.androidgroup4.ui.success.SuccessActivity
+import com.example.androidgroup4.ui.viewmodel.UserViewModel
+import com.example.androidgroup4.utils.Resource
 import com.example.androidgroup4.utils.enum.SuccessType
 import com.example.androidgroup4.utils.isFormValid
+import com.example.androidgroup4.utils.showToast
 import com.example.androidgroup4.utils.validateEmail
+import dagger.hilt.android.AndroidEntryPoint
 
-class ResetPasswordActivity : BaseActivity<ActivityResetPasswordBinding>() {
+@AndroidEntryPoint
+class ForgotPasswordActivity : BaseActivity<ActivityForgotPasswordBinding>() {
 
     companion object {
         fun start(context: Context) {
-            Intent(context, ResetPasswordActivity::class.java).apply {
+            Intent(context, ForgotPasswordActivity::class.java).apply {
                 context.startActivity(this)
             }
         }
     }
 
+    private val userViewModel: UserViewModel by viewModels()
+
     override val bindingInflater: (LayoutInflater) -> ViewBinding =
-        ActivityResetPasswordBinding::inflate
+        ActivityForgotPasswordBinding::inflate
 
     override fun initIntent() {
 
@@ -47,18 +55,7 @@ class ResetPasswordActivity : BaseActivity<ActivityResetPasswordBinding>() {
                 tilEmail.validateEmail()
 
                 isFormValid(tilEmail) {
-                    SuccessActivity.start(
-                        this@ResetPasswordActivity,
-                        R.drawable.ic_email_sent,
-                        getString(R.string.title_reset_password_success),
-                        String.format(
-                            getString(R.string.message_reset_password_success),
-                            edtEmail.text.toString()
-                        ),
-                        getString(R.string.button_login),
-                        SuccessType.RESET_PASSWORD.type
-                    )
-                    finish()
+                    userViewModel.postForgotPassword(edtEmail.text.toString())
                 }
             }
         }
@@ -69,6 +66,33 @@ class ResetPasswordActivity : BaseActivity<ActivityResetPasswordBinding>() {
     }
 
     override fun initObservable() {
+        userViewModel.forgotPassword.observe(this, {
+            when (it) {
+                is Resource.Loading -> {
+                    showLoading()
+                }
+                is Resource.Success -> {
+                    hideLoading()
+                    SuccessActivity.start(
+                        this@ForgotPasswordActivity,
+                        R.drawable.ic_email_sent,
+                        getString(R.string.title_reset_password_success),
+                        String.format(
+                            getString(R.string.message_reset_password_success),
+                            binding.edtEmail.text.toString()
+                        ),
+                        getString(R.string.button_login),
+                        SuccessType.RESET_PASSWORD.type
+                    )
+                    finish()
+                }
+                is Resource.Error -> {
+                    hideLoading()
+                    showToast(this, it.apiError.message)
+                }
+                else -> {}
+            }
+        })
 
     }
 

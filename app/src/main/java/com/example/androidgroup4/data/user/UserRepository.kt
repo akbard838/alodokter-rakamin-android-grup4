@@ -15,6 +15,10 @@ interface UserRepository {
 
     suspend fun getUserProfile(email: String): Resource<UserResponse?>
 
+    suspend fun postResetPassword(token: String, password: String): Resource<Model>
+
+    suspend fun postForgotPassword(email: String): Resource<Model>
+
     suspend fun putUpdateProfile(userRequest: UserRequest): Resource<User>
 
 }

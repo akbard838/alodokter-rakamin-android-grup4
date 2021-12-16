@@ -30,7 +30,19 @@ interface UserApiService {
     @GET("show")
     suspend fun getUserProfile(
         @Query("email") email: String
-    ) : Response<BaseApiResponse<UserResponse>>
+    ): Response<BaseApiResponse<UserResponse>>
+
+    @POST("passwords/forgot")
+    @FormUrlEncoded
+    suspend fun postForgotPassword(@Field("email") email: String): Response<BaseApiResponse<Model>>
+
+    @PATCH("passwords/reset")
+    @FormUrlEncoded
+    suspend fun postResetPassword(
+        @Query("token") token: String,
+        @Field("password") password: String,
+        @Field("password_confirmation") passwordConfirmation: String
+    ): Response<BaseApiResponse<Model>>
 
     @PUT("update")
     @FormUrlEncoded
@@ -42,7 +54,6 @@ interface UserApiService {
             @Field("IdCardNumber") idCardNumber: String,
             @Field("address") address: String
     ): Response<BaseApiResponse<UserResponse>>
-
 
     //API MOCK
     @GET("users")
