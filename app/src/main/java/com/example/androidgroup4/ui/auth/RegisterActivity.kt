@@ -104,7 +104,7 @@ class RegisterActivity : BaseActivity<ActivityRegisterBinding>() {
                         binding.tvError.text = getString(R.string.error_email_exist_id)
                         binding.tvError.visible()
                     } else {
-                        Toast.makeText(this, it.apiError.message, Toast.LENGTH_SHORT).show()
+                        showToast(this, it.apiError.message)
                     }
                 }
                 else -> {}

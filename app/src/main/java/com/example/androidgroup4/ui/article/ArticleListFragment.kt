@@ -1,19 +1,16 @@
 package com.example.androidgroup4.ui.article
 
 import android.annotation.SuppressLint
-import android.text.Editable
-import android.text.TextWatcher
 import android.view.*
 import android.view.inputmethod.EditorInfo
-import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.doAfterTextChanged
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import androidx.viewbinding.ViewBinding
-import com.bumptech.glide.Glide
 import com.example.androidgroup4.R
 import com.example.androidgroup4.base.BaseFragment
 import com.example.androidgroup4.data.model.Article
@@ -21,29 +18,30 @@ import com.example.androidgroup4.databinding.FragmentArticleListBinding
 import com.example.androidgroup4.ui.adapter.ArticleAdapter
 import com.example.androidgroup4.ui.auth.LoginActivity
 import com.example.androidgroup4.ui.main.MainActivity
-import com.example.androidgroup4.utils.emptyString
-import com.example.androidgroup4.utils.gone
-import com.example.androidgroup4.utils.hideSoftKeyboard
-import com.example.androidgroup4.utils.visible
-import com.synnapps.carouselview.ImageListener
-import java.util.regex.Pattern
+import com.example.androidgroup4.ui.viewmodel.ArticleViewModel
+import com.example.androidgroup4.utils.*
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class ArticleListFragment : BaseFragment<FragmentArticleListBinding>() {
+
+    private lateinit var articleAdapter: ArticleAdapter
+
+    private val articleViewModel: ArticleViewModel by viewModels()
 
     private var imageArray: ArrayList<Int> = ArrayList()
 
-    private var imageListener = ImageListener { position, imageView ->
-        imageView.scaleType = ImageView.ScaleType.CENTER_INSIDE
-        Glide.with(requireContext())
-            .load(imageArray[position])
-            .into(imageView)
+    private lateinit var layoutManager: LinearLayoutManager
 
-        imageView.setOnClickListener {
-            Toast.makeText(requireContext(), "Open Image", Toast.LENGTH_SHORT).show()   //tes
-        }
-    }
+    private var articles: ArrayList<Article> = arrayListOf()
 
-    private lateinit var articleAdapter: ArticleAdapter
+    private var isLoading = false
+
+    private var isDefault = true
+
+    private var page = 1
+
+    private var isLast = false
 
     override val bindingInflater: (LayoutInflater, ViewGroup?, Boolean) -> ViewBinding =
         FragmentArticleListBinding::inflate
@@ -57,27 +55,28 @@ class ArticleListFragment : BaseFragment<FragmentArticleListBinding>() {
         (activity as AppCompatActivity?)?.setSupportActionBar(binding.toolbar)
         (activity as AppCompatActivity?)?.supportActionBar?.title = emptyString()
 
-
+        layoutManager = LinearLayoutManager(requireContext())
         articleAdapter = ArticleAdapter()
-        articleAdapter.setData(getDummyArticle())
-        with(binding.rvArticle) {
-            layoutManager = LinearLayoutManager(requireContext())
-            setHasFixedSize(true)
-            adapter = articleAdapter
-        }
+        binding.rvArticle.setHasFixedSize(true)
+        binding.rvArticle.layoutManager = layoutManager
+        binding.rvArticle.adapter = articleAdapter
 
-        addCarouselImage()
-        with(binding) {
-            carouselView.setImageListener(imageListener)
-            carouselView.pageCount = imageArray.size
-        }
-    }
+        getArticles()
 
-    private fun addCarouselImage() {
-        imageArray.clear()
-        imageArray.add(R.drawable.img1)
-        imageArray.add(R.drawable.img2)
-        imageArray.add(R.drawable.img3)
+        binding.rvArticle.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                val visibleItemCount = layoutManager.childCount
+                val pastVisibleItem = layoutManager.findFirstVisibleItemPosition()
+                val total = articleAdapter.itemCount
+                if (!isLoading && !isLast) {
+                    if (visibleItemCount + pastVisibleItem >= total) {
+                        page++
+                        getArticles()
+                    }
+                }
+                super.onScrolled(recyclerView, dx, dy)
+            }
+        })
     }
 
     @SuppressLint("ClickableViewAccessibility")
@@ -90,8 +89,8 @@ class ArticleListFragment : BaseFragment<FragmentArticleListBinding>() {
 
             edtSearchArticle.setOnEditorActionListener(TextView.OnEditorActionListener { v, actionId, event ->
                 if (actionId == EditorInfo.IME_ACTION_SEARCH) {
-                    articleAdapter.setData(getFilteredData())
-                    checkIsDataEmpty(getFilteredData())
+//                    articleAdapter.setData(getFilteredData())
+//                    checkIsDataEmpty(getFilteredData())
                     hideSoftKeyboard(requireContext(), binding.edtSearchArticle)
                     return@OnEditorActionListener true
                 }
@@ -104,56 +103,79 @@ class ArticleListFragment : BaseFragment<FragmentArticleListBinding>() {
                     view?.clearFocus()
                     hideSoftKeyboard(requireContext(), edtSearchArticle)
                     if (event.rawX >= edtSearchArticle.right - edtSearchArticle.compoundDrawables[2].bounds.width()) {
-                        articleAdapter.setData(getFilteredData())
-                        checkIsDataEmpty(getFilteredData())
+//                        articleAdapter.setData(getFilteredData())
+//                        checkIsDataEmpty(getFilteredData())
                         true
                     } else false
                 } else false
             }
 
             edtSearchArticle.doAfterTextChanged {
-                if (edtSearchArticle.text.toString().isEmpty()) reloadData()
+//                if (edtSearchArticle.text.toString().isEmpty()) reloadData()
             }
 
         }
 
-
     }
 
     override fun initProcess() {
-        checkIsDataEmpty(getDummyArticle())
-
     }
 
     override fun initObservable() {
+        articleViewModel.articles.observe(this, {
+            when (it) {
+                is Resource.Loading -> {
+                    isLoading = true
+                    binding.pbArticle.visible()
+                }
+                is Resource.Success -> {
+                    articles.addAll(it.data)
+                    articleAdapter.setData(articles)
+                    checkIsDataEmpty(articles)
 
+                    if (it.data.isEmpty()) {
+                        binding.pbArticle.gone()
+                        isLast = true
+                    } else binding.pbArticle.invisible()
+
+                    isLoading = false
+                }
+                is Resource.Error -> {
+                    isLoading = false
+                    binding.pbArticle.gone()
+                    showToast(requireContext(), it.apiError.message)
+                }
+                else -> {}
+            }
+        })
     }
 
-    private fun getDummyArticle(): ArrayList<Article> {
-        val articles = arrayListOf<Article>()
-
-        val titles = resources.getStringArray(R.array.list_of_title_article)
-        val descriptions = resources.getStringArray(R.array.list_of_description_article)
-        val category = resources.getStringArray(R.array.list_of_category_article)
-        val images = resources.getStringArray(R.array.list_of_image_article)
-
-        for (i in titles.indices) {
-            articles.add(
-                Article(titles[i], descriptions[i], category[i], images[i])
-            )
-        }
-        return articles
+    private fun loadDefault() {
+        articles.clear()
+        articleAdapter.setData(articles)
+        page = 1
+        isDefault = true
+        isLast = false
+        getArticles()
     }
 
-    private fun getFilteredData(): List<Article> {
-        val filtered = getDummyArticle().filter {
-            Pattern.compile(
-                Pattern.quote(binding.edtSearchArticle.text.toString()),
-                Pattern.CASE_INSENSITIVE
-            ).matcher(it.title).find()
-        }
+    private fun getArticles() {
+        articleViewModel.getArticles(page)
+    }
 
-        return filtered
+    private fun setHero() {
+        binding.apply {
+            if (isDefault) {
+                sivArticle.setImageUrl(
+                    requireContext(),
+                    articles[0].imageUrl.toHttps(),
+                    pbHeroArticle,
+                    R.drawable.img_not_available
+                )
+                tvHeroArticle.text = articles[0].title
+                isDefault = false
+            }
+        }
     }
 
     private fun checkIsDataEmpty(articles: List<Article>) {
@@ -161,18 +183,18 @@ class ArticleListFragment : BaseFragment<FragmentArticleListBinding>() {
             if (articles.isEmpty()) {
                 rvArticle.gone()
                 layoutEmpty.layoutEmpty.visible()
-                carouselView.gone()
+                sivArticle.gone()
+                sivBackground.gone()
+                tvHeroArticle.gone()
             } else {
                 rvArticle.visible()
                 layoutEmpty.layoutEmpty.gone()
-                carouselView.visible()
+                sivArticle.visible()
+                sivBackground.visible()
+                tvHeroArticle.visible()
+                setHero()
             }
         }
-    }
-
-    private fun reloadData() {
-        articleAdapter.setData(getDummyArticle())
-        checkIsDataEmpty(getDummyArticle())
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
