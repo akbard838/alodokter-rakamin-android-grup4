@@ -45,4 +45,12 @@ class UserViewModel @Inject constructor(
             _register.value = data
         }
     }
+
+    fun putEditProfile(registerRequest: RegisterRequest) {
+        viewModelScope.launch {
+            _register.value = loading()
+            val data = userRepository.postRegister(registerRequest)
+            _register.value = data
+        }
+    }
 }

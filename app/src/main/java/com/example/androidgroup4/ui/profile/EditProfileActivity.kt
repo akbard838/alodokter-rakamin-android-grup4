@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.MenuItem
+import androidx.lifecycle.lifecycleScope
 import androidx.viewbinding.ViewBinding
 import com.example.androidgroup4.R
 import com.example.androidgroup4.base.BaseActivity
@@ -14,6 +15,7 @@ import com.example.androidgroup4.utils.*
 import com.example.androidgroup4.utils.constant.BundleKeys
 import com.example.androidgroup4.utils.enum.GenderType
 import dagger.hilt.android.AndroidEntryPoint
+import retrofit2.Response
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -127,32 +129,32 @@ class EditProfileActivity : BaseActivity<ActivityEditProfileBinding>(),
         binding.btnFemale.isChecked = false
     }
 
-//    private fun putEditProfile() {
-//        lifecycleScope.launchWhenStarted {
-//            userViewModel.putEditProfile(
-//                userId = user?.user_id?.toInt() ?: 0,
-//                fullName = binding.edtFullName.text.toString(),
-//                dateOfBirth = binding.edtBirthDate.text.toString(),
-//                gender = if (binding.btnMale.isChecked) GenderType.MALE.type else GenderType.FEMALE.type,
-//                idCardNumber = binding.edtKtpNumber.text.toString().toLong(),
-//                address = binding.edtAddress.text.toString()
-//            ).collect {
-//                when (it) {
-//                    is ApiResponse.Success -> {
-//                        hideLoading()
-//                        showToast(this@EditProfileActivity, "Data profil berhasil diubah")
-//                        finish()
-//                    }
-//                    is ApiResponse.Failure -> {
-//                        hideLoading()
-//                        showToast(this@EditProfileActivity, it.message)
-//                    }
-//                    is ApiResponse.Loading -> {
-//                        showLoading()
-//                    }
-//                }
-//            }
-//        }
-//    }
+    private fun putEditProfile() {
+        lifecycleScope.launchWhenStarted {
+            userViewModel.putEditProfile(
+                userId = user?.user_id?.toInt() ?: 0,
+                fullName = binding.edtFullName.text.toString(),
+                dateOfBirth = binding.edtBirthDate.text.toString(),
+                gender = if (binding.btnMale.isChecked) GenderType.MALE.type else GenderType.FEMALE.type,
+                idCardNumber = binding.edtKtpNumber.text.toString().toLong(),
+                address = binding.edtAddress.text.toString()
+            ).collect {
+                when (it) {
+                    is Response.Success -> {
+                        hideLoading()
+                        showToast(this@EditProfileActivity, "Data profil berhasil diubah")
+                        finish()
+                    }
+                    is Response.Failure -> {
+                        hideLoading()
+                        showToast(this@EditProfileActivity, it.message)
+                    }
+                    is Response.Loading -> {
+                        showLoading()
+                    }
+                }
+            }
+        }
+    }
 
 }
