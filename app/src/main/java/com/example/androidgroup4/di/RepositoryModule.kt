@@ -1,7 +1,7 @@
 package com.example.androidgroup4.di
 
-import com.example.androidgroup4.data.articlel.ArticleRepository
-import com.example.androidgroup4.data.articlel.ArticleRepositoryImpl
+import com.example.androidgroup4.data.article.ArticleRepository
+import com.example.androidgroup4.data.article.ArticleRepositoryImpl
 import com.example.androidgroup4.data.doctor.DoctorRepository
 import com.example.androidgroup4.data.doctor.DoctorRepositoryImpl
 import com.example.androidgroup4.data.user.UserRepository

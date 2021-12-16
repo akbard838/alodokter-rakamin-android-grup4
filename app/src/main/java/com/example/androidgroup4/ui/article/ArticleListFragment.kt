@@ -29,8 +29,6 @@ class ArticleListFragment : BaseFragment<FragmentArticleListBinding>() {
 
     private val articleViewModel: ArticleViewModel by viewModels()
 
-    private var imageArray: ArrayList<Int> = ArrayList()
-
     private lateinit var layoutManager: LinearLayoutManager
 
     private var articles: ArrayList<Article> = arrayListOf()
@@ -87,10 +85,9 @@ class ArticleListFragment : BaseFragment<FragmentArticleListBinding>() {
 
         with(binding) {
 
-            edtSearchArticle.setOnEditorActionListener(TextView.OnEditorActionListener { v, actionId, event ->
+            edtSearchArticle.setOnEditorActionListener(TextView.OnEditorActionListener { _, actionId, event ->
                 if (actionId == EditorInfo.IME_ACTION_SEARCH) {
-//                    articleAdapter.setData(getFilteredData())
-//                    checkIsDataEmpty(getFilteredData())
+                    articleViewModel.getSearchArticles(edtSearchArticle.text.toString())
                     hideSoftKeyboard(requireContext(), binding.edtSearchArticle)
                     return@OnEditorActionListener true
                 }
@@ -103,15 +100,14 @@ class ArticleListFragment : BaseFragment<FragmentArticleListBinding>() {
                     view?.clearFocus()
                     hideSoftKeyboard(requireContext(), edtSearchArticle)
                     if (event.rawX >= edtSearchArticle.right - edtSearchArticle.compoundDrawables[2].bounds.width()) {
-//                        articleAdapter.setData(getFilteredData())
-//                        checkIsDataEmpty(getFilteredData())
+                        articleViewModel.getSearchArticles(edtSearchArticle.text.toString())
                         true
                     } else false
                 } else false
             }
 
             edtSearchArticle.doAfterTextChanged {
-//                if (edtSearchArticle.text.toString().isEmpty()) reloadData()
+                if (edtSearchArticle.text.toString().isEmpty()) loadDefaultData()
             }
 
         }
@@ -148,9 +144,30 @@ class ArticleListFragment : BaseFragment<FragmentArticleListBinding>() {
                 else -> {}
             }
         })
+
+        articleViewModel.searchArticles.observe(this, {
+            when (it) {
+                is Resource.Loading -> {
+                    binding.pbArticle.visible()
+                }
+                is Resource.Success -> {
+                    binding.pbArticle.gone()
+                    articles.clear()
+                    articles.addAll(it.data)
+                    articleAdapter.setData(articles)
+                    checkIsDataEmpty(articles)
+                    isLast = true
+                }
+                is Resource.Error -> {
+                    binding.pbArticle.gone()
+                    showToast(requireContext(), it.apiError.message)
+                }
+                else -> {}
+            }
+        })
     }
 
-    private fun loadDefault() {
+    private fun loadDefaultData() {
         articles.clear()
         articleAdapter.setData(articles)
         page = 1

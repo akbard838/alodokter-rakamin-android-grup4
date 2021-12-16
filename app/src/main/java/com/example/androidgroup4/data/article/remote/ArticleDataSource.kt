@@ -1,4 +1,4 @@
-package com.example.androidgroup4.data.articlel.remote
+package com.example.androidgroup4.data.article.remote
 
 import com.example.androidgroup4.base.BaseApiErrorResponse
 import com.example.androidgroup4.data.model.Article
@@ -13,6 +13,24 @@ class ArticleDataSource @Inject constructor(private val articleApiService: Artic
     suspend fun getArticles(page: Int): Resource<List<Article>> {
         return try {
             val response = articleApiService.getArticles(page)
+            if (response.isSuccessful) {
+                val body = response.body()
+                body?.let {
+                    withContext(Dispatchers.IO) {
+                        Resource.success(it.data?.map { it.toArticle() } ?: listOf())
+                    }
+                } ?: Resource.empty()
+            } else {
+                Resource.error(ApiErrorOperator.parseError(response))
+            }
+        } catch (e: Exception) {
+            Resource.error(BaseApiErrorResponse(message = e.message.toString()))
+        }
+    }
+
+    suspend fun getSearchArticles(title: String): Resource<List<Article>> {
+        return try {
+            val response = articleApiService.getSearchArticles(title)
             if (response.isSuccessful) {
                 val body = response.body()
                 body?.let {

@@ -1,6 +1,6 @@
 package com.example.androidgroup4.di
 
-import com.example.androidgroup4.data.articlel.remote.ArticleApiService
+import com.example.androidgroup4.data.article.remote.ArticleApiService
 import com.example.androidgroup4.data.doctor.remote.DoctorApiService
 import com.example.androidgroup4.data.user.remote.UserApiService
 import com.squareup.moshi.Moshi
