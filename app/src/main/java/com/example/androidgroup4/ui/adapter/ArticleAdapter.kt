@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.androidgroup4.data.model.Article
 import com.example.androidgroup4.R
-import com.example.androidgroup4.databinding.ArticleItemBinding
+import com.example.androidgroup4.databinding.ItemArticleBinding
 import com.example.androidgroup4.utils.setImageUrl
 import com.example.androidgroup4.utils.toHttps
 
@@ -23,7 +23,7 @@ class ArticleAdapter: RecyclerView.Adapter<ArticleAdapter.ListViewHolder>() {
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListViewHolder = ListViewHolder(
-        LayoutInflater.from(parent.context).inflate(R.layout.article_item, parent, false))
+        LayoutInflater.from(parent.context).inflate(R.layout.item_article, parent, false))
 
     override fun onBindViewHolder(holder: ListViewHolder, position: Int) {
         val data = listData[position]
@@ -34,7 +34,7 @@ class ArticleAdapter: RecyclerView.Adapter<ArticleAdapter.ListViewHolder>() {
 
     inner class ListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-        private val binding = ArticleItemBinding.bind(itemView)
+        private val binding = ItemArticleBinding.bind(itemView)
         fun bind(data: Article) {
             with(binding) {
                 tvTitle.text = data.title
