@@ -1,5 +1,9 @@
 package com.example.androidgroup4.di
 
+import com.example.androidgroup4.data.articlel.ArticleRepository
+import com.example.androidgroup4.data.articlel.ArticleRepositoryImpl
+import com.example.androidgroup4.data.doctor.DoctorRepository
+import com.example.androidgroup4.data.doctor.DoctorRepositoryImpl
 import com.example.androidgroup4.data.user.UserRepository
 import com.example.androidgroup4.data.user.UserRepositoryImpl
 import dagger.Binds
@@ -12,6 +16,12 @@ import dagger.hilt.android.components.ViewModelComponent
 abstract class RepositoryModule {
 
     @Binds
-    abstract fun bindRepository(impl: UserRepositoryImpl): UserRepository
+    abstract fun bindUserRepository(impl: UserRepositoryImpl): UserRepository
+
+    @Binds
+    abstract fun bindArticleRepository(impl: ArticleRepositoryImpl): ArticleRepository
+
+    @Binds
+    abstract fun bindDoctorRepository(impl: DoctorRepositoryImpl): DoctorRepository
 
 }

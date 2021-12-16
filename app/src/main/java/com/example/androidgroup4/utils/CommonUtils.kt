@@ -40,3 +40,10 @@ fun hideSoftKeyboard(context: Context, input: EditText) {
         context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager?
     imm?.hideSoftInputFromWindow(input.windowToken, 0)
 }
+
+fun String.toHttps(): String {
+    if (this.contains("http")) {
+        return this.replace("http", "https")
+    }
+    return this
+}

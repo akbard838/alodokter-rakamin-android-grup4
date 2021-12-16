@@ -1,5 +1,7 @@
 package com.example.androidgroup4.di
 
+import com.example.androidgroup4.data.articlel.remote.ArticleApiService
+import com.example.androidgroup4.data.doctor.remote.DoctorApiService
 import com.example.androidgroup4.data.user.remote.UserApiService
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
@@ -15,6 +17,8 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 object AppModule {
 
+    private const val BASE_URL = "https://fsw-api-grup4.herokuapp.com/api/v1/"
+
     @Provides
     @Singleton
     fun providesMoshi(): Moshi = Moshi
@@ -28,9 +32,33 @@ object AppModule {
         return Retrofit
             .Builder()
             .run {
-                baseUrl(UserApiService.BASE_URL)
+                baseUrl(BASE_URL)
                 addConverterFactory(MoshiConverterFactory.create(moshi))
                 build()
             }.create(UserApiService::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun provideArticleService(moshi: Moshi): ArticleApiService {
+        return Retrofit
+            .Builder()
+            .run {
+                baseUrl(BASE_URL)
+                addConverterFactory(MoshiConverterFactory.create(moshi))
+                build()
+            }.create(ArticleApiService::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun provideDoctorService(moshi: Moshi): DoctorApiService {
+        return Retrofit
+            .Builder()
+            .run {
+                baseUrl(BASE_URL)
+                addConverterFactory(MoshiConverterFactory.create(moshi))
+                build()
+            }.create(DoctorApiService::class.java)
     }
 }

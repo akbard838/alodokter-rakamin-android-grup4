@@ -8,10 +8,6 @@ import retrofit2.http.*
 
 interface UserApiService {
 
-    companion object {
-        const val BASE_URL = "https://fsw-api-grup4.herokuapp.com/api/v1/"
-    }
-
     @POST("login")
     @FormUrlEncoded
     suspend fun postLogin(

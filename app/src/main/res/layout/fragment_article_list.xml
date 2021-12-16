@@ -1,98 +1,148 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:focusable="true"
-    android:focusableInTouchMode="true"
     tools:context=".ui.article.ArticleListFragment">
-
-    <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/app_bar_layout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:theme="@style/ThemeOverlay.MaterialComponents.Dark.ActionBar"
-        android:background="@color/white">
-
-        <com.google.android.material.appbar.CollapsingToolbarLayout
-            android:id="@+id/collapsing_toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:layout_scrollFlags="scroll|exitUntilCollapsed"
-            android:fitsSystemWindows="true"
-            app:contentScrim="@color/white"
-            android:background="@drawable/bg_rectangle_rounded_bottom"
-            app:expandedTitleMarginStart="@dimen/dimen_48dp"
-            app:expandedTitleMarginEnd="@dimen/dimen_64dp">
-
-            <com.synnapps.carouselview.CarouselView
-                android:layout_marginTop="?attr/actionBarSize"
-                app:layout_collapseMode="parallax"
-                android:id="@+id/carousel_view"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/dimen_250dp"
-                app:fillColor="@color/white"
-                app:pageColor="@color/colorGrey"
-                app:radius="@dimen/dimen_4dp"
-                app:slideInterval="3000"
-                app:strokeColor="@color/black"
-                app:strokeWidth="@dimen/dimen_1dp" />
-
-            <EditText
-                android:id="@+id/edt_search_article"
-                app:layout_collapseMode="pin"
-                android:textColor="?attr/colorOnPrimary"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/dimen_20dp"
-                android:layout_marginEnd="@dimen/dimen_90dp"
-                android:layout_marginStart="@dimen/dimen_16dp"
-                android:imeOptions="actionSearch"
-                android:background="@drawable/bg_rectangle_white_rounded"
-                android:drawableEnd="?android:attr/actionModeWebSearchDrawable"
-                android:drawableTint="@color/colorSecondary"
-                android:elevation="@dimen/dimen_20dp"
-                android:ems="10"
-                android:textColorHint="@color/colorGrey"
-                android:hint="@string/hint_search_article"
-                android:inputType="textPersonName"
-                android:padding="@dimen/dimen_8dp"
-                android:paddingStart="@dimen/dimen_22dp"
-                android:paddingEnd="@dimen/dimen_10dp"
-                android:textSize="@dimen/text_size_14sp" />
-
-            <androidx.appcompat.widget.Toolbar
-                android:id="@+id/toolbar"
-                android:paddingTop="@dimen/dimen_10dp"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/dimen_86dp"
-                app:layout_collapseMode="pin"
-                android:background="@drawable/bg_rectangle_rounded_bottom"
-                app:popupTheme="@style/ThemeOverlay.MaterialComponents.Light" />
-
-        </com.google.android.material.appbar.CollapsingToolbarLayout>
-
-    </com.google.android.material.appbar.AppBarLayout>
-
-    <androidx.core.widget.NestedScrollView
-        android:id="@+id/nsv_article"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior">
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_article"
-            android:layout_width="match_parent"
-            android:nestedScrollingEnabled="false"
-            android:layout_height="match_parent"
-            android:scrollbars="vertical"
-            tools:listitem="@layout/article_item" />
-
-    </androidx.core.widget.NestedScrollView>
 
     <include
         android:id="@+id/layout_empty"
         layout="@layout/layout_empty" />
 
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:focusable="true"
+        android:focusableInTouchMode="true">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/app_bar_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:theme="@style/ThemeOverlay.MaterialComponents.Dark.ActionBar">
+
+            <com.google.android.material.appbar.CollapsingToolbarLayout
+                android:id="@+id/collapsing_toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/colorTransparent"
+                android:fitsSystemWindows="true"
+                app:contentScrim="@color/white"
+                app:expandedTitleMarginEnd="@dimen/dimen_64dp"
+                app:expandedTitleMarginStart="@dimen/dimen_48dp"
+                app:layout_scrollFlags="scroll|exitUntilCollapsed">
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/sivArticle"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dimen_200dp"
+                    android:layout_marginStart="@dimen/dimen_12dp"
+                    android:layout_marginTop="@dimen/dimen_100dp"
+                    android:layout_marginEnd="@dimen/dimen_12dp"
+                    android:background="@color/colorTransparent"
+                    android:scaleType="centerCrop"
+                    tools:src="@drawable/img_hospital"
+                    app:layout_collapseMode="parallax"
+                    app:shapeAppearanceOverlay="@style/roundedImageButton" />
+
+                <ProgressBar
+                    android:id="@+id/pbHeroArticle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/dimen_32dp" />
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/sivBackground"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dimen_100dp"
+                    android:layout_gravity="bottom"
+                    android:layout_marginStart="@dimen/dimen_12dp"
+                    android:layout_marginEnd="@dimen/dimen_12dp"
+                    app:layout_collapseMode="parallax"
+                    app:shapeAppearanceOverlay="@style/roundedImageButton"
+                    app:srcCompat="@drawable/bg_gradient_black" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvHeroArticle"
+                    style="@style/AndroidAppText.Bold.White"
+                    android:layout_width="match_parent"
+                    android:layout_gravity="bottom"
+                    android:ellipsize="end"
+                    android:lines="2"
+                    android:paddingStart="@dimen/dimen_24dp"
+                    android:paddingEnd="@dimen/dimen_24dp"
+                    android:paddingBottom="@dimen/dimen_16dp"
+                    tools:text="@string/sample_title_article"
+                    android:textSize="@dimen/text_size_16sp"
+                    app:layout_collapseMode="parallax"
+                    app:layout_constraintBottom_toBottomOf="parent" />
+
+                <EditText
+                    android:id="@+id/edt_search_article"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dimen_16dp"
+                    android:layout_marginTop="@dimen/dimen_20dp"
+                    android:layout_marginEnd="@dimen/dimen_90dp"
+                    android:background="@drawable/bg_rectangle_white_rounded"
+                    android:drawableEnd="?android:attr/actionModeWebSearchDrawable"
+                    android:drawableTint="@color/colorSecondary"
+                    android:elevation="@dimen/dimen_20dp"
+                    android:ems="10"
+                    android:hint="@string/hint_search_article"
+                    android:imeOptions="actionSearch"
+                    android:inputType="textPersonName"
+                    android:padding="@dimen/dimen_8dp"
+                    android:paddingStart="@dimen/dimen_22dp"
+                    android:paddingEnd="@dimen/dimen_10dp"
+                    android:textColor="?attr/colorOnPrimary"
+                    android:textColorHint="@color/colorGrey"
+                    android:textSize="@dimen/text_size_14sp"
+                    app:layout_collapseMode="pin" />
+
+                <androidx.appcompat.widget.Toolbar
+                    android:id="@+id/toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dimen_86dp"
+                    android:background="@drawable/bg_rectangle_rounded_bottom"
+                    android:paddingTop="@dimen/dimen_10dp"
+                    app:layout_collapseMode="pin"
+                    app:popupTheme="@style/ThemeOverlay.MaterialComponents.Light" />
+
+            </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_article"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:nestedScrollingEnabled="true"
+                android:scrollbars="vertical"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </LinearLayout>
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+    <ProgressBar
+        android:id="@+id/pbArticle"
+        android:layout_width="@dimen/dimen_48dp"
+        android:layout_height="@dimen/dimen_48dp"
+        android:layout_marginBottom="@dimen/dimen_12dp"
+        android:background="@drawable/bg_circle_grey"
+        android:padding="@dimen/dimen_4dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
