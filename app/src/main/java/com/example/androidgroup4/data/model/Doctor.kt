@@ -5,6 +5,7 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class Doctor(
+    val id: Int,
     val imageUrl: String,
     val name: String,
     val specialist: String,
