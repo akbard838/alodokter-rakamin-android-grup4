@@ -1,6 +1,7 @@
 package com.example.androidgroup4.data.user.remote
 
 import com.example.androidgroup4.base.BaseApiResponse
+import com.example.androidgroup4.data.model.Model
 import com.example.androidgroup4.data.user.model.response.UserResponse
 import retrofit2.Response
 import retrofit2.http.*
@@ -8,7 +9,7 @@ import retrofit2.http.*
 interface UserApiService {
 
     companion object {
-        const val BASE_URL = "https://alodokter-rakamin-fsw-grup4.herokuapp.com/api/v1/"
+        const val BASE_URL = "https://fsw-api-grup4.herokuapp.com/api/v1/"
     }
 
     @POST("login")
@@ -16,7 +17,7 @@ interface UserApiService {
     suspend fun postLogin(
         @Field("email") email: String,
         @Field("password") password: String
-    ): Response<BaseApiResponse<String>>
+    ): Response<BaseApiResponse<Model>>
 
     @POST("users")
     @FormUrlEncoded
@@ -35,21 +36,21 @@ interface UserApiService {
         @Query("email") email: String
     ) : Response<BaseApiResponse<UserResponse>>
 
+    @PUT("update")
+    @FormUrlEncoded
+    suspend fun putUpdateProfile(
+            @Field("email") email: String,
+            @Field("fullname") fullName: String,
+            @Field("BirthDate") dateOfBirth: String,
+            @Field("gender") gender: String,
+            @Field("IdCardNumber") idCardNumber: String,
+            @Field("address") address: String
+    ): Response<BaseApiResponse<UserResponse>>
+
 
     //API MOCK
     @GET("users")
     suspend fun getAllUsers(): Response<List<UserResponse>>
-
-    @PUT("users/{id}")
-    @FormUrlEncoded
-    suspend fun putEditProfile(
-        @Path("id") userId: Int,
-        @Field("fullname") fullName: String,
-        @Field("tgl_lahir") dateOfBirth: String,
-        @Field("jenis_kelamin") gender: String,
-        @Field("no_ktp") idCardNumber: Long,
-        @Field("alamat") address: String
-    ): Response<UserResponse>
 
     @PUT("users/{id}")
     @FormUrlEncoded

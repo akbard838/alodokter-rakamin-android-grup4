@@ -144,7 +144,7 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
 
     private fun getUserData() {
 
-        userViewModel.getUserProfile("alandarmas14@gmail.com")
+        userViewModel.getUserProfile("test@gmail.com")
 
 //        lifecycleScope.launchWhenStarted {
 //            userViewModel.getUserById(
