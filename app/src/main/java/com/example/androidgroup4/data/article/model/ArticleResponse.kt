@@ -1,4 +1,4 @@
-package com.example.androidgroup4.data.articlel.model
+package com.example.androidgroup4.data.article.model
 
 import com.example.androidgroup4.data.model.Article
 import com.example.androidgroup4.utils.emptyString

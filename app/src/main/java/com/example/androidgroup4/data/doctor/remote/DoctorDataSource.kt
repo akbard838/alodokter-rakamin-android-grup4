@@ -2,8 +2,6 @@ package com.example.androidgroup4.data.doctor.remote
 
 
 import com.example.androidgroup4.base.BaseApiErrorResponse
-import com.example.androidgroup4.data.articlel.remote.ArticleApiService
-import com.example.androidgroup4.data.model.Article
 import com.example.androidgroup4.data.model.Doctor
 import com.example.androidgroup4.utils.ApiErrorOperator
 import com.example.androidgroup4.utils.Resource
