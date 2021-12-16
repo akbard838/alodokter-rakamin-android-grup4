@@ -1,7 +1,10 @@
 package com.example.androidgroup4.ui.profile
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.fragment.app.viewModels
 import androidx.viewbinding.ViewBinding
 import com.example.androidgroup4.R
 import com.example.androidgroup4.base.BaseFragment
@@ -10,15 +13,18 @@ import com.example.androidgroup4.databinding.FragmentProfileBinding
 import com.example.androidgroup4.ui.auth.ChangePasswordActivity
 import com.example.androidgroup4.ui.auth.LoginActivity
 import com.example.androidgroup4.ui.main.MainActivity
+import com.example.androidgroup4.ui.success.SuccessActivity
+import com.example.androidgroup4.ui.viewmodel.UserViewModel
 import com.example.androidgroup4.utils.*
 import com.example.androidgroup4.utils.constant.PreferenceKeys.USER_TOKEN
+import com.example.androidgroup4.utils.enum.SuccessType
 import dagger.hilt.android.AndroidEntryPoint
 import java.util.*
 
 @AndroidEntryPoint
 class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
 
-//    private val userViewModel: UserViewModel by viewModels()
+    private val userViewModel: UserViewModel by viewModels()
 
     private var user: User? = null
 
@@ -66,6 +72,36 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
     }
 
     override fun initObservable() {
+        userViewModel.profile.observe(this) {
+            when (it) {
+                is Resource.Loading -> {
+                    showLoading()
+                }
+                is Resource.Success -> {
+                    hideLoading()
+                    binding.apply {
+                            user = it.data?.toUser()
+                            imgProfileUser.setImageUrl(
+                                requireContext(),
+                                getString(R.string.sample_image_url),
+                                pbProfileUser,
+                                R.drawable.img_not_available
+                            )
+                            tvName.text = user?.name
+                            tvEmail.text = user?.email
+                            tvDateOfBirth.text =
+                                getBirthDateFormat(user?.birthDate ?: emptyString())
+                            tvIdCard.text = user?.idCardNumber
+                            tvAddress.text = user?.address
+                        }
+                }
+                is Resource.Error -> {
+                    hideLoading()
+                    Toast.makeText(requireContext(), it.apiError.message, Toast.LENGTH_SHORT).show()
+                }
+                else -> {}
+            }
+        }
     }
 
     override fun onResume() {
@@ -107,6 +143,9 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
     }
 
     private fun getUserData() {
+
+        userViewModel.getUserProfile("alandarmas14@gmail.com")
+
 //        lifecycleScope.launchWhenStarted {
 //            userViewModel.getUserById(
 //                getAppSharedPreference(requireContext()).getInt(PreferenceKeys.USER_ID, -1)

@@ -7,6 +7,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.androidgroup4.data.model.Model
 import com.example.androidgroup4.data.user.UserRepository
 import com.example.androidgroup4.data.user.model.request.RegisterRequest
+import com.example.androidgroup4.data.user.model.response.UserResponse
 import com.example.androidgroup4.utils.Resource
 import com.example.androidgroup4.utils.Resource.Companion.init
 import com.example.androidgroup4.utils.Resource.Companion.loading
@@ -25,9 +26,13 @@ class UserViewModel @Inject constructor(
     private val _register = MutableLiveData<Resource<Model>>()
     val register: LiveData<Resource<Model>> by lazy { _register }
 
+    private val _profile = MutableLiveData<Resource<UserResponse?>>()
+    val profile: LiveData<Resource<UserResponse?>> by lazy { _profile }
+
     init {
         _login.value = init()
         _register.value = init()
+        _profile.value = init()
     }
 
     fun postLogin(email: String, password: String) {
@@ -45,4 +50,13 @@ class UserViewModel @Inject constructor(
             _register.value = data
         }
     }
+
+    fun getUserProfile(email: String) {
+        viewModelScope.launch {
+            _profile.value = loading()
+            val data = userRepository.getUserProfile(email)
+            _profile.value = data
+        }
+    }
+
 }
