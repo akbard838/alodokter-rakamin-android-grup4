@@ -5,16 +5,16 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.Toast
 import androidx.viewbinding.ViewBinding
 import com.example.androidgroup4.R
 import com.example.androidgroup4.base.BaseActivity
 import com.example.androidgroup4.data.model.Article
 import com.example.androidgroup4.databinding.ActivityDetailArticleBinding
-import com.example.androidgroup4.ui.doctor.DoctorDetailActivity
 import com.example.androidgroup4.utils.constant.BundleKeys
 import com.example.androidgroup4.utils.emptyString
 import com.example.androidgroup4.utils.setImageUrl
+import com.example.androidgroup4.utils.showToast
+import com.example.androidgroup4.utils.toHttps
 
 class ArticleDetailActivity : BaseActivity<ActivityDetailArticleBinding>() {
 
@@ -29,7 +29,8 @@ class ArticleDetailActivity : BaseActivity<ActivityDetailArticleBinding>() {
 
     private var article: Article? = null
 
-    override val bindingInflater: (LayoutInflater) -> ViewBinding = ActivityDetailArticleBinding::inflate
+    override val bindingInflater: (LayoutInflater) -> ViewBinding =
+        ActivityDetailArticleBinding::inflate
 
     override fun initIntent() {
         article = intent.getParcelableExtra(BundleKeys.ARTICLE)
@@ -40,7 +41,11 @@ class ArticleDetailActivity : BaseActivity<ActivityDetailArticleBinding>() {
             setupToolbar(binding.toolbar, true, emptyString())
 
             with(binding) {
-                ivDetailImage.setImageUrl(this@ArticleDetailActivity, article.image, R.drawable.img_not_available)
+                ivDetailImage.setImageUrl(
+                    this@ArticleDetailActivity,
+                    article.imageUrl.toHttps(),
+                    R.drawable.img_not_available
+                )
                 tvTitle.text = article.title
                 tvDescription.text = article.description
             }
@@ -63,7 +68,7 @@ class ArticleDetailActivity : BaseActivity<ActivityDetailArticleBinding>() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             android.R.id.home -> onBackPressed()
-            R.id.menu_share -> Toast.makeText(this, "Share Article", Toast.LENGTH_SHORT).show()
+            R.id.menu_share -> showToast(this, "Share article")
         }
         return true
     }

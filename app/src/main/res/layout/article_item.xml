@@ -33,19 +33,6 @@
             tools:text="Alodokter" />
 
         <TextView
-            android:id="@+id/tv_category"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/dimen_8dp"
-            android:layout_marginTop="@dimen/dimen_8dp"
-            android:layout_marginEnd="@dimen/dimen_8dp"
-            android:textSize="@dimen/text_size_12sp"
-            style="@style/AndroidAppText.Blue"
-            tools:text="hidup sehat"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_title" />
-
-        <TextView
             android:id="@+id/tv_description"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -54,12 +41,12 @@
             android:layout_marginTop="@dimen/dimen_8dp"
             android:layout_marginEnd="@dimen/dimen_8dp"
             android:layout_marginBottom="@dimen/dimen_8dp"
-            android:maxLines="2"
+            android:maxLines="3"
             android:ellipsize="end"
             android:gravity="start"
             app:layout_constraintEnd_toStartOf="@+id/iv_article"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_category"
+            app:layout_constraintTop_toBottomOf="@+id/tv_title"
             tools:text="deskripsi" />
 
 
@@ -67,7 +54,7 @@
             android:id="@+id/iv_article"
             android:layout_width="@dimen/dimen_120dp"
             android:layout_height="@dimen/dimen_120dp"
-            tools:background="@color/colorPrimary"
+            tools:background="@color/colorGrey"
             android:contentDescription="@string/hint_article_image"
             android:scaleType="centerCrop"
             app:layout_constraintEnd_toEndOf="parent"

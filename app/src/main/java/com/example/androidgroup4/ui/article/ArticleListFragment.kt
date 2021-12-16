@@ -1,8 +1,6 @@
 package com.example.androidgroup4.ui.article
 
 import android.annotation.SuppressLint
-import android.text.Editable
-import android.text.TextWatcher
 import android.view.*
 import android.view.inputmethod.EditorInfo
 import android.widget.ImageView
@@ -10,6 +8,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.doAfterTextChanged
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewbinding.ViewBinding
@@ -21,14 +20,20 @@ import com.example.androidgroup4.databinding.FragmentArticleListBinding
 import com.example.androidgroup4.ui.adapter.ArticleAdapter
 import com.example.androidgroup4.ui.auth.LoginActivity
 import com.example.androidgroup4.ui.main.MainActivity
-import com.example.androidgroup4.utils.emptyString
-import com.example.androidgroup4.utils.gone
-import com.example.androidgroup4.utils.hideSoftKeyboard
-import com.example.androidgroup4.utils.visible
+import com.example.androidgroup4.ui.viewmodel.ArticleViewModel
+import com.example.androidgroup4.ui.viewmodel.UserViewModel
+import com.example.androidgroup4.utils.*
+import com.example.androidgroup4.utils.constant.PreferenceKeys
 import com.synnapps.carouselview.ImageListener
+import dagger.hilt.android.AndroidEntryPoint
 import java.util.regex.Pattern
 
+@AndroidEntryPoint
 class ArticleListFragment : BaseFragment<FragmentArticleListBinding>() {
+
+    private lateinit var articleAdapter: ArticleAdapter
+
+    private val articleViewModel: ArticleViewModel by viewModels()
 
     private var imageArray: ArrayList<Int> = ArrayList()
 
@@ -39,11 +44,9 @@ class ArticleListFragment : BaseFragment<FragmentArticleListBinding>() {
             .into(imageView)
 
         imageView.setOnClickListener {
-            Toast.makeText(requireContext(), "Open Image", Toast.LENGTH_SHORT).show()   //tes
+            showToast(requireContext(), "Open Image")
         }
     }
-
-    private lateinit var articleAdapter: ArticleAdapter
 
     override val bindingInflater: (LayoutInflater, ViewGroup?, Boolean) -> ViewBinding =
         FragmentArticleListBinding::inflate
@@ -59,7 +62,7 @@ class ArticleListFragment : BaseFragment<FragmentArticleListBinding>() {
 
 
         articleAdapter = ArticleAdapter()
-        articleAdapter.setData(getDummyArticle())
+//        articleAdapter.setData(getDummyArticle())
         with(binding.rvArticle) {
             layoutManager = LinearLayoutManager(requireContext())
             setHasFixedSize(true)
@@ -90,8 +93,8 @@ class ArticleListFragment : BaseFragment<FragmentArticleListBinding>() {
 
             edtSearchArticle.setOnEditorActionListener(TextView.OnEditorActionListener { v, actionId, event ->
                 if (actionId == EditorInfo.IME_ACTION_SEARCH) {
-                    articleAdapter.setData(getFilteredData())
-                    checkIsDataEmpty(getFilteredData())
+//                    articleAdapter.setData(getFilteredData())
+//                    checkIsDataEmpty(getFilteredData())
                     hideSoftKeyboard(requireContext(), binding.edtSearchArticle)
                     return@OnEditorActionListener true
                 }
@@ -104,15 +107,15 @@ class ArticleListFragment : BaseFragment<FragmentArticleListBinding>() {
                     view?.clearFocus()
                     hideSoftKeyboard(requireContext(), edtSearchArticle)
                     if (event.rawX >= edtSearchArticle.right - edtSearchArticle.compoundDrawables[2].bounds.width()) {
-                        articleAdapter.setData(getFilteredData())
-                        checkIsDataEmpty(getFilteredData())
+//                        articleAdapter.setData(getFilteredData())
+//                        checkIsDataEmpty(getFilteredData())
                         true
                     } else false
                 } else false
             }
 
             edtSearchArticle.doAfterTextChanged {
-                if (edtSearchArticle.text.toString().isEmpty()) reloadData()
+//                if (edtSearchArticle.text.toString().isEmpty()) reloadData()
             }
 
         }
@@ -121,40 +124,56 @@ class ArticleListFragment : BaseFragment<FragmentArticleListBinding>() {
     }
 
     override fun initProcess() {
-        checkIsDataEmpty(getDummyArticle())
-
+//        checkIsDataEmpty(getDummyArticle())
+        articleViewModel.getArticles(1)
     }
 
     override fun initObservable() {
-
+        articleViewModel.articles.observe(this, {
+            when (it) {
+                is Resource.Loading -> {
+                    showLoading()
+                }
+                is Resource.Success -> {
+                    hideLoading()
+                    articleAdapter.setData(it.data)
+                    checkIsDataEmpty(it.data)
+                }
+                is Resource.Error -> {
+                    hideLoading()
+                    showToast(requireContext(), it.apiError.message)
+                }
+                else -> {}
+            }
+        })
     }
 
-    private fun getDummyArticle(): ArrayList<Article> {
-        val articles = arrayListOf<Article>()
+//    private fun getDummyArticle(): ArrayList<Article> {
+//        val articles = arrayListOf<Article>()
+//
+//        val titles = resources.getStringArray(R.array.list_of_title_article)
+//        val descriptions = resources.getStringArray(R.array.list_of_description_article)
+//        val category = resources.getStringArray(R.array.list_of_category_article)
+//        val images = resources.getStringArray(R.array.list_of_image_article)
+//
+//        for (i in titles.indices) {
+//            articles.add(
+//                Article(titles[i], descriptions[i], category[i], images[i])
+//            )
+//        }
+//        return articles
+//    }
 
-        val titles = resources.getStringArray(R.array.list_of_title_article)
-        val descriptions = resources.getStringArray(R.array.list_of_description_article)
-        val category = resources.getStringArray(R.array.list_of_category_article)
-        val images = resources.getStringArray(R.array.list_of_image_article)
-
-        for (i in titles.indices) {
-            articles.add(
-                Article(titles[i], descriptions[i], category[i], images[i])
-            )
-        }
-        return articles
-    }
-
-    private fun getFilteredData(): List<Article> {
-        val filtered = getDummyArticle().filter {
-            Pattern.compile(
-                Pattern.quote(binding.edtSearchArticle.text.toString()),
-                Pattern.CASE_INSENSITIVE
-            ).matcher(it.title).find()
-        }
-
-        return filtered
-    }
+//    private fun getFilteredData(): List<Article> {
+//        val filtered = getDummyArticle().filter {
+//            Pattern.compile(
+//                Pattern.quote(binding.edtSearchArticle.text.toString()),
+//                Pattern.CASE_INSENSITIVE
+//            ).matcher(it.title).find()
+//        }
+//
+//        return filtered
+//    }
 
     private fun checkIsDataEmpty(articles: List<Article>) {
         binding.apply {
@@ -170,10 +189,10 @@ class ArticleListFragment : BaseFragment<FragmentArticleListBinding>() {
         }
     }
 
-    private fun reloadData() {
-        articleAdapter.setData(getDummyArticle())
-        checkIsDataEmpty(getDummyArticle())
-    }
+//    private fun reloadData() {
+//        articleAdapter.setData(getDummyArticle())
+//        checkIsDataEmpty(getDummyArticle())
+//    }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
