@@ -3,6 +3,7 @@ package com.example.androidgroup4.data.user.remote
 import com.example.androidgroup4.base.BaseApiErrorResponse
 import com.example.androidgroup4.data.model.Model
 import com.example.androidgroup4.data.user.model.request.RegisterRequest
+import com.example.androidgroup4.data.user.model.response.UserResponse
 import com.example.androidgroup4.utils.ApiErrorOperator
 import com.example.androidgroup4.utils.Resource
 import com.example.androidgroup4.utils.emptyString
@@ -55,4 +56,24 @@ class UserDataSource @Inject constructor(private val userApiService: UserApiServ
             Resource.error(BaseApiErrorResponse(message = e.message.toString()))
         }
     }
+
+    suspend fun getUserProfile(email : String): Resource<UserResponse?> {
+         return try {
+            val response = userApiService.getUserProfile(email)
+            if (response.isSuccessful) {
+                val body = response.body()
+                body?.let {
+                    withContext(Dispatchers.IO) {
+                        Resource.success(it.data)
+                    }
+                } ?: Resource.empty()
+            } else {
+                Resource.error(ApiErrorOperator.parseError(response))
+            }
+        } catch (e: Exception) {
+            Resource.error(BaseApiErrorResponse(message = e.message.toString()))
+        }
+
+    }
+
 }

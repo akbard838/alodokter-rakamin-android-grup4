@@ -30,6 +30,11 @@ interface UserApiService {
         @Field("gender") gender: String
     ): Response<BaseApiResponse<UserResponse>>
 
+    @GET("show")
+    suspend fun getUserProfile(
+        @Query("email") email: String
+    ) : Response<BaseApiResponse<UserResponse>>
+
 
     //API MOCK
     @GET("users")
