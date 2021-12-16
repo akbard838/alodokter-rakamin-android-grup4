@@ -44,20 +44,20 @@ interface UserApiService {
         @Field("password_confirmation") passwordConfirmation: String
     ): Response<BaseApiResponse<Model>>
 
+    @PUT("update")
+    @FormUrlEncoded
+    suspend fun putUpdateProfile(
+            @Field("email") email: String,
+            @Field("fullname") fullName: String,
+            @Field("BirthDate") dateOfBirth: String,
+            @Field("gender") gender: String,
+            @Field("IdCardNumber") idCardNumber: String,
+            @Field("address") address: String
+    ): Response<BaseApiResponse<UserResponse>>
+
     //API MOCK
     @GET("users")
     suspend fun getAllUsers(): Response<List<UserResponse>>
-
-    @PUT("users/{id}")
-    @FormUrlEncoded
-    suspend fun putEditProfile(
-        @Path("id") userId: Int,
-        @Field("fullname") fullName: String,
-        @Field("tgl_lahir") dateOfBirth: String,
-        @Field("jenis_kelamin") gender: String,
-        @Field("no_ktp") idCardNumber: Long,
-        @Field("alamat") address: String
-    ): Response<UserResponse>
 
     @PUT("users/{id}")
     @FormUrlEncoded

@@ -5,8 +5,10 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.androidgroup4.data.model.Model
+import com.example.androidgroup4.data.model.User
 import com.example.androidgroup4.data.user.UserRepository
 import com.example.androidgroup4.data.user.model.request.RegisterRequest
+import com.example.androidgroup4.data.user.model.request.UserRequest
 import com.example.androidgroup4.data.user.model.response.UserResponse
 import com.example.androidgroup4.utils.Resource
 import com.example.androidgroup4.utils.Resource.Companion.init
@@ -34,6 +36,9 @@ class UserViewModel @Inject constructor(
 
     private val _forgotPassword = MutableLiveData<Resource<Model>>()
     val forgotPassword: LiveData<Resource<Model>> by lazy { _forgotPassword }
+
+    private val _update = MutableLiveData<Resource<User>>()
+    val update: LiveData<Resource<User>> by lazy { _update }
 
     init {
         _login.value = init()
@@ -79,6 +84,14 @@ class UserViewModel @Inject constructor(
             _forgotPassword.value = loading()
             val data = userRepository.postForgotPassword(email)
             _forgotPassword.value = data
+        }
+    }
+    
+    fun putUpdateProfile(userRequest: UserRequest) {
+        viewModelScope.launch {
+            _update.value = loading()
+            val data = userRepository.putUpdateProfile(userRequest)
+            _update.value = data
         }
     }
 

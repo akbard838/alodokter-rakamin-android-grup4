@@ -1,7 +1,9 @@
 package com.example.androidgroup4.data.user
 
 import com.example.androidgroup4.data.model.Model
+import com.example.androidgroup4.data.model.User
 import com.example.androidgroup4.data.user.model.request.RegisterRequest
+import com.example.androidgroup4.data.user.model.request.UserRequest
 import com.example.androidgroup4.data.user.model.response.UserResponse
 import com.example.androidgroup4.data.user.remote.UserDataSource
 import com.example.androidgroup4.utils.Resource
@@ -28,6 +30,11 @@ class UserRepositoryImpl @Inject constructor(private val userData: UserDataSourc
 
     override suspend fun postForgotPassword(email: String): Resource<Model> {
         return userData.postForgotPassword(email)
+    }
+
+    override suspend fun putUpdateProfile(userRequest: UserRequest): Resource<User> {
+        return userData.putUpdateProfile(userRequest)
+
     }
 
 }

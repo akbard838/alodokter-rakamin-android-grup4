@@ -4,12 +4,15 @@ import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.MenuItem
+import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.viewbinding.ViewBinding
 import com.example.androidgroup4.R
 import com.example.androidgroup4.base.BaseActivity
 import com.example.androidgroup4.data.model.User
-import com.example.androidgroup4.data.user.model.response.UserResponse
+import com.example.androidgroup4.data.user.model.request.UserRequest
 import com.example.androidgroup4.databinding.ActivityEditProfileBinding
+import com.example.androidgroup4.ui.viewmodel.UserViewModel
 import com.example.androidgroup4.utils.*
 import com.example.androidgroup4.utils.constant.BundleKeys
 import com.example.androidgroup4.utils.enum.GenderType
@@ -21,7 +24,7 @@ import java.util.*
 class EditProfileActivity : BaseActivity<ActivityEditProfileBinding>(),
     DatePickerFragment.DialogDateListener {
 
-    //    private val userViewModel: UserViewModel by viewModels()
+    private val userViewModel: UserViewModel by viewModels()
     private var dueDateMillis: Long = System.currentTimeMillis()
 
     companion object {
@@ -53,7 +56,17 @@ class EditProfileActivity : BaseActivity<ActivityEditProfileBinding>(),
                 tilFullName.validateNonEmpty()
 
                 isFormValid(listOf(tilKtpNumber, tilFullName)) {
+                    userViewModel.putUpdateProfile(
+                        UserRequest(
+                            email = "test@gmail.com",
+                            name = binding.edtFullName.text.toString(),
+                            address = binding.edtAddress.text.toString(),
+                            idCardNumber = binding.edtKtpNumber.text.toString(),
+                            birthDate = binding.edtBirthDate.text.toString(),
+                            gender = if (binding.btnMale.isChecked) GenderType.MALE.type else GenderType.FEMALE.type
 
+                        )
+                    )
                 }
             }
             ibDatePicker.setOnClickListener {
@@ -79,7 +92,24 @@ class EditProfileActivity : BaseActivity<ActivityEditProfileBinding>(),
     }
 
     override fun initObservable() {
-
+        userViewModel.update.observe(this, {
+            when (it) {
+                is Resource.Loading -> {
+                    showLoading()
+                    binding.tvError.gone()
+                }
+                is Resource.Success -> {
+                    hideLoading()
+                    showToast(this@EditProfileActivity, getString(R.string.title_edit_profile_success))
+                    finish()
+                }
+                is Resource.Error -> {
+                    hideLoading()
+                    Toast.makeText(this, it.apiError.message, Toast.LENGTH_SHORT).show()
+                }
+                else -> {}
+            }
+        })
     }
 
     override fun onDialogDateSet(tag: String?, year: Int, month: Int, dayOfMonth: Int) {
@@ -126,33 +156,4 @@ class EditProfileActivity : BaseActivity<ActivityEditProfileBinding>(),
         binding.btnMale.isChecked = true
         binding.btnFemale.isChecked = false
     }
-
-//    private fun putEditProfile() {
-//        lifecycleScope.launchWhenStarted {
-//            userViewModel.putEditProfile(
-//                userId = user?.user_id?.toInt() ?: 0,
-//                fullName = binding.edtFullName.text.toString(),
-//                dateOfBirth = binding.edtBirthDate.text.toString(),
-//                gender = if (binding.btnMale.isChecked) GenderType.MALE.type else GenderType.FEMALE.type,
-//                idCardNumber = binding.edtKtpNumber.text.toString().toLong(),
-//                address = binding.edtAddress.text.toString()
-//            ).collect {
-//                when (it) {
-//                    is ApiResponse.Success -> {
-//                        hideLoading()
-//                        showToast(this@EditProfileActivity, "Data profil berhasil diubah")
-//                        finish()
-//                    }
-//                    is ApiResponse.Failure -> {
-//                        hideLoading()
-//                        showToast(this@EditProfileActivity, it.message)
-//                    }
-//                    is ApiResponse.Loading -> {
-//                        showLoading()
-//                    }
-//                }
-//            }
-//        }
-//    }
-
 }
