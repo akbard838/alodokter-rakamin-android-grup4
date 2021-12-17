@@ -85,7 +85,7 @@ class ArticleListFragment : BaseFragment<FragmentArticleListBinding>() {
 
         with(binding) {
             sivHeroArticle.setOnClickListener {
-                showToast(requireContext(), "This is hero article")
+                ArticleDetailActivity.start(requireContext(), articles[0])
             }
 
             edtSearchArticle.setOnEditorActionListener(TextView.OnEditorActionListener { _, actionId, event ->
@@ -129,7 +129,7 @@ class ArticleListFragment : BaseFragment<FragmentArticleListBinding>() {
                 }
                 is Resource.Success -> {
                     articles.addAll(it.data)
-                    articleAdapter.setData(articles.subList(1, articles.size-1))
+                    articleAdapter.setData(articles.subList(1, articles.size))
                     checkIsDataEmpty(articles)
 
                     if (it.data.isEmpty()) {
