@@ -39,7 +39,7 @@ class ArticleAdapter: RecyclerView.Adapter<ArticleAdapter.ListViewHolder>() {
             with(binding) {
                 tvTitle.text = data.title
                 tvDescription.text = data.description
-                ivArticle.setImageUrl(itemView.context, data.imageUrl.toHttps(), R.drawable.img_not_available)
+                ivArticle.setImageUrl(itemView.context, data.imageUrl, R.drawable.img_not_available)
             }
         }
 
