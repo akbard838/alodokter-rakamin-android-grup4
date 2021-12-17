@@ -18,7 +18,7 @@
             android:id="@+id/group_profile"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:constraint_referenced_ids="img_background_top,img_profile_user,pb_profile_user, fab_change_photo, fab_edit_profile, tv_email, tv_name, tv_label_address, tv_address, tv_label_id_card, tv_id_card, tv_label_date_of_birth, tv_date_of_birth, btn_change_password, btn_logout" />
+            app:constraint_referenced_ids="img_background_top,img_profile_user, fab_edit_profile, tv_email, tv_name, tv_label_address, tv_address, tv_label_id_card, tv_id_card, tv_label_date_of_birth, tv_date_of_birth, btn_change_password, btn_logout" />
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/img_background_top"
@@ -37,28 +37,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:src="@drawable/img_hospital" />
-
-        <ProgressBar
-            android:id="@+id/pb_profile_user"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="@id/img_profile_user"
-            app:layout_constraintEnd_toEndOf="@id/img_profile_user"
-            app:layout_constraintStart_toStartOf="@id/img_profile_user"
-            app:layout_constraintTop_toTopOf="@id/img_profile_user" />
-
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/fab_change_photo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="-14dp"
-            android:layout_marginBottom="-4dp"
-            android:src="@drawable/ic_camera"
-            app:backgroundTint="@color/grey_300"
-            app:fabSize="mini"
-            app:layout_constraintBottom_toBottomOf="@+id/img_profile_user"
-            app:layout_constraintEnd_toEndOf="@+id/img_profile_user" />
+            android:src="@drawable/profile_dummy" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tv_name"

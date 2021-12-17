@@ -11,8 +11,7 @@ import com.example.androidgroup4.R
 import com.example.androidgroup4.base.BaseActivity
 import com.example.androidgroup4.databinding.ActivityMainBinding
 import com.example.androidgroup4.utils.constant.PreferenceKeys
-import com.example.androidgroup4.utils.constant.PreferenceKeys.USER_TOKEN
-import com.example.androidgroup4.utils.emptyString
+import com.example.androidgroup4.utils.constant.PreferenceKeys.IS_LOGIN
 import com.example.androidgroup4.utils.getAppPreferenceEditor
 import com.example.androidgroup4.utils.getAppSharedPreference
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -30,7 +29,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
         }
 
         fun getUserLoggedInStatus(context: Context): Boolean {
-            return getAppSharedPreference(context).getString(USER_TOKEN, emptyString()) != emptyString()
+            return getAppSharedPreference(context).getBoolean(IS_LOGIN, false)
         }
     }
 

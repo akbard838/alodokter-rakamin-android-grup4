@@ -8,6 +8,10 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import android.widget.Toast
 import com.example.androidgroup4.utils.constant.PreferenceKeys
+import com.google.gson.Gson
+
+
+
 
 fun emptyString() = ""
 
@@ -33,6 +37,19 @@ fun getAppSharedPreference(context: Context): SharedPreferences {
 
 fun getAppPreferenceEditor(context: Context): SharedPreferences.Editor {
     return context.getSharedPreferences(PreferenceKeys.PREFERENCE_NAME, Context.MODE_PRIVATE).edit()
+}
+
+fun <T> getObjectPreference(
+    context: Context,
+    preferenceKey: String?,
+    classType: Class<T>?
+): T? {
+    val sharedPreferences = context.getSharedPreferences(PreferenceKeys.PREFERENCE_NAME, 0)
+    if (sharedPreferences.contains(preferenceKey)) {
+        val gson = Gson()
+        return gson.fromJson(sharedPreferences.getString(preferenceKey, ""), classType)
+    }
+    return null
 }
 
 fun hideSoftKeyboard(context: Context, input: EditText) {

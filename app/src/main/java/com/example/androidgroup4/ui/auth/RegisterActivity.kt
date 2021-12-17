@@ -39,9 +39,7 @@ class RegisterActivity : BaseActivity<ActivityRegisterBinding>() {
 
     override fun initUI() {
         setupToolbar(binding.toolbarMain.toolbar, true, emptyString())
-
         binding.btnMale.isChecked = true
-        initDummyData()
     }
 
     override fun initAction() {
@@ -129,15 +127,6 @@ class RegisterActivity : BaseActivity<ActivityRegisterBinding>() {
     private fun changeGenderToMale() {
         binding.btnMale.isChecked = true
         binding.btnFemale.isChecked = false
-    }
-
-    private fun initDummyData() {
-        binding.apply {
-            edtFullName.setText("Dino Akbar")
-            edtEmail.setText("akbard838@gmail.com")
-            edtPassword.setText("Dino1234")
-            edtConfirmPasword.setText("Dino1234")
-        }
     }
 
 }

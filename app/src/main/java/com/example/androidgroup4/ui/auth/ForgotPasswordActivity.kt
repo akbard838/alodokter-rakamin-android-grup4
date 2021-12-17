@@ -45,7 +45,6 @@ class ForgotPasswordActivity : BaseActivity<ActivityForgotPasswordBinding>() {
                 true,
                 getString(R.string.title_forget_password)
             )
-            edtEmail.setText("akbard838@gmail.com")
         }
     }
 

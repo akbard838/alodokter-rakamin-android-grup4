@@ -13,7 +13,7 @@ interface UserApiService {
     suspend fun postLogin(
         @Field("email") email: String,
         @Field("password") password: String
-    ): Response<BaseApiResponse<Model>>
+    ): Response<BaseApiResponse<UserResponse>>
 
     @POST("users")
     @FormUrlEncoded

@@ -12,7 +12,7 @@ import javax.inject.Inject
 class UserRepositoryImpl @Inject constructor(private val userData: UserDataSource) :
     UserRepository {
 
-    override suspend fun postLogin(email: String, password: String): Resource<String> {
+    override suspend fun postLogin(email: String, password: String): Resource<User> {
         return userData.postLogin(email, password)
     }
 

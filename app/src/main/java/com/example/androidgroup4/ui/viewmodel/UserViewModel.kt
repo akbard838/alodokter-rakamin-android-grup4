@@ -22,8 +22,8 @@ class UserViewModel @Inject constructor(
     private val userRepository: UserRepository
 ) : ViewModel() {
 
-    private val _login = MutableLiveData<Resource<String>>()
-    val login: LiveData<Resource<String>> by lazy { _login }
+    private val _login = MutableLiveData<Resource<User>>()
+    val login: LiveData<Resource<User>> by lazy { _login }
 
     private val _register = MutableLiveData<Resource<Model>>()
     val register: LiveData<Resource<Model>> by lazy { _register }
