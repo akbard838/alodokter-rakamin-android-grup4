@@ -23,6 +23,9 @@ class DoctorViewModel @Inject constructor(
     private val _searchDoctors = MutableLiveData<Resource<List<Doctor>>>()
     val searchDoctors: LiveData<Resource<List<Doctor>>> by lazy { _searchDoctors }
 
+    private val _detailDoctor = MutableLiveData<Resource<Doctor?>>()
+    val detailDoctor: LiveData<Resource<Doctor?>> by lazy { _detailDoctor }
+
     init {
         _doctors.value = Resource.init()
     }
@@ -40,6 +43,14 @@ class DoctorViewModel @Inject constructor(
             _searchDoctors.value = Resource.loading()
             val data = doctorRepository.getSearchDoctors(fullName)
             _searchDoctors.value = data
+        }
+    }
+
+    fun getDetailDoctor(id: Int) {
+        viewModelScope.launch {
+            _detailDoctor.value = Resource.loading()
+            val data = doctorRepository.getDetailDoctor(id)
+            _detailDoctor.value = data
         }
     }
 

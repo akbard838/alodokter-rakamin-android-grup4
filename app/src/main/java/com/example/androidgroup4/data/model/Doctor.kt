@@ -1,9 +1,5 @@
 package com.example.androidgroup4.data.model
 
-import android.os.Parcelable
-import kotlinx.parcelize.Parcelize
-
-@Parcelize
 data class Doctor(
     val id: Int,
     val imageUrl: String,
@@ -13,4 +9,4 @@ data class Doctor(
     val profile: String,
     val location: Location,
     val schedules: List<Schedule>
-): Parcelable
+)

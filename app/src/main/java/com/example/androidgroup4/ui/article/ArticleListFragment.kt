@@ -80,12 +80,12 @@ class ArticleListFragment : BaseFragment<FragmentArticleListBinding>() {
     @SuppressLint("ClickableViewAccessibility")
     override fun initAction() {
         articleAdapter.onItemClick = { article ->
-            ArticleDetailActivity.start(requireContext(), article)
+            ArticleDetailActivity.start(requireContext(), article.id)
         }
 
         with(binding) {
             sivHeroArticle.setOnClickListener {
-                ArticleDetailActivity.start(requireContext(), articles[0])
+                ArticleDetailActivity.start(requireContext(), articles[0].id)
             }
 
             edtSearchArticle.setOnEditorActionListener(TextView.OnEditorActionListener { _, actionId, event ->

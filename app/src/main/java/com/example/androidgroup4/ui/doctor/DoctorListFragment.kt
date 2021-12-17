@@ -33,9 +33,7 @@ class DoctorListFragment : BaseFragment<FragmentDoctorListBinding>() {
     override val bindingInflater: (LayoutInflater, ViewGroup?, Boolean) -> ViewBinding =
         FragmentDoctorListBinding::inflate
 
-    override fun initIntent() {
-
-    }
+    override fun initIntent() = Unit
 
     override fun initUI() {
         getDoctors()
@@ -45,7 +43,7 @@ class DoctorListFragment : BaseFragment<FragmentDoctorListBinding>() {
 
     override fun initAction() {
         doctorAdapter.onDoctorItemClicked = { doctor ->
-            DoctorDetailActivity.start(requireContext(), doctor)
+            DoctorDetailActivity.start(requireContext(), doctor.id)
         }
 
         binding.apply {
@@ -77,8 +75,7 @@ class DoctorListFragment : BaseFragment<FragmentDoctorListBinding>() {
         }
     }
 
-    override fun initProcess() {
-    }
+    override fun initProcess() = Unit
 
     override fun initObservable() {
         doctorViewModel.doctors.observe(this) {
