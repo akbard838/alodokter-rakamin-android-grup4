@@ -41,14 +41,17 @@ class UserViewModel @Inject constructor(
     private val _update = MutableLiveData<Resource<User>>()
     val update: LiveData<Resource<User>> by lazy { _update }
 
-    private val _change = MutableLiveData<Resource<User>>()
-    val change: LiveData<Resource<User>> by lazy { _change }
+    private val _changePassword = MutableLiveData<Resource<User>>()
+    val changePassword: LiveData<Resource<User>> by lazy { _changePassword }
 
     init {
         _login.value = init()
         _register.value = init()
         _profile.value = init()
         _resetPassword.value = init()
+        _forgotPassword.value = init()
+        _update.value = init()
+        _changePassword.value = init()
     }
 
     fun postLogin(email: String, password: String) {
@@ -101,9 +104,9 @@ class UserViewModel @Inject constructor(
 
     fun putChangePassword(changePasswordRequest: ChangePasswordRequest) {
         viewModelScope.launch {
-            _change.value = loading()
+            _changePassword.value = loading()
             val data = userRepository.putChangePassword(changePasswordRequest)
-            _change.value = data
+            _changePassword.value = data
         }
     }
 

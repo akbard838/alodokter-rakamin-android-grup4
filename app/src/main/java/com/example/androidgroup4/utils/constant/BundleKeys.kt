@@ -17,4 +17,6 @@ object BundleKeys {
     const val USER = "USER"
 
     const val ARTICLE = "ARTICLE"
+
+    const val EMAIL = "EMAIL"
 }
