@@ -4,5 +4,5 @@ import com.example.androidgroup4.utils.emptyString
 
 data class BaseApiErrorResponse(
     val status: String? = emptyString(),
-    val message: String
+    val message: String? = emptyString()
 )

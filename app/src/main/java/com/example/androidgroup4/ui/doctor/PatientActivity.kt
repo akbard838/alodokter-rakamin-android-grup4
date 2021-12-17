@@ -4,19 +4,22 @@ import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.MenuItem
+import androidx.appcompat.app.AppCompatActivity
 import androidx.viewbinding.ViewBinding
 import com.example.androidgroup4.R
 import com.example.androidgroup4.base.BaseActivity
 import com.example.androidgroup4.databinding.ActivityPatientBinding
 import com.example.androidgroup4.ui.main.MainActivity
+import com.example.androidgroup4.ui.success.SuccessActivity
 import com.example.androidgroup4.utils.*
+import com.example.androidgroup4.utils.enum.SuccessType
 import dagger.hilt.android.AndroidEntryPoint
 import java.text.SimpleDateFormat
 import java.util.*
 
 @AndroidEntryPoint
 class PatientActivity : BaseActivity<ActivityPatientBinding>(),
-    DatePickerFragment.DialogDateListener {
+    DatePickerFragment.DialogDateListener{
 
     private var dueDateMillis: Long = System.currentTimeMillis()
 
@@ -47,8 +50,7 @@ class PatientActivity : BaseActivity<ActivityPatientBinding>(),
                 tilFullName.validateNonEmpty()
 
                 isFormValid(listOf(tilKtpNumber, tilFullName)) {
-                    showToast(this@PatientActivity, "Konsultasi berhasil diajukan")
-                    MainActivity.start(this@PatientActivity)
+                    SuccessActivity.start(this@PatientActivity, SuccessType.CONSULTATION.type)
                 }
             }
             ibDatePicker.setOnClickListener {

@@ -11,11 +11,8 @@ import com.example.androidgroup4.base.BaseActivity
 import com.example.androidgroup4.databinding.ActivityForgotPasswordBinding
 import com.example.androidgroup4.ui.success.SuccessActivity
 import com.example.androidgroup4.ui.viewmodel.UserViewModel
-import com.example.androidgroup4.utils.Resource
+import com.example.androidgroup4.utils.*
 import com.example.androidgroup4.utils.enum.SuccessType
-import com.example.androidgroup4.utils.isFormValid
-import com.example.androidgroup4.utils.showToast
-import com.example.androidgroup4.utils.validateEmail
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -74,20 +71,15 @@ class ForgotPasswordActivity : BaseActivity<ActivityForgotPasswordBinding>() {
                     hideLoading()
                     SuccessActivity.start(
                         this@ForgotPasswordActivity,
-                        R.drawable.ic_email_sent,
-                        getString(R.string.title_reset_password_success),
-                        String.format(
-                            getString(R.string.message_reset_password_success),
-                            binding.edtEmail.text.toString()
-                        ),
-                        getString(R.string.button_login),
                         SuccessType.RESET_PASSWORD.type
                     )
                     finish()
                 }
                 is Resource.Error -> {
                     hideLoading()
-                    showToast(this, it.apiError.message)
+                    if (it.apiError.message == emptyString())
+                        showToast(this, getString(R.string.message_email_not_found))
+                    else showToast(this, it.apiError.message)
                 }
                 else -> {}
             }

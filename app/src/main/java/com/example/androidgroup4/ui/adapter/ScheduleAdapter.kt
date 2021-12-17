@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.androidgroup4.data.model.Schedule
 import com.example.androidgroup4.databinding.ItemScheduleBinding
 import com.example.androidgroup4.ui.doctor.PatientActivity
+import com.example.androidgroup4.utils.changeDateFormat
 
 class ScheduleAdapter(private val items: ArrayList<Schedule>) :
     RecyclerView.Adapter<ScheduleAdapter.ScheduleViewHolder>() {
@@ -30,7 +31,7 @@ class ScheduleAdapter(private val items: ArrayList<Schedule>) :
     class ScheduleViewHolder(private val binding: ItemScheduleBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(data: Schedule) {
-            binding.tvDay.text = data.date
+            binding.tvDay.text = data.date.changeDateFormat("dd MMMM yyyy", "EEEE")
             binding.tvDate.text = data.date
             binding.chipHourOne.text = data.hourOne
             binding.chipHourTwo.text = data.hourTwo

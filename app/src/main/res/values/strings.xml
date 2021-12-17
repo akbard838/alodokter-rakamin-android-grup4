@@ -11,6 +11,7 @@
     <string name="button_forgot_password">Lupa Password?</string>
     <string name="button_register_here">Daftar Disini</string>
     <string name="button_login">Login</string>
+    <string name="button_home">Halaman Utama</string>
     <string name="message_error_email">Format email tidak sesuai</string>
     <string name="message_error_password">Password harus mengandung setidaknya satu angka dan satu huruf kapital</string>
     <string name="message_error_id_number">"Nomor KTP harus berisi 16 angka"</string>
@@ -37,7 +38,9 @@
     <string name="label_register_now">Daftar Sekarang</string>
     <string name="label_input_email_and_password_register">Silahkan masukkan email dan password anda untuk membuat akun</string>
     <string name="message_input_account_for_login">Selamat anda telah berhasil melakukan pembuatan akun. Silahkan login dengan akun yang sudah anda buat</string>
+    <string name="message_consultation_success">Pengajuan konsultasi anda telath berhasil dibuat sesuai dengan jadwal yang anda pilih</string>
     <string name="title_register_success">Pendaftaran Berhasil</string>
+    <string name="title_consultation_success">Pengajuan Konsultasi Berhasil</string>
     <string name="title_edit_profile_success">Edit Profile Berhasil</string>
     <string name="title_reset_password_success">Email Telah Terkirim</string>
     <string name="title_forget_password">Lupa Password</string>
@@ -99,5 +102,6 @@
     <string name="label_error">error</string>
     <string name="format_birth_date">d MMMM yyyy</string>
     <string name="message_tap_more_to_exit">Ketuk sekali lagi untuk keluar</string>
+    <string name="message_email_not_found">Email tidak terdaftar</string>
 
 </resources>

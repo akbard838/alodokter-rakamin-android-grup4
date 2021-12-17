@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools">
+    android:layout_height="match_parent">
 
     <androidx.appcompat.widget.AppCompatImageView
         android:layout_width="match_parent"
@@ -20,21 +20,22 @@
         android:layout_marginTop="@dimen/dimen_48dp"
         android:layout_marginEnd="@dimen/dimen_42dp"
         android:adjustViewBounds="true"
-        tools:src="@drawable/ic_done"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:src="@drawable/ic_done" />
 
     <TextView
         android:id="@+id/tvTitle"
         style="@style/AndroidAppText.Bold.White"
-        android:layout_width="wrap_content"
-        android:layout_marginStart="@dimen/dimen_16dp"
-        android:layout_marginEnd="@dimen/dimen_16dp"
+        android:layout_width="@dimen/dimen_0dp"
+        android:paddingStart="@dimen/dimen_16dp"
+        android:paddingEnd="@dimen/dimen_16dp"
         android:layout_marginBottom="@dimen/dimen_12dp"
-        tools:text="@string/title_register_success"
+        android:textAlignment="center"
         android:textSize="@dimen/text_size_22sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/imgSuccess" />
+        app:layout_constraintTop_toBottomOf="@id/imgSuccess"
+        tools:text="@string/title_register_success" />
 
     <TextView
         android:id="@+id/tvMessage"
@@ -43,10 +44,10 @@
         android:layout_marginStart="@dimen/dimen_24dp"
         android:layout_marginTop="@dimen/dimen_12dp"
         android:layout_marginEnd="@dimen/dimen_24dp"
-        tools:text="@string/message_input_account_for_login"
         android:textAlignment="center"
         android:textSize="@dimen/text_size_14sp"
-        app:layout_constraintTop_toBottomOf="@id/tvTitle" />
+        app:layout_constraintTop_toBottomOf="@id/tvTitle"
+        tools:text="@string/message_input_account_for_login" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnSuccess"
