@@ -7,5 +7,6 @@ interface DoctorRepository {
 
     suspend fun getDoctors(): Resource<List<Doctor>>
     suspend fun getSearchDoctors(fullName: String): Resource<List<Doctor>>
+    suspend fun getDetailDoctor(id: Int): Resource<Doctor?>
 
 }

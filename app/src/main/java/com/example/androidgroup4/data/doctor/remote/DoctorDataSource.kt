@@ -2,6 +2,7 @@ package com.example.androidgroup4.data.doctor.remote
 
 
 import com.example.androidgroup4.base.BaseApiErrorResponse
+import com.example.androidgroup4.data.model.Article
 import com.example.androidgroup4.data.model.Doctor
 import com.example.androidgroup4.utils.ApiErrorOperator
 import com.example.androidgroup4.utils.Resource
@@ -40,6 +41,24 @@ class DoctorDataSource @Inject constructor(private val doctorApiService: DoctorA
                     }
                 } ?: Resource.empty()
             } else {
+                Resource.error(ApiErrorOperator.parseError(response))
+            }
+        } catch (e: Exception) {
+            Resource.error(BaseApiErrorResponse(message = e.message.toString()))
+        }
+    }
+
+    suspend fun getDetailDoctor(id: Int): Resource<Doctor?> {
+        return try {
+            val response = doctorApiService.getDetailDoctor(id)
+            if (response.isSuccessful) {
+                val body = response.body()
+                body?.let {
+                    withContext(Dispatchers.IO) {
+                        Resource.success(it.data?.toDoctor())
+                    }
+                } ?: Resource.empty()
+            }else {
                 Resource.error(ApiErrorOperator.parseError(response))
             }
         } catch (e: Exception) {
