@@ -1,15 +1,13 @@
 package com.example.androidgroup4.data.doctor.model
 
-import com.example.androidgroup4.R
 import com.example.androidgroup4.data.model.Doctor
 import com.example.androidgroup4.data.model.Location
 import com.example.androidgroup4.data.model.Schedule
-import com.example.androidgroup4.utils.ContextProvider
 import com.example.androidgroup4.utils.emptyString
 
 data class DoctorResponse(
 	val id: Int?,
-	val avatarUrl: String?,
+	val avatar_url: String?,
 	val specialist: String?,
 	val profile: String?,
 	val fullname: String?,
@@ -18,7 +16,7 @@ data class DoctorResponse(
 	fun toDoctor(): Doctor {
 		return Doctor(
 			id = id ?: 0,
-			imageUrl = avatarUrl ?: emptyString(),
+			imageUrl = avatar_url ?: emptyString(),
 			name = fullname ?: emptyString(),
 			specialist = specialist ?: emptyString(),
 			yoe = (0..10).random(),

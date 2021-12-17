@@ -29,4 +29,22 @@ class DoctorDataSource @Inject constructor(private val doctorApiService: DoctorA
         }
     }
 
+    suspend fun getSearchDoctors(fullName: String): Resource<List<Doctor>> {
+        return try {
+            val response = doctorApiService.getSearchDoctors(fullName)
+            if (response.isSuccessful) {
+                val body = response.body()
+                body?.let {
+                    withContext(Dispatchers.IO) {
+                        Resource.success(it.data?.map { it.toDoctor() } ?: listOf())
+                    }
+                } ?: Resource.empty()
+            } else {
+                Resource.error(ApiErrorOperator.parseError(response))
+            }
+        } catch (e: Exception) {
+            Resource.error(BaseApiErrorResponse(message = e.message.toString()))
+        }
+    }
+
 }
