@@ -19,6 +19,4 @@ class DoctorRepositoryImpl @Inject constructor(private val doctorData: DoctorDat
     override suspend fun getDetailDoctor(id: Int): Resource<Doctor?> {
         return doctorData.getDetailDoctor(id)
     }
-
-
 }
