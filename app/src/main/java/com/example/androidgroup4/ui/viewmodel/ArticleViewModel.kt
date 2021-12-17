@@ -22,6 +22,9 @@ class ArticleViewModel @Inject constructor(
     private val _searchArticles = MutableLiveData<Resource<List<Article>>>()
     val searchArticles: LiveData<Resource<List<Article>>> by lazy { _searchArticles }
 
+    private val _detailArticle = MutableLiveData<Resource<Article?>>()
+    val detailArticle: LiveData<Resource<Article?>> by lazy { _detailArticle }
+
     init {
         _articles.value = Resource.init()
         _searchArticles.value = Resource.init()
@@ -42,4 +45,13 @@ class ArticleViewModel @Inject constructor(
             _searchArticles.value = data
         }
     }
+
+    fun getDetailArticle(id: Int) {
+        viewModelScope.launch {
+            _detailArticle.value = Resource.loading()
+            val data = articleRepository.getDetailArticle(id)
+            _detailArticle.value = data
+        }
+    }
+
 }

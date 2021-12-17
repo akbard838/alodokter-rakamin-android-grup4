@@ -5,17 +5,19 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuItem
+import androidx.activity.viewModels
+import androidx.fragment.app.viewModels
 import androidx.viewbinding.ViewBinding
 import com.example.androidgroup4.R
 import com.example.androidgroup4.base.BaseActivity
 import com.example.androidgroup4.data.model.Article
 import com.example.androidgroup4.databinding.ActivityDetailArticleBinding
+import com.example.androidgroup4.ui.viewmodel.ArticleViewModel
+import com.example.androidgroup4.utils.*
 import com.example.androidgroup4.utils.constant.BundleKeys
-import com.example.androidgroup4.utils.emptyString
-import com.example.androidgroup4.utils.setImageUrl
-import com.example.androidgroup4.utils.showToast
-import com.example.androidgroup4.utils.toHttps
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class ArticleDetailActivity : BaseActivity<ActivityDetailArticleBinding>() {
 
     companion object {
@@ -27,6 +29,8 @@ class ArticleDetailActivity : BaseActivity<ActivityDetailArticleBinding>() {
         }
     }
 
+    private val articleViewModel: ArticleViewModel by viewModels()
+
     private var article: Article? = null
 
     override val bindingInflater: (LayoutInflater) -> ViewBinding =
@@ -37,18 +41,9 @@ class ArticleDetailActivity : BaseActivity<ActivityDetailArticleBinding>() {
     }
 
     override fun initUI() {
-        article?.let { article ->
-            setupToolbar(binding.toolbar, true, emptyString())
 
-            with(binding) {
-                ivDetailImage.setImageUrl(
-                    this@ArticleDetailActivity,
-                    article.imageUrl.toHttps(),
-                    R.drawable.img_not_available
-                )
-                tvTitle.text = article.title
-                tvDescription.text = article.description
-            }
+        article?.let { article ->
+            articleViewModel.getDetailArticle(article.id)
         }
 
     }
@@ -64,7 +59,34 @@ class ArticleDetailActivity : BaseActivity<ActivityDetailArticleBinding>() {
     }
 
     override fun initObservable() {
+        articleViewModel.detailArticle.observe(this) {
+            when (it) {
+                is Resource.Loading -> {
+                    showLoading()
+                }
+                is Resource.Success -> {
+                    hideLoading()
 
+                    it.data?.let { article ->
+                        setupToolbar(binding.toolbar, true, emptyString())
+                        with(binding) {
+                            ivDetailImage.setImageUrl(
+                                this@ArticleDetailActivity,
+                                article.imageUrl.toHttps(),
+                                R.drawable.img_not_available
+                            )
+                            tvTitle.text = article.title
+                            tvDescription.text = article.description
+                        }
+                    }
+                }
+                is Resource.Error -> {
+                    hideLoading()
+                    showToast(this, it.apiError.message)
+                }
+                else -> {}
+            }
+        }
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

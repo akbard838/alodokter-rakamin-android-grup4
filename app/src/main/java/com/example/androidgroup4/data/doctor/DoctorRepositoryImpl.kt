@@ -12,4 +12,8 @@ class DoctorRepositoryImpl @Inject constructor(private val doctorData: DoctorDat
         return doctorData.getDoctors()
     }
 
+    override suspend fun getSearchDoctors(fullName: String): Resource<List<Doctor>> {
+        return doctorData.getSearchDoctors(fullName)
+    }
+
 }
