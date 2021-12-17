@@ -147,4 +147,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
+    <include
+        android:id="@+id/layout_error"
+        layout="@layout/layout_error"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

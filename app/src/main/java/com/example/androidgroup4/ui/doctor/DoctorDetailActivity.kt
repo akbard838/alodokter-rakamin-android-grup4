@@ -47,14 +47,19 @@ class DoctorDetailActivity : BaseActivity<ActivityDoctorDetailBinding>() {
     override fun initUI() {
         setupToolbar(binding.toolbarDetail.toolbar, true, getString(R.string.title_doctor_profile))
 
-        doctorId?.let {
-            doctorViewModel.getDetailDoctor(it)
+        doctorId?.let { doctorViewModel.getDetailDoctor(it) }
+    }
+
+    override fun initAction() {
+        binding.layoutError.btnRetry.setOnClickListener {
+            binding.layoutError.layoutError.gone()
+            doctorId?.let { doctorViewModel.getDetailDoctor(it) }
         }
     }
 
-    override fun initAction() = Unit
+    override fun initProcess() {
 
-    override fun initProcess() = Unit
+    }
 
     override fun initObservable() {
         doctorViewModel.detailDoctor.observe(this) {
@@ -88,6 +93,7 @@ class DoctorDetailActivity : BaseActivity<ActivityDoctorDetailBinding>() {
                 is Resource.Error -> {
                     binding.pbDoctor.gone()
                     binding.pbHospital.gone()
+                    binding.layoutError.layoutError.visible()
                     showToast(this, it.apiError.message)
                 }
                 else -> {}

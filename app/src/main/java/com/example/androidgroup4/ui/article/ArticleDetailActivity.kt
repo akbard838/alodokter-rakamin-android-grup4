@@ -38,14 +38,17 @@ class ArticleDetailActivity : BaseActivity<ActivityDetailArticleBinding>() {
     }
 
     override fun initUI() {
-        articleId?.let {
-            articleViewModel.getDetailArticle(it)
-        }
+        articleId?.let { articleViewModel.getDetailArticle(it) }
     }
 
     override fun initAction() {
         binding.ivBack.setOnClickListener {
             onBackPressed()
+        }
+
+        binding.layoutError.btnRetry.setOnClickListener {
+            binding.layoutError.layoutError.gone()
+            articleId?.let { articleViewModel.getDetailArticle(it) }
         }
     }
 
@@ -78,6 +81,7 @@ class ArticleDetailActivity : BaseActivity<ActivityDetailArticleBinding>() {
                 }
                 is Resource.Error -> {
                     binding.pbDetailArticle.gone()
+                    binding.layoutError.layoutError.visible()
                     showToast(this, it.apiError.message)
                 }
                 else -> {}
