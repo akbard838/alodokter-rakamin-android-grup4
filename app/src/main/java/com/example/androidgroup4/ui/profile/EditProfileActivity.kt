@@ -15,7 +15,9 @@ import com.example.androidgroup4.databinding.ActivityEditProfileBinding
 import com.example.androidgroup4.ui.viewmodel.UserViewModel
 import com.example.androidgroup4.utils.*
 import com.example.androidgroup4.utils.constant.BundleKeys
+import com.example.androidgroup4.utils.constant.PreferenceKeys
 import com.example.androidgroup4.utils.enum.GenderType
+import com.google.gson.Gson
 import dagger.hilt.android.AndroidEntryPoint
 import java.text.SimpleDateFormat
 import java.util.*
@@ -24,17 +26,18 @@ import java.util.*
 class EditProfileActivity : BaseActivity<ActivityEditProfileBinding>(),
     DatePickerFragment.DialogDateListener {
 
-    private val userViewModel: UserViewModel by viewModels()
-    private var dueDateMillis: Long = System.currentTimeMillis()
-
     companion object {
         fun start(context: Context?, user: User) {
             Intent(context, EditProfileActivity::class.java).apply {
-                putExtra(BundleKeys.PROFILE, user)
+                putExtra(BundleKeys.USER, user)
                 context?.startActivity(this)
             }
         }
     }
+
+    private val userViewModel: UserViewModel by viewModels()
+
+    private var dueDateMillis: Long = System.currentTimeMillis()
 
     private var user: User? = null
 
@@ -42,7 +45,7 @@ class EditProfileActivity : BaseActivity<ActivityEditProfileBinding>(),
         ActivityEditProfileBinding::inflate
 
     override fun initIntent() {
-        user = intent.getParcelableExtra(BundleKeys.PROFILE)
+        user = intent.getParcelableExtra(BundleKeys.USER)
     }
 
     override fun initUI() {
@@ -58,7 +61,7 @@ class EditProfileActivity : BaseActivity<ActivityEditProfileBinding>(),
                 isFormValid(listOf(tilKtpNumber, tilFullName)) {
                     userViewModel.putUpdateProfile(
                         UserRequest(
-                            email = "test@gmail.com",
+                            email = user?.email ?: emptyString(),
                             name = binding.edtFullName.text.toString(),
                             address = binding.edtAddress.text.toString(),
                             idCardNumber = binding.edtKtpNumber.text.toString(),
@@ -100,7 +103,9 @@ class EditProfileActivity : BaseActivity<ActivityEditProfileBinding>(),
                 }
                 is Resource.Success -> {
                     hideLoading()
-                    showToast(this@EditProfileActivity, getString(R.string.title_edit_profile_success))
+                    val user = Gson().toJson(it.data)
+                    getAppPreferenceEditor(this).putString(PreferenceKeys.USER, user).apply()
+                    showToast(this, getString(R.string.title_edit_profile_success))
                     finish()
                 }
                 is Resource.Error -> {

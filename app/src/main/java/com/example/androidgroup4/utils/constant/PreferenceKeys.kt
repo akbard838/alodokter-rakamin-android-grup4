@@ -6,8 +6,8 @@ object PreferenceKeys {
 
     const val FIRST_TIME_LAUNCH: String = "first_time_launch"
 
-    const val USER_ID: String = "user_id"
+    const val IS_LOGIN: String = "is_login"
 
-    const val USER_TOKEN: String = "user_token"
+    const val USER: String = "user"
 
 }

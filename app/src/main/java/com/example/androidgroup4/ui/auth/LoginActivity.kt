@@ -13,6 +13,7 @@ import com.example.androidgroup4.ui.main.MainActivity
 import com.example.androidgroup4.ui.viewmodel.UserViewModel
 import com.example.androidgroup4.utils.*
 import com.example.androidgroup4.utils.constant.PreferenceKeys
+import com.google.gson.Gson
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -36,7 +37,6 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
 
     override fun initUI() {
         setupToolbar(binding.toolbarMain.toolbar, true, getString(R.string.label_login))
-        initDummyData()
     }
 
     override fun initAction() {
@@ -76,9 +76,10 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
                 }
                 is Resource.Success -> {
                     hideLoading()
-                    getAppPreferenceEditor(this@LoginActivity)
-                        .putString(PreferenceKeys.USER_TOKEN, it.data).apply()
-                    MainActivity.start(this@LoginActivity)
+                    val user = Gson().toJson(it.data)
+                    getAppPreferenceEditor(this).putString(PreferenceKeys.USER, user).apply()
+                    getAppPreferenceEditor(this).putBoolean(PreferenceKeys.IS_LOGIN, true).apply()
+                    MainActivity.start(this)
                     finish()
                 }
                 is Resource.Error -> {
@@ -102,13 +103,6 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
             }
         }
         return true
-    }
-
-    private fun initDummyData() {
-        binding.apply {
-            edtEmail.setText("akbard838@gmail.com")
-            edtPassword.setText("Dino1234")
-        }
     }
 
 }

@@ -15,14 +15,14 @@ import javax.inject.Inject
 
 class UserDataSource @Inject constructor(private val userApiService: UserApiService) {
 
-    suspend fun postLogin(email: String, password: String): Resource<String> {
+    suspend fun postLogin(email: String, password: String): Resource<User> {
         return try {
             val response = userApiService.postLogin(email, password)
             if (response.isSuccessful) {
                 val body = response.body()
                 body?.let {
                     withContext(Dispatchers.IO) {
-                        Resource.success(it.token ?: emptyString())
+                        it.data?.let { data -> Resource.success(data.toUser()) }
                     }
                 } ?: Resource.empty()
             } else {

@@ -192,7 +192,7 @@
                     android:backgroundTint="@color/colorTransparent"
                     android:focusableInTouchMode="true"
                     android:hint="@string/hint_confirm_password"
-                    android:imeOptions="actionNext"
+                    android:imeOptions="actionDone"
                     android:inputType="textPassword" />
 
             </com.google.android.material.textfield.TextInputLayout>

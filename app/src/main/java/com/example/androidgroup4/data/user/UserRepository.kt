@@ -9,7 +9,7 @@ import com.example.androidgroup4.utils.Resource
 
 interface UserRepository {
 
-    suspend fun postLogin(email: String, password: String): Resource<String>
+    suspend fun postLogin(email: String, password: String): Resource<User>
 
     suspend fun postRegister(registerRequest: RegisterRequest): Resource<Model>
 

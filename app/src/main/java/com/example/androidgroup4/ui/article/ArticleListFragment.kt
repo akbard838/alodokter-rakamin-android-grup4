@@ -84,6 +84,9 @@ class ArticleListFragment : BaseFragment<FragmentArticleListBinding>() {
         }
 
         with(binding) {
+            sivHeroArticle.setOnClickListener {
+                showToast(requireContext(), "This is hero article")
+            }
 
             edtSearchArticle.setOnEditorActionListener(TextView.OnEditorActionListener { _, actionId, event ->
                 if (actionId == EditorInfo.IME_ACTION_SEARCH) {
@@ -126,7 +129,7 @@ class ArticleListFragment : BaseFragment<FragmentArticleListBinding>() {
                 }
                 is Resource.Success -> {
                     articles.addAll(it.data)
-                    articleAdapter.setData(articles)
+                    articleAdapter.setData(articles.subList(1, articles.size-1))
                     checkIsDataEmpty(articles)
 
                     if (it.data.isEmpty()) {
@@ -152,11 +155,12 @@ class ArticleListFragment : BaseFragment<FragmentArticleListBinding>() {
                 }
                 is Resource.Success -> {
                     binding.pbArticle.gone()
+                    isLast = true
                     articles.clear()
                     articles.addAll(it.data)
                     articleAdapter.setData(articles)
                     checkIsDataEmpty(articles)
-                    isLast = true
+                    hideHeroArticle()
                 }
                 is Resource.Error -> {
                     binding.pbArticle.gone()
@@ -165,53 +169,6 @@ class ArticleListFragment : BaseFragment<FragmentArticleListBinding>() {
                 else -> {}
             }
         })
-    }
-
-    private fun loadDefaultData() {
-        articles.clear()
-        articleAdapter.setData(articles)
-        page = 1
-        isDefault = true
-        isLast = false
-        getArticles()
-    }
-
-    private fun getArticles() {
-        articleViewModel.getArticles(page)
-    }
-
-    private fun setHero() {
-        binding.apply {
-            if (isDefault) {
-                sivArticle.setImageUrl(
-                    requireContext(),
-                    articles[0].imageUrl.toHttps(),
-                    pbHeroArticle,
-                    R.drawable.img_not_available
-                )
-                tvHeroArticle.text = articles[0].title
-                isDefault = false
-            }
-        }
-    }
-
-    private fun checkIsDataEmpty(articles: List<Article>) {
-        binding.apply {
-            if (articles.isEmpty()) {
-                rvArticle.gone()
-                layoutEmpty.layoutEmpty.visible()
-                sivArticle.gone()
-                sivBackground.gone()
-                tvHeroArticle.gone()
-            } else {
-                rvArticle.visible()
-                layoutEmpty.layoutEmpty.gone()
-                sivArticle.visible()
-                sivBackground.visible()
-                tvHeroArticle.visible()
-                setHero()
-            }
-        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -236,6 +193,61 @@ class ArticleListFragment : BaseFragment<FragmentArticleListBinding>() {
         }
         return super.onOptionsItemSelected(item)
 
+    }
+
+    private fun loadDefaultData() {
+        articles.clear()
+        articleAdapter.setData(articles)
+        page = 1
+        isDefault = true
+        isLast = false
+        getArticles()
+    }
+
+    private fun getArticles() {
+        articleViewModel.getArticles(page)
+    }
+
+    private fun setHero() {
+        binding.apply {
+            if (isDefault && !isLast) {
+                sivHeroArticle.setImageUrl(
+                    requireContext(),
+                    articles[0].imageUrl.toHttps(),
+                    pbHeroArticle,
+                    R.drawable.img_not_available
+                )
+                tvHeroArticle.text = articles[0].title
+                isDefault = false
+            }
+        }
+    }
+
+    private fun hideHeroArticle() {
+        binding.sivHeroArticle.gone()
+        binding.sivBackground.gone()
+        binding.tvHeroArticle.gone()
+    }
+
+    private fun showHeroArticle() {
+        binding.sivHeroArticle.visible()
+        binding.sivBackground.visible()
+        binding.tvHeroArticle.visible()
+    }
+
+    private fun checkIsDataEmpty(articles: List<Article>) {
+        binding.apply {
+            if (articles.isEmpty()) {
+                rvArticle.gone()
+                layoutEmpty.layoutEmpty.visible()
+                hideHeroArticle()
+            } else {
+                rvArticle.visible()
+                layoutEmpty.layoutEmpty.gone()
+                showHeroArticle()
+                setHero()
+            }
+        }
     }
 
 }
