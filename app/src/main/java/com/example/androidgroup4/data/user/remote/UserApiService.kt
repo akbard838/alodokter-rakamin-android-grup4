@@ -55,6 +55,13 @@ interface UserApiService {
             @Field("address") address: String
     ): Response<BaseApiResponse<UserResponse>>
 
+    @PUT("update")
+    @FormUrlEncoded
+    suspend fun putChangePassword(
+            @Field("email") email: String,
+            @Field("password") password: String,
+    ): Response<BaseApiResponse<UserResponse>>
+
     //API MOCK
     @GET("users")
     suspend fun getAllUsers(): Response<List<UserResponse>>

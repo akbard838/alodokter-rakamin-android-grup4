@@ -11,5 +11,5 @@ data class User(
     val birthDate: String,
     val gender: String,
     val idCardNumber: String,
-    val address: String
+    val address: String,
 ) : Parcelable

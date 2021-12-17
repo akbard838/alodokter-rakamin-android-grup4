@@ -4,14 +4,19 @@ import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.MenuItem
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.viewbinding.ViewBinding
 import com.example.androidgroup4.R
 import com.example.androidgroup4.base.BaseActivity
+import com.example.androidgroup4.data.model.User
+import com.example.androidgroup4.data.user.model.request.ChangePasswordRequest
+import com.example.androidgroup4.data.user.model.request.UserRequest
 import com.example.androidgroup4.databinding.ActivityChangePasswordBinding
 import com.example.androidgroup4.ui.main.MainActivity
 import com.example.androidgroup4.ui.viewmodel.UserViewModel
 import com.example.androidgroup4.utils.*
+import com.example.androidgroup4.utils.enum.GenderType
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -55,9 +60,11 @@ class ChangePasswordActivity : BaseActivity<ActivityChangePasswordBinding>() {
                 tilConfirmPassword.validateConfirmPassword(edtNewPassword.text.toString())
 
                 isFormValid(listOf(tilNewPassword, tilConfirmPassword)) {
-                    userViewModel.postResetPassword(
-                        path ?: emptyString(),
-                        edtConfirmPasword.text.toString()
+                    userViewModel.putChangePassword(
+                            ChangePasswordRequest(
+                                    email = "test@gmail.com",
+                                    password = binding.edtNewPassword.toString()
+                            )
                     )
                 }
             }
@@ -69,19 +76,20 @@ class ChangePasswordActivity : BaseActivity<ActivityChangePasswordBinding>() {
     }
 
     override fun initObservable() {
-        userViewModel.resetPassword.observe(this, {
+        userViewModel.change.observe(this, {
             when (it) {
                 is Resource.Loading -> {
                     showLoading()
+                    binding.tvError.gone()
                 }
                 is Resource.Success -> {
                     hideLoading()
-                    MainActivity.start(this@ChangePasswordActivity)
+                    showToast(this@ChangePasswordActivity, getString(R.string.message_change_password_success))
                     finish()
                 }
                 is Resource.Error -> {
                     hideLoading()
-                    showToast(this, it.apiError.message)
+                    Toast.makeText(this, it.apiError.message, Toast.LENGTH_SHORT).show()
                 }
                 else -> {}
             }
@@ -96,29 +104,4 @@ class ChangePasswordActivity : BaseActivity<ActivityChangePasswordBinding>() {
         }
         return true
     }
-/*
-    private fun putChangePassword(){
-        lifecycleScope.launchWhenStarted {
-            userViewModel.putChangePassword(
-                userId = user?.user_id?.toInt() ?: 0,
-                password = binding.edtNewPassword.toString(),
-            ).collect {
-                when (it) {
-                    is Resource.Success -> {
-                        hideLoading()
-                        showToast(this@ChangePasswordActivity, "Password berhasil diubah")
-                        finish()
-                    }
-                    is Resource.Failure -> {
-                        hideLoading()
-                        showToast(this@ChangePasswordActivity, it.message)
-                    }
-                    is Resource.Loading -> {
-                        showLoading()
-                    }
-                }
-            }
-        }
-    }
-*/
 }

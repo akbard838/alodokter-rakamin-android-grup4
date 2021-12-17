@@ -25,7 +25,7 @@ import com.example.androidgroup4.utils.visible
 import java.util.*
 import java.util.regex.Pattern
 
-class DoctorListFragment: BaseFragment<FragmentDoctorListBinding>() {
+class DoctorListFragment : BaseFragment<FragmentDoctorListBinding>() {
 
     private lateinit var doctorAdapter: DoctorAdapter
 

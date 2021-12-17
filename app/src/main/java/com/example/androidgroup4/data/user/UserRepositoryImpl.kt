@@ -2,6 +2,7 @@ package com.example.androidgroup4.data.user
 
 import com.example.androidgroup4.data.model.Model
 import com.example.androidgroup4.data.model.User
+import com.example.androidgroup4.data.user.model.request.ChangePasswordRequest
 import com.example.androidgroup4.data.user.model.request.RegisterRequest
 import com.example.androidgroup4.data.user.model.request.UserRequest
 import com.example.androidgroup4.data.user.model.response.UserResponse
@@ -36,5 +37,10 @@ class UserRepositoryImpl @Inject constructor(private val userData: UserDataSourc
         return userData.putUpdateProfile(userRequest)
 
     }
+
+    override suspend fun putChangePassword(changePasswordRequest: ChangePasswordRequest): Resource<User> {
+        return userData.putChangePassword(changePasswordRequest)
+    }
+
 
 }

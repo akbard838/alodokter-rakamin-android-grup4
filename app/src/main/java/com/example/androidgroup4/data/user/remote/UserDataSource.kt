@@ -3,6 +3,7 @@ package com.example.androidgroup4.data.user.remote
 import com.example.androidgroup4.base.BaseApiErrorResponse
 import com.example.androidgroup4.data.model.Model
 import com.example.androidgroup4.data.model.User
+import com.example.androidgroup4.data.user.model.request.ChangePasswordRequest
 import com.example.androidgroup4.data.user.model.request.RegisterRequest
 import com.example.androidgroup4.data.user.model.request.UserRequest
 import com.example.androidgroup4.data.user.model.response.UserResponse
@@ -68,6 +69,27 @@ class UserDataSource @Inject constructor(private val userApiService: UserApiServ
                 idCardNumber = userRequest.idCardNumber ?: "-",
                 dateOfBirth = userRequest.birthDate ?: "-",
                 gender = userRequest.gender
+            )
+            if (response.isSuccessful) {
+                val body = response.body()
+                body?.let {
+                    withContext(Dispatchers.IO) {
+                        it.data?.let { it1 -> Resource.success(it1.toUser()) }
+                    }
+                } ?: Resource.empty()
+            } else {
+                Resource.error(ApiErrorOperator.parseError(response))
+            }
+        } catch (e: Exception) {
+            Resource.error(BaseApiErrorResponse(message = e.message.toString()))
+        }
+    }
+
+    suspend fun putChangePassword(changePasswordRequest: ChangePasswordRequest): Resource<User> {
+        return try {
+            val response = userApiService.putChangePassword(
+                    email = changePasswordRequest.email,
+                    password = changePasswordRequest.password
             )
             if (response.isSuccessful) {
                 val body = response.body()
