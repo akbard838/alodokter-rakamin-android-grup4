@@ -38,7 +38,7 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
             }
 
             btnChangePassword.setOnClickListener {
-                ChangePasswordActivity.start(requireContext())
+                user?.let { ChangePasswordActivity.start(requireContext(), it.email) }
             }
 
             btnLogout.setOnClickListener {

@@ -5,6 +5,7 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.MenuItem
 import android.widget.Toast
+import androidx.core.view.get
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 import androidx.viewbinding.ViewBinding
@@ -15,6 +16,7 @@ import com.example.androidgroup4.utils.constant.PreferenceKeys
 import com.example.androidgroup4.utils.constant.PreferenceKeys.IS_LOGIN
 import com.example.androidgroup4.utils.getAppPreferenceEditor
 import com.example.androidgroup4.utils.getAppSharedPreference
+import com.example.androidgroup4.utils.showToast
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -62,19 +64,16 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
     }
 
     override fun onBackPressed() {
-        if (supportFragmentManager.backStackEntryCount > 0) {
-            supportFragmentManager.popBackStack()
+        if (backPress + 3000 > System.currentTimeMillis()) {
+            exitToast.cancel()
+            super.onBackPressed()
         } else {
-            if (backPress + 2000 > System.currentTimeMillis()) {
-                exitToast.cancel()
-                super.onBackPressed()
-                return
-            } else {
-                exitToast =
-                    Toast.makeText(this, getString(R.string.message_tap_more_to_exit), Toast.LENGTH_LONG)
+            if (binding.navView.selectedItemId != 2131362167) super.onBackPressed()
+            else {
+                exitToast = Toast.makeText(this, getString(R.string.message_tap_more_to_exit), Toast.LENGTH_LONG)
                 exitToast.show()
+                backPress = System.currentTimeMillis()
             }
-            backPress = System.currentTimeMillis()
         }
     }
 

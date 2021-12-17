@@ -20,6 +20,7 @@
     <string name="message_error_confirm_password">Konfirmasi password tidak sesuai</string>
     <string name="message_error_old_password">Password lama tidak sesuai</string>
     <string name="message_reset_password_success">Kami telah mengirim pesan ke email %s. Silahkan pesan kotak masuk pada email anda untuk melakukan reset password</string>
+    <string name="message_change_password_success">Password berhasil diubah</string>
     <string name="message_error_empty_field">Form tidak boleh kosong</string>
     <string name="title_activity_home">Hi!Dokter</string>
     <string name="title_article">Article</string>
