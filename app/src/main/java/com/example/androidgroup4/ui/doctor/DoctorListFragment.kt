@@ -26,8 +26,6 @@ class DoctorListFragment : BaseFragment<FragmentDoctorListBinding>() {
 
     private lateinit var doctorAdapter: DoctorAdapter
 
-    private var doctors: ArrayList<Doctor> = arrayListOf()
-
     private val doctorViewModel: DoctorViewModel by viewModels()
 
     override val bindingInflater: (LayoutInflater, ViewGroup?, Boolean) -> ViewBinding =
@@ -65,12 +63,18 @@ class DoctorListFragment : BaseFragment<FragmentDoctorListBinding>() {
 
             edtSearchDoctor.doAfterTextChanged {
                 if (binding.edtSearchDoctor.text.toString().isEmpty()) {
-                    reloadData()
+                    getDoctors()
                 }
             }
 
             layoutNotLoggedIn.btnLogin.setOnClickListener {
                 LoginActivity.start(requireContext())
+            }
+
+            layoutError.btnRetry.setOnClickListener {
+                binding.layoutError.layoutError.gone()
+                binding.fabSearch.visible()
+                getDoctors()
             }
         }
     }
@@ -85,12 +89,13 @@ class DoctorListFragment : BaseFragment<FragmentDoctorListBinding>() {
                 }
                 is Resource.Success -> {
                     hideLoading()
-                    doctors.addAll(it.data)
-                    doctorAdapter.setData(doctors)
-                    checkIsDataEmpty(doctors)
+                    doctorAdapter.setData(it.data)
+                    checkIsDataEmpty(it.data)
                 }
                 is Resource.Error -> {
                     hideLoading()
+                    binding.layoutError.layoutError.visible()
+                    binding.fabSearch.gone()
                     Toast.makeText(requireContext(), it.apiError.message, Toast.LENGTH_SHORT).show()
                 }
                 else -> {}
@@ -103,14 +108,14 @@ class DoctorListFragment : BaseFragment<FragmentDoctorListBinding>() {
                     showLoading()
                 }
                 is Resource.Success -> {
-                    doctors.clear()
-                    doctors.addAll(it.data)
-                    doctorAdapter.setData(doctors)
-                    checkIsDataEmpty(doctors)
+                    doctorAdapter.setData(it.data)
+                    checkIsDataEmpty(it.data)
                     hideLoading()
                 }
                 is Resource.Error -> {
                     hideLoading()
+                    binding.layoutError.layoutError.visible()
+                    binding.fabSearch.gone()
                     showToast(requireContext(), it.apiError.message)
                 }
                 else -> {}
@@ -152,12 +157,6 @@ class DoctorListFragment : BaseFragment<FragmentDoctorListBinding>() {
 
     private fun getDoctors() {
         if (MainActivity.getUserLoggedInStatus(requireContext())) doctorViewModel.getDoctors()
-    }
-
-    private fun reloadData() {
-        doctors.clear()
-        doctorAdapter.setData(doctors)
-        getDoctors()
     }
 
     private fun checkIsDataEmpty(doctors: List<Doctor>) {

@@ -113,6 +113,11 @@ class ArticleListFragment : BaseFragment<FragmentArticleListBinding>() {
                 if (edtSearchArticle.text.toString().isEmpty()) loadDefaultData()
             }
 
+            layoutError.btnRetry.setOnClickListener {
+                binding.layoutError.layoutError.gone()
+                loadDefaultData()
+            }
+
         }
 
     }
@@ -142,6 +147,7 @@ class ArticleListFragment : BaseFragment<FragmentArticleListBinding>() {
                 is Resource.Error -> {
                     isLoading = false
                     binding.pbArticle.gone()
+                    binding.layoutError.layoutError.visible()
                     showToast(requireContext(), it.apiError.message)
                 }
                 else -> {}
@@ -164,6 +170,7 @@ class ArticleListFragment : BaseFragment<FragmentArticleListBinding>() {
                 }
                 is Resource.Error -> {
                     binding.pbArticle.gone()
+                    binding.layoutError.layoutError.visible()
                     showToast(requireContext(), it.apiError.message)
                 }
                 else -> {}

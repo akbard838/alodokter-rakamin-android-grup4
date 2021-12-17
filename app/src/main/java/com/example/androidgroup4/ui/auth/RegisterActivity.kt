@@ -86,14 +86,7 @@ class RegisterActivity : BaseActivity<ActivityRegisterBinding>() {
                 }
                 is Resource.Success -> {
                     hideLoading()
-                    SuccessActivity.start(
-                        this@RegisterActivity,
-                        R.drawable.ic_done,
-                        getString(R.string.title_register_success),
-                        getString(R.string.message_input_account_for_login),
-                        getString(R.string.button_login),
-                        SuccessType.REGISTER.type
-                    )
+                    SuccessActivity.start(this@RegisterActivity, SuccessType.REGISTER.type)
                     finish()
                 }
                 is Resource.Error -> {
