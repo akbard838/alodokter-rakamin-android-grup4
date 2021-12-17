@@ -9,4 +9,6 @@ interface ArticleRepository {
 
     suspend fun getSearchArticles(title: String): Resource<List<Article>>
 
+    suspend fun getDetailArticle(id: Int): Resource<Article?>
+
 }

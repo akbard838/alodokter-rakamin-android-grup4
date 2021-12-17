@@ -46,4 +46,22 @@ class ArticleDataSource @Inject constructor(private val articleApiService: Artic
         }
     }
 
+    suspend fun getDetailArticle(id: Int): Resource<Article?> {
+        return try {
+            val response = articleApiService.getDetailArticle(id)
+            if (response.isSuccessful) {
+                val body = response.body()
+                body?.let {
+                    withContext(Dispatchers.IO) {
+                        Resource.success(it.data?.toArticle())
+                    }
+                } ?: Resource.empty()
+            }else {
+                Resource.error(ApiErrorOperator.parseError(response))
+            }
+        } catch (e: Exception) {
+            Resource.error(BaseApiErrorResponse(message = e.message.toString()))
+        }
+    }
+
 }

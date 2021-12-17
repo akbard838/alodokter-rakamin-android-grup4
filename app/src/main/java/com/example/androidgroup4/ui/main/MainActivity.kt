@@ -4,6 +4,8 @@ import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.MenuItem
+import android.widget.Toast
+import androidx.core.view.get
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 import androidx.viewbinding.ViewBinding
@@ -14,6 +16,7 @@ import com.example.androidgroup4.utils.constant.PreferenceKeys
 import com.example.androidgroup4.utils.constant.PreferenceKeys.IS_LOGIN
 import com.example.androidgroup4.utils.getAppPreferenceEditor
 import com.example.androidgroup4.utils.getAppSharedPreference
+import com.example.androidgroup4.utils.showToast
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -33,6 +36,10 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
         }
     }
 
+    private var backPress: Long = 0L
+
+    private lateinit var exitToast: Toast
+
     override val bindingInflater: (LayoutInflater) -> ViewBinding = ActivityMainBinding::inflate
 
     override fun initIntent() {
@@ -40,18 +47,8 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
 
     override fun initUI() {
         val navView: BottomNavigationView = binding.navView
-
         val navController = findNavController(R.id.nav_host_fragment_activity_home)
 
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
-//        val appBarConfiguration = AppBarConfiguration(
-//            setOf(
-//                R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_notifications
-//            )
-//        )
-
-//        setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
     }
 
@@ -67,10 +64,16 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
     }
 
     override fun onBackPressed() {
-        if (supportFragmentManager.backStackEntryCount > 0) {
-            supportFragmentManager.popBackStack()
-        } else {
+        if (backPress + 3000 > System.currentTimeMillis()) {
+            exitToast.cancel()
             super.onBackPressed()
+        } else {
+            if (binding.navView.selectedItemId != 2131362167) super.onBackPressed()
+            else {
+                exitToast = Toast.makeText(this, getString(R.string.message_tap_more_to_exit), Toast.LENGTH_LONG)
+                exitToast.show()
+                backPress = System.currentTimeMillis()
+            }
         }
     }
 

@@ -61,10 +61,10 @@ class ChangePasswordActivity : BaseActivity<ActivityChangePasswordBinding>() {
 
                 isFormValid(listOf(tilNewPassword, tilConfirmPassword)) {
                     userViewModel.putChangePassword(
-                            ChangePasswordRequest(
-                                    email = "test@gmail.com",
-                                    password = binding.edtNewPassword.toString()
-                            )
+                        ChangePasswordRequest(
+                            email = "test@gmail.com",
+                            password = binding.edtNewPassword.toString()
+                        )
                     )
                 }
             }
@@ -80,11 +80,13 @@ class ChangePasswordActivity : BaseActivity<ActivityChangePasswordBinding>() {
             when (it) {
                 is Resource.Loading -> {
                     showLoading()
-                    binding.tvError.gone()
                 }
                 is Resource.Success -> {
                     hideLoading()
-                    showToast(this@ChangePasswordActivity, getString(R.string.message_change_password_success))
+                    showToast(
+                        this@ChangePasswordActivity,
+                        getString(R.string.message_change_password_success)
+                    )
                     finish()
                 }
                 is Resource.Error -> {
