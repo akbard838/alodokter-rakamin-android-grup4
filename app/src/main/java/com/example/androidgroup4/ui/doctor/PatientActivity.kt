@@ -37,6 +37,7 @@ class PatientActivity : BaseActivity<ActivityPatientBinding>(),
 
     override fun initUI() {
         setupToolbar(binding.toolbarMain.toolbar, true, getString(R.string.label_patient_page))
+        binding.btnMale.isChecked = true
     }
 
     override fun initAction() {
@@ -79,7 +80,7 @@ class PatientActivity : BaseActivity<ActivityPatientBinding>(),
     override fun onDialogDateSet(tag: String?, year: Int, month: Int, dayOfMonth: Int) {
         val calendar = Calendar.getInstance()
         calendar.set(year, month, dayOfMonth)
-        val dateFormat = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
+        val dateFormat = SimpleDateFormat(getString(R.string.format_birth_date), Locale.getDefault())
         binding.edtBirthDate.setText(dateFormat.format(calendar.time))
 
         dueDateMillis = calendar.timeInMillis

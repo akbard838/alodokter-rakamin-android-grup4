@@ -79,7 +79,7 @@
     <string name="hint_gender">Jenis Kelamin</string>
     <string name="hint_ktp_number">Nomor KTP</string>
     <string name="hint_address">Alamat Sesuai KTP</string>
-    <string name="button_change_data">UBAH DATA</string>
+    <string name="button_change_data">Ubah Data</string>
     <string name="button_male">Laki-laki</string>
     <string name="hint_female">Perempuan</string>
     <string name="cd_date_picker">Button untuk memilih tanggal</string>
@@ -96,5 +96,7 @@
     <string name="error_email_or_password">Incorrect email or password</string>
     <string name="error_email_or_password_id">Email atau password salah</string>
     <string name="label_error">error</string>
+    <string name="format_birth_date">d MMMM yyyy</string>
+    <string name="message_tap_more_to_exit">Ketuk sekali lagi untuk keluar</string>
 
 </resources>

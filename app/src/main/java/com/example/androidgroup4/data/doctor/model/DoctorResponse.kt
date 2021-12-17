@@ -22,7 +22,7 @@ data class DoctorResponse(
 			yoe = (0..10).random(),
 			profile = profile?: emptyString(),
 			location = Location(
-				imageUrl = "https://mayapadahospital.com/images/news/Mayapada%20Hospital%20Surabaya.jpg",
+				imageUrl = "https://www.beaconhospital.co.id/wp-content/uploads/2020/03/Beacon-Hospital-New.jpg",
 				name = "Rumah Sakit Surabaya",
 				address = "Jl. Nginden Intan Barat B, Nginden Jangungan, Kec. Sukolilo, Kota SBY, Jawa Timur 60118",
 				dummyDistance = "0.2 KM dari anda",

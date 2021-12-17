@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.MenuItem
+import android.widget.Toast
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 import androidx.viewbinding.ViewBinding
@@ -33,6 +34,10 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
         }
     }
 
+    private var backPress: Long = 0L
+
+    private lateinit var exitToast: Toast
+
     override val bindingInflater: (LayoutInflater) -> ViewBinding = ActivityMainBinding::inflate
 
     override fun initIntent() {
@@ -40,18 +45,8 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
 
     override fun initUI() {
         val navView: BottomNavigationView = binding.navView
-
         val navController = findNavController(R.id.nav_host_fragment_activity_home)
 
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
-//        val appBarConfiguration = AppBarConfiguration(
-//            setOf(
-//                R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_notifications
-//            )
-//        )
-
-//        setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
     }
 
@@ -70,7 +65,16 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
         if (supportFragmentManager.backStackEntryCount > 0) {
             supportFragmentManager.popBackStack()
         } else {
-            super.onBackPressed()
+            if (backPress + 2000 > System.currentTimeMillis()) {
+                exitToast.cancel()
+                super.onBackPressed()
+                return
+            } else {
+                exitToast =
+                    Toast.makeText(this, getString(R.string.message_tap_more_to_exit), Toast.LENGTH_LONG)
+                exitToast.show()
+            }
+            backPress = System.currentTimeMillis()
         }
     }
 

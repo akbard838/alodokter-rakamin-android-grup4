@@ -18,7 +18,7 @@ fun ImageView.setImageUrl(context: Context, imageUrl: String, progressBar: Progr
     progressBar.visible()
 
     Glide.with(context)
-        .load(imageUrl)
+        .load(imageUrl.toHttps())
         .listener(object : RequestListener<Drawable> {
             override fun onLoadFailed(
                 e: GlideException?,
@@ -51,7 +51,7 @@ fun ImageView.setImageUrl(c: Context, imageUrl: String, errorResourceId: Int) {
         .error(errorResourceId)
 
     Glide.with(c)
-        .load(imageUrl)
+        .load(imageUrl.toHttps())
         .apply(options)
         .into(this)
 }

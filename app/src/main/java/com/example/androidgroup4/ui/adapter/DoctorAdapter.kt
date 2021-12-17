@@ -8,6 +8,7 @@ import com.example.androidgroup4.R
 import com.example.androidgroup4.data.model.Doctor
 import com.example.androidgroup4.databinding.ItemDoctorBinding
 import com.example.androidgroup4.utils.setImageUrl
+import com.example.androidgroup4.utils.toHttps
 
 class DoctorAdapter(private val context: Context) :
     RecyclerView.Adapter<DoctorAdapter.DoctorViewHolder>() {

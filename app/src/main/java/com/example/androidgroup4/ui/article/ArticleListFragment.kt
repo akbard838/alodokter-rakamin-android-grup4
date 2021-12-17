@@ -90,7 +90,7 @@ class ArticleListFragment : BaseFragment<FragmentArticleListBinding>() {
 
             edtSearchArticle.setOnEditorActionListener(TextView.OnEditorActionListener { _, actionId, event ->
                 if (actionId == EditorInfo.IME_ACTION_SEARCH) {
-                    articleViewModel.getSearchArticles(edtSearchArticle.text.toString())
+                    getSearchArticles()
                     hideSoftKeyboard(requireContext(), binding.edtSearchArticle)
                     return@OnEditorActionListener true
                 }
@@ -103,7 +103,7 @@ class ArticleListFragment : BaseFragment<FragmentArticleListBinding>() {
                     view?.clearFocus()
                     hideSoftKeyboard(requireContext(), edtSearchArticle)
                     if (event.rawX >= edtSearchArticle.right - edtSearchArticle.compoundDrawables[2].bounds.width()) {
-                        articleViewModel.getSearchArticles(edtSearchArticle.text.toString())
+                        getSearchArticles()
                         true
                     } else false
                 } else false
@@ -195,6 +195,11 @@ class ArticleListFragment : BaseFragment<FragmentArticleListBinding>() {
 
     }
 
+    private fun getSearchArticles(){
+        if (binding.edtSearchArticle.text.toString() == emptyString()) loadDefaultData()
+        else articleViewModel.getSearchArticles(binding.edtSearchArticle.text.toString())
+    }
+
     private fun loadDefaultData() {
         articles.clear()
         articleAdapter.setData(articles)
@@ -213,7 +218,7 @@ class ArticleListFragment : BaseFragment<FragmentArticleListBinding>() {
             if (isDefault && !isLast) {
                 sivHeroArticle.setImageUrl(
                     requireContext(),
-                    articles[0].imageUrl.toHttps(),
+                    articles[0].imageUrl,
                     pbHeroArticle,
                     R.drawable.img_not_available
                 )

@@ -62,17 +62,18 @@ class ArticleDetailActivity : BaseActivity<ActivityDetailArticleBinding>() {
         articleViewModel.detailArticle.observe(this) {
             when (it) {
                 is Resource.Loading -> {
-                    showLoading()
+                    binding.pbDetailArticle.visible()
                 }
                 is Resource.Success -> {
-                    hideLoading()
+                    binding.pbDetailArticle.gone()
 
                     it.data?.let { article ->
                         setupToolbar(binding.toolbar, true, emptyString())
                         with(binding) {
                             ivDetailImage.setImageUrl(
                                 this@ArticleDetailActivity,
-                                article.imageUrl.toHttps(),
+                                article.imageUrl,
+                                pbImageArticle,
                                 R.drawable.img_not_available
                             )
                             tvTitle.text = article.title
@@ -81,7 +82,7 @@ class ArticleDetailActivity : BaseActivity<ActivityDetailArticleBinding>() {
                     }
                 }
                 is Resource.Error -> {
-                    hideLoading()
+                    binding.pbDetailArticle.gone()
                     showToast(this, it.apiError.message)
                 }
                 else -> {}

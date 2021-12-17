@@ -1,6 +1,5 @@
 package com.example.androidgroup4.utils
 
-import android.app.Activity
 import android.content.Context
 import android.content.SharedPreferences
 import android.view.View
@@ -9,9 +8,6 @@ import android.widget.EditText
 import android.widget.Toast
 import com.example.androidgroup4.utils.constant.PreferenceKeys
 import com.google.gson.Gson
-
-
-
 
 fun emptyString() = ""
 
@@ -59,7 +55,7 @@ fun hideSoftKeyboard(context: Context, input: EditText) {
 }
 
 fun String.toHttps(): String {
-    if (this.contains("http")) {
+    if (!this.contains("https")) {
         return this.replace("http", "https")
     }
     return this
