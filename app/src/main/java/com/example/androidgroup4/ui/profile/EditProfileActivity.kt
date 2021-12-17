@@ -120,7 +120,7 @@ class EditProfileActivity : BaseActivity<ActivityEditProfileBinding>(),
     override fun onDialogDateSet(tag: String?, year: Int, month: Int, dayOfMonth: Int) {
         val calendar = Calendar.getInstance()
         calendar.set(year, month, dayOfMonth)
-        val dateFormat = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
+        val dateFormat = SimpleDateFormat(getString(R.string.format_birth_date), Locale.getDefault())
         binding.edtBirthDate.setText(dateFormat.format(calendar.time))
 
         dueDateMillis = calendar.timeInMillis
@@ -141,7 +141,7 @@ class EditProfileActivity : BaseActivity<ActivityEditProfileBinding>(),
             else btnFemale.isChecked = true
 
             edtFullName.setText(user?.name)
-            edtBirthDate.setText(getBirthDateFormat(user?.birthDate ?: emptyString()))
+            edtBirthDate.setText(user?.birthDate ?: emptyString())
             edtKtpNumber.setText(user?.idCardNumber.toString())
             edtAddress.setText(user?.address)
         }

@@ -167,7 +167,7 @@
         android:layout_marginStart="@dimen/dimen_16dp"
         android:layout_marginEnd="@dimen/dimen_16dp"
         android:layout_marginBottom="@dimen/dimen_16dp"
-        android:text="@string/button_change_data"
+        android:text="@string/button_consultation"
         app:layout_constraintBottom_toBottomOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -22,7 +22,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import java.util.*
 
 @AndroidEntryPoint
-class DoctorListFragment: BaseFragment<FragmentDoctorListBinding>() {
+class DoctorListFragment : BaseFragment<FragmentDoctorListBinding>() {
 
     private lateinit var doctorAdapter: DoctorAdapter
 
@@ -30,8 +30,8 @@ class DoctorListFragment: BaseFragment<FragmentDoctorListBinding>() {
 
     private val doctorViewModel: DoctorViewModel by viewModels()
 
-    override val bindingInflater: (LayoutInflater, ViewGroup?, Boolean) -> ViewBinding
-        = FragmentDoctorListBinding::inflate
+    override val bindingInflater: (LayoutInflater, ViewGroup?, Boolean) -> ViewBinding =
+        FragmentDoctorListBinding::inflate
 
     override fun initIntent() {
 
@@ -121,6 +121,16 @@ class DoctorListFragment: BaseFragment<FragmentDoctorListBinding>() {
         }
     }
 
+    override fun showLoading() {
+        binding.rvDoctor.gone()
+        binding.pbDoctors.visible()
+    }
+
+    override fun hideLoading() {
+        binding.rvDoctor.visible()
+        binding.pbDoctors.gone()
+    }
+
     private fun showLoggedInStateView() {
         binding.apply {
             if (MainActivity.getUserLoggedInStatus(requireContext())) {
@@ -144,7 +154,7 @@ class DoctorListFragment: BaseFragment<FragmentDoctorListBinding>() {
     }
 
     private fun getDoctors() {
-        doctorViewModel.getDoctors()
+        if (MainActivity.getUserLoggedInStatus(requireContext())) doctorViewModel.getDoctors()
     }
 
     private fun reloadData() {
