@@ -12,9 +12,9 @@ object BundleKeys {
 
     const val SUCCESS_TYPE = "success_type"
 
-    const val DOCTOR = "DOCTOR"
+    const val DOCTOR_ID = "DOCTOR_ID"
 
     const val USER = "USER"
 
-    const val ARTICLE = "ARTICLE"
+    const val ARTICLE_ID = "ARTICLE_ID"
 }

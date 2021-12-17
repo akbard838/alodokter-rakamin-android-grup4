@@ -43,7 +43,7 @@ class DoctorListFragment : BaseFragment<FragmentDoctorListBinding>() {
 
     override fun initAction() {
         doctorAdapter.onDoctorItemClicked = { doctor ->
-            DoctorDetailActivity.start(requireContext(), doctor)
+            DoctorDetailActivity.start(requireContext(), doctor.id)
         }
 
         binding.apply {

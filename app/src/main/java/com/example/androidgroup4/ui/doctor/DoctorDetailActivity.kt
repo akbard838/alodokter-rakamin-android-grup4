@@ -9,7 +9,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewbinding.ViewBinding
 import com.example.androidgroup4.R
 import com.example.androidgroup4.base.BaseActivity
-import com.example.androidgroup4.data.model.Doctor
 import com.example.androidgroup4.data.model.Schedule
 import com.example.androidgroup4.databinding.ActivityDoctorDetailBinding
 import com.example.androidgroup4.ui.adapter.ScheduleAdapter
@@ -22,9 +21,9 @@ import dagger.hilt.android.AndroidEntryPoint
 class DoctorDetailActivity : BaseActivity<ActivityDoctorDetailBinding>() {
 
     companion object {
-        fun start(context: Context, doctor: Doctor) {
+        fun start(context: Context, doctorId: Int) {
             Intent(context, DoctorDetailActivity::class.java).apply {
-                putExtra(BundleKeys.DOCTOR, doctor)
+                putExtra(BundleKeys.DOCTOR_ID, doctorId)
                 context.startActivity(this)
             }
         }
@@ -32,7 +31,7 @@ class DoctorDetailActivity : BaseActivity<ActivityDoctorDetailBinding>() {
 
     private val doctorViewModel: DoctorViewModel by viewModels()
 
-    private var doctor: Doctor? = null
+    private var doctorId: Int? = null
 
     private lateinit var scheduleAdapter: ScheduleAdapter
 
@@ -42,14 +41,14 @@ class DoctorDetailActivity : BaseActivity<ActivityDoctorDetailBinding>() {
         ActivityDoctorDetailBinding::inflate
 
     override fun initIntent() {
-        doctor = intent.getParcelableExtra(BundleKeys.DOCTOR)
+        doctorId = intent.getIntExtra(BundleKeys.DOCTOR_ID, 0)
     }
 
     override fun initUI() {
         setupToolbar(binding.toolbarDetail.toolbar, true, getString(R.string.title_doctor_profile))
 
-        doctor?.let {
-            doctorViewModel.getDetailDoctor(it.id)
+        doctorId?.let {
+            doctorViewModel.getDetailDoctor(it)
         }
     }
 
