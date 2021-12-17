@@ -54,7 +54,9 @@ class ArticleDetailActivity : BaseActivity<ActivityDetailArticleBinding>() {
     }
 
     override fun initAction() {
-
+        binding.ivBack.setOnClickListener {
+            onBackPressed()
+        }
     }
 
     override fun initProcess() {
@@ -68,14 +70,8 @@ class ArticleDetailActivity : BaseActivity<ActivityDetailArticleBinding>() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             android.R.id.home -> onBackPressed()
-            R.id.menu_share -> showToast(this, "Share article")
         }
         return true
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        menuInflater.inflate(R.menu.share_menu, menu)
-        return super.onCreateOptionsMenu(menu)
     }
 
 }

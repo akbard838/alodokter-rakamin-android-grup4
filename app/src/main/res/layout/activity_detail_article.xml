@@ -38,6 +38,16 @@
                 app:layout_collapseMode="pin"
                 app:popupTheme="@style/ThemeOverlay.MaterialComponents.Light" />
 
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/iv_back"
+                android:layout_width="@dimen/dimen_42dp"
+                android:layout_height="@dimen/dimen_42dp"
+                android:background="@drawable/bg_circle_green"
+                android:src="@drawable/ic_back_white"
+                android:layout_margin="@dimen/dimen_8dp"
+                android:padding="@dimen/dimen_8dp"
+                app:layout_collapseMode="pin"/>
+
         </com.google.android.material.appbar.CollapsingToolbarLayout>
     </com.google.android.material.appbar.AppBarLayout>
 
