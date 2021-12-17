@@ -20,6 +20,7 @@
     <dimen name="dimen_minus_24dp">-24dp</dimen>
     <dimen name="dimen_32dp">32dp</dimen>
     <dimen name="dimen_42dp">42dp</dimen>
+    <dimen name="dimen_40dp">40dp</dimen>
     <dimen name="dimen_64dp">64dp</dimen>
     <dimen name="dimen_18dp">18dp</dimen>
     <dimen name="dimen_320dp">320dp</dimen>

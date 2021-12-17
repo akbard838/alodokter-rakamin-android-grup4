@@ -16,11 +16,14 @@
         android:id="@+id/toolbarMain"
         layout="@layout/layout_toolbar" />
 
-    <androidx.appcompat.widget.AppCompatImageView
+
+    <androidx.appcompat.widget.AppCompatTextView
+        style="@style/AndroidAppText.Bold.White"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/dimen_42dp"
-        android:src="@drawable/ic_alodokter_logo"
+        android:layout_marginBottom="@dimen/dimen_32dp"
+        android:text="@string/app_name"
+        android:textSize="@dimen/text_size_40sp"
         app:layout_constraintBottom_toTopOf="@id/mcvLogin"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

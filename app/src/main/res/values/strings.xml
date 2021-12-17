@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Alodokter</string>
+    <string name="app_name">Hi!Dokter</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="hint_email">Email</string>
     <string name="hint_password">Password</string>
@@ -21,7 +21,7 @@
     <string name="message_error_old_password">Password lama tidak sesuai</string>
     <string name="message_reset_password_success">Kami telah mengirim pesan ke email %s. Silahkan pesan kotak masuk pada email anda untuk melakukan reset password</string>
     <string name="message_error_empty_field">Form tidak boleh kosong</string>
-    <string name="title_activity_home">Alodokter</string>
+    <string name="title_activity_home">Hi!Dokter</string>
     <string name="title_article">Article</string>
     <string name="title_doctor">Doctor</string>
     <string name="title_profile">Profile</string>
@@ -55,14 +55,14 @@
     <string name="button_skip">Lewati</string>
     <string name="button_next">Selanjutnya</string>
     <string name="label_start">Mulai</string>
-    <string name="title_on_boarding_1">Selamat Datang Di Alodokter</string>
+    <string name="title_on_boarding_1">Selamat Datang Di Hi!Dokter</string>
     <string name="title_on_boarding_2">Artikel Kesehatan</string>
     <string name="title_on_boarding_3">Siap Untuk Berkonsultasi</string>
     <string name="message_on_boarding_3">Lebih dari 20 ribu dokter siap berkonsultasi denganmu</string>
     <string name="message_on_boarding_2"><![CDATA[Panduan kesehatan terlengkap mulai dari artikel & tips kesehatan]]></string>
     <string name="message_on_boarding_1"><![CDATA[Konsultasi bersama dokter umum & spesialis, kapan pun, di mana pun]]></string>
 
-    <string name="sample_detail_desc">ALODOKTER adalah platform kesehatan digital nomor satu di Indonesia dengan lebih dari 26 juta pengguna aktif setiap bulannya, serta lebih dari 30 ribu dokter yang bergabung. Sejak tahun 2014, ALODOKTER telah unggul dalam menyediakan informasi kesehatan yang akurat, mudah dipahami, dan dapat diakses oleh siapa saja, kapan saja, dan di mana saja. Semua informasi kesehatan yang tersedia di ALODOKTER disusun dalam bahasa Indonesia yang mudah dimengerti dan ditinjau oleh tim dokter yang kompeten.</string>
+    <string name="sample_detail_desc">Hi!Dokter adalah platform kesehatan digital nomor satu di Indonesia dengan lebih dari 26 juta pengguna aktif setiap bulannya, serta lebih dari 30 ribu dokter yang bergabung. Sejak tahun 2014, Hi!Dokter telah unggul dalam menyediakan informasi kesehatan yang akurat, mudah dipahami, dan dapat diakses oleh siapa saja, kapan saja, dan di mana saja. Semua informasi kesehatan yang tersedia di Hi!Dokter disusun dalam bahasa Indonesia yang mudah dimengerti dan ditinjau oleh tim dokter yang kompeten.</string>
 
     <string name="label_location">Lokasi</string>
     <string name="label_schedule">Jadwal Praktik</string>
