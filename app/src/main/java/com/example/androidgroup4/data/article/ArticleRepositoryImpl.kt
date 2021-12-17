@@ -16,4 +16,8 @@ class ArticleRepositoryImpl @Inject constructor(private val articleData: Article
         return articleData.getSearchArticles(title)
     }
 
+    override suspend fun getDetailArticle(id: Int): Resource<Article?> {
+        return articleData.getDetailArticle(id)
+    }
+
 }
