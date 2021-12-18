@@ -33,6 +33,6 @@
         android:id="@+id/detailArticleActivity"
         android:name="com.example.androidgroup4.ui.article.ArticleDetailActivity"
         android:label="activity_detail_article"
-        tools:layout="@layout/activity_detail_article" />
+        tools:layout="@layout/activity_article_detail" />
 
 </navigation>
