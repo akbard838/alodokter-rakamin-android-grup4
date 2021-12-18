@@ -11,7 +11,9 @@ import retrofit2.http.Query
 interface DoctorApiService {
 
     @GET("doctors")
-    suspend fun getDoctors() : Response<BaseApiResponse<List<DoctorResponse>>>
+    suspend fun getDoctors(
+        @Query("page") page: Int
+    ) : Response<BaseApiResponse<List<DoctorResponse>>>
 
     @GET("doctors/search")
     suspend fun getSearchDoctors(

@@ -5,7 +5,7 @@ import com.example.androidgroup4.utils.Resource
 
 interface DoctorRepository {
 
-    suspend fun getDoctors(): Resource<List<Doctor>>
+    suspend fun getDoctors(page: Int): Resource<List<Doctor>>
     suspend fun getSearchDoctors(fullName: String): Resource<List<Doctor>>
     suspend fun getDetailDoctor(id: Int): Resource<Doctor?>
 

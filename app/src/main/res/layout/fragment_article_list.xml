@@ -80,7 +80,16 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     tools:text="@string/sample_title_article" />
 
-                <EditText
+                <androidx.appcompat.widget.Toolbar
+                    android:id="@+id/toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dimen_86dp"
+                    android:background="@drawable/bg_rectangle_rounded_bottom"
+                    android:paddingTop="@dimen/dimen_10dp"
+                    app:layout_collapseMode="pin"
+                    app:popupTheme="@style/ThemeOverlay.MaterialComponents.Light" />
+
+                <androidx.appcompat.widget.AppCompatEditText
                     android:id="@+id/edt_search_article"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -88,9 +97,6 @@
                     android:layout_marginTop="@dimen/dimen_20dp"
                     android:layout_marginEnd="@dimen/dimen_90dp"
                     android:background="@drawable/bg_rectangle_white_rounded"
-                    android:drawableEnd="?android:attr/actionModeWebSearchDrawable"
-                    android:drawableTint="@color/colorSecondary"
-                    android:elevation="@dimen/dimen_20dp"
                     android:ems="10"
                     android:hint="@string/hint_search_article"
                     android:imeOptions="actionSearch"
@@ -103,14 +109,17 @@
                     android:textSize="@dimen/text_size_14sp"
                     app:layout_collapseMode="pin" />
 
-                <androidx.appcompat.widget.Toolbar
-                    android:id="@+id/toolbar"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/dimen_86dp"
-                    android:background="@drawable/bg_rectangle_rounded_bottom"
-                    android:paddingTop="@dimen/dimen_10dp"
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/iv_search"
+                    android:layout_width="@dimen/dimen_32dp"
+                    android:layout_height="@dimen/dimen_32dp"
+                    android:layout_gravity="end"
+                    android:layout_marginTop="@dimen/dimen_22dp"
+                    android:layout_marginEnd="94dp"
                     app:layout_collapseMode="pin"
-                    app:popupTheme="@style/ThemeOverlay.MaterialComponents.Light" />
+                    android:background="@color/colorTransparent"
+                    android:padding="@dimen/dimen_8dp"
+                    android:src="@drawable/ic_search" />
 
             </com.google.android.material.appbar.CollapsingToolbarLayout>
 
@@ -149,6 +158,6 @@
 
     <include
         android:id="@+id/layout_error"
-        layout="@layout/layout_error"/>
+        layout="@layout/layout_error" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
