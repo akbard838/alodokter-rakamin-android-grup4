@@ -33,7 +33,7 @@
             android:layout_width="@dimen/dimen_110dp"
             android:layout_height="@dimen/dimen_110dp"
             android:layout_marginTop="@dimen/dimen_16dp"
-            android:contentDescription="@string/desc_profile_image"
+            android:contentDescription="@string/cd_profile_image"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"

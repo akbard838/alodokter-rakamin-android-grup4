@@ -27,7 +27,7 @@
         <item name="android:textAllCaps">true</item>
     </style>
 
-    <style name="roundedImageButton" parent="">
+    <style name="RoundedImageButton" parent="">
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">@dimen/dimen_12dp</item>
     </style>

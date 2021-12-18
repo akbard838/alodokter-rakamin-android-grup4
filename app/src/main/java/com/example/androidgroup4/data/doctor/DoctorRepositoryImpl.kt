@@ -8,8 +8,8 @@ import javax.inject.Inject
 class DoctorRepositoryImpl @Inject constructor(private val doctorData: DoctorDataSource) :
     DoctorRepository {
 
-    override suspend fun getDoctors(): Resource<List<Doctor>> {
-        return doctorData.getDoctors()
+    override suspend fun getDoctors(page: Int): Resource<List<Doctor>> {
+        return doctorData.getDoctors(page)
     }
 
     override suspend fun getSearchDoctors(fullName: String): Resource<List<Doctor>> {

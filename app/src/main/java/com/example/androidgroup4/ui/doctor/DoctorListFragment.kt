@@ -9,10 +9,14 @@ import android.widget.Toast
 import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import androidx.viewbinding.ViewBinding
 import com.example.androidgroup4.base.BaseFragment
+import com.example.androidgroup4.data.model.Article
 import com.example.androidgroup4.data.model.Doctor
 import com.example.androidgroup4.databinding.FragmentDoctorListBinding
+import com.example.androidgroup4.ui.adapter.ArticleAdapter
 import com.example.androidgroup4.ui.adapter.DoctorAdapter
 import com.example.androidgroup4.ui.auth.LoginActivity
 import com.example.androidgroup4.ui.main.MainActivity
@@ -28,15 +32,44 @@ class DoctorListFragment : BaseFragment<FragmentDoctorListBinding>() {
 
     private val doctorViewModel: DoctorViewModel by viewModels()
 
+    private lateinit var layoutManager: LinearLayoutManager
+
+    private var doctors: ArrayList<Doctor> = arrayListOf()
+
+    private var isLoading = false
+
+    private var isDefault = true
+
+    private var page = 1
+
+    private var isLast = false
+
     override val bindingInflater: (LayoutInflater, ViewGroup?, Boolean) -> ViewBinding =
         FragmentDoctorListBinding::inflate
 
-    override fun initIntent() = Unit
+    override fun initIntent() {
+
+    }
 
     override fun initUI() {
-        getDoctors()
         showLoggedInStateView()
         initRecyclerView()
+        getDoctors()
+
+        binding.rvDoctor.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                val visibleItemCount = layoutManager.childCount
+                val pastVisibleItem = layoutManager.findFirstVisibleItemPosition()
+                val total = doctorAdapter.itemCount
+                if (!isLoading && !isLast) {
+                    if (visibleItemCount + pastVisibleItem >= total) {
+                        page++
+                        getDoctors()
+                    }
+                }
+                super.onScrolled(recyclerView, dx, dy)
+            }
+        })
     }
 
     override fun initAction() {
@@ -47,7 +80,7 @@ class DoctorListFragment : BaseFragment<FragmentDoctorListBinding>() {
         binding.apply {
             edtSearchDoctor.setOnEditorActionListener(OnEditorActionListener { v, actionId, event ->
                 if (actionId == EditorInfo.IME_ACTION_SEARCH) {
-                    doctorViewModel.getSearchDoctors(edtSearchDoctor.text.toString())
+                    getSearchDoctors()
                     hideSoftKeyboard(requireContext(), binding.edtSearchDoctor)
                     return@OnEditorActionListener true
                 }
@@ -55,16 +88,14 @@ class DoctorListFragment : BaseFragment<FragmentDoctorListBinding>() {
             })
 
             fabSearch.setOnClickListener {
-                doctorViewModel.getSearchDoctors(edtSearchDoctor.text.toString())
+                getSearchDoctors()
                 activity?.window?.setSoftInputMode(
                     WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN
                 )
             }
 
             edtSearchDoctor.doAfterTextChanged {
-                if (binding.edtSearchDoctor.text.toString().isEmpty()) {
-                    getDoctors()
-                }
+                if (binding.edtSearchDoctor.text.toString().isEmpty()) loadDefaultData()
             }
 
             layoutNotLoggedIn.btnLogin.setOnClickListener {
@@ -79,21 +110,32 @@ class DoctorListFragment : BaseFragment<FragmentDoctorListBinding>() {
         }
     }
 
-    override fun initProcess() = Unit
+    override fun initProcess() {
+
+    }
 
     override fun initObservable() {
         doctorViewModel.doctors.observe(this) {
             when (it) {
                 is Resource.Loading -> {
-                    showLoading()
+                    isLoading = true
+                    binding.pbDoctors.visible()
                 }
                 is Resource.Success -> {
-                    hideLoading()
-                    doctorAdapter.setData(it.data)
-                    checkIsDataEmpty(it.data)
+                    doctors.addAll(it.data)
+                    doctorAdapter.setData(doctors)
+                    checkIsDataEmpty(doctors)
+
+                    if (it.data.isEmpty()) {
+                        binding.pbDoctors.gone()
+                        isLast = true
+                    } else binding.pbDoctors.invisible()
+
+                    isLoading = false
                 }
                 is Resource.Error -> {
-                    hideLoading()
+                    isLoading = false
+                    binding.pbDoctors.gone()
                     binding.layoutError.layoutError.visible()
                     binding.fabSearch.gone()
                     Toast.makeText(requireContext(), it.apiError.message, Toast.LENGTH_SHORT).show()
@@ -105,15 +147,18 @@ class DoctorListFragment : BaseFragment<FragmentDoctorListBinding>() {
         doctorViewModel.searchDoctors.observe(this) {
             when (it) {
                 is Resource.Loading -> {
-                    showLoading()
+                    binding.pbDoctors.visible()
                 }
                 is Resource.Success -> {
-                    doctorAdapter.setData(it.data)
-                    checkIsDataEmpty(it.data)
-                    hideLoading()
+                    binding.pbDoctors.gone()
+                    isLast = true
+                    doctors.clear()
+                    doctors.addAll(it.data)
+                    doctorAdapter.setData(doctors)
+                    checkIsDataEmpty(doctors)
                 }
                 is Resource.Error -> {
-                    hideLoading()
+                    binding.pbDoctors.gone()
                     binding.layoutError.layoutError.visible()
                     binding.fabSearch.gone()
                     showToast(requireContext(), it.apiError.message)
@@ -123,14 +168,18 @@ class DoctorListFragment : BaseFragment<FragmentDoctorListBinding>() {
         }
     }
 
-    override fun showLoading() {
-        binding.rvDoctor.gone()
-        binding.pbDoctors.visible()
+    private fun getSearchDoctors() {
+        if (binding.edtSearchDoctor.text.toString() == emptyString()) loadDefaultData()
+        else doctorViewModel.getSearchDoctors(binding.edtSearchDoctor.text.toString())
     }
 
-    override fun hideLoading() {
-        binding.rvDoctor.visible()
-        binding.pbDoctors.gone()
+    private fun loadDefaultData() {
+        doctors.clear()
+        doctorAdapter.setData(doctors)
+        page = 1
+        isDefault = true
+        isLast = false
+        getDoctors()
     }
 
     private fun showLoggedInStateView() {
@@ -146,17 +195,15 @@ class DoctorListFragment : BaseFragment<FragmentDoctorListBinding>() {
     }
 
     private fun initRecyclerView() {
+        layoutManager = LinearLayoutManager(requireContext())
         doctorAdapter = DoctorAdapter(requireContext())
-
-        binding.apply {
-            rvDoctor.setHasFixedSize(true)
-            rvDoctor.layoutManager = LinearLayoutManager(requireContext())
-            rvDoctor.adapter = doctorAdapter
-        }
+        binding.rvDoctor.setHasFixedSize(true)
+        binding.rvDoctor.layoutManager = layoutManager
+        binding.rvDoctor.adapter = doctorAdapter
     }
 
     private fun getDoctors() {
-        if (MainActivity.getUserLoggedInStatus(requireContext())) doctorViewModel.getDoctors()
+        if (MainActivity.getUserLoggedInStatus(requireContext())) doctorViewModel.getDoctors(page)
     }
 
     private fun checkIsDataEmpty(doctors: List<Doctor>) {
@@ -170,4 +217,5 @@ class DoctorListFragment : BaseFragment<FragmentDoctorListBinding>() {
             }
         }
     }
+
 }

@@ -12,9 +12,9 @@ import javax.inject.Inject
 
 class DoctorDataSource @Inject constructor(private val doctorApiService: DoctorApiService) {
 
-    suspend fun getDoctors(): Resource<List<Doctor>> {
+    suspend fun getDoctors(page: Int): Resource<List<Doctor>> {
         return try {
-            val response = doctorApiService.getDoctors()
+            val response = doctorApiService.getDoctors(page)
             if (response.isSuccessful) {
                 val body = response.body()
                 body?.let {

@@ -11,7 +11,7 @@ data class DoctorResponse(
 	val specialist: String?,
 	val profile: String?,
 	val fullname: String?,
-	val practiceLocation: String?
+	val PracticeLocation: String?
 ) {
 	fun toDoctor(): Doctor {
 		return Doctor(
@@ -19,7 +19,7 @@ data class DoctorResponse(
 			imageUrl = avatar_url ?: emptyString(),
 			name = fullname ?: emptyString(),
 			specialist = specialist ?: emptyString(),
-			yoe = (0..10).random(),
+			yoe = PracticeLocation?.toInt() ?: 0,
 			profile = profile?: emptyString(),
 			location = Location(
 				imageUrl = "https://www.beaconhospital.co.id/wp-content/uploads/2020/03/Beacon-Hospital-New.jpg",

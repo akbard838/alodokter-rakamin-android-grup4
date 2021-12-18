@@ -10,6 +10,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import androidx.viewbinding.ViewBinding
 import com.example.androidgroup4.R
 import com.example.androidgroup4.base.BaseFragment
@@ -53,12 +54,7 @@ class ArticleListFragment : BaseFragment<FragmentArticleListBinding>() {
         (activity as AppCompatActivity?)?.setSupportActionBar(binding.toolbar)
         (activity as AppCompatActivity?)?.supportActionBar?.title = emptyString()
 
-        layoutManager = LinearLayoutManager(requireContext())
-        articleAdapter = ArticleAdapter()
-        binding.rvArticle.setHasFixedSize(true)
-        binding.rvArticle.layoutManager = layoutManager
-        binding.rvArticle.adapter = articleAdapter
-
+        initRecyclerView()
         getArticles()
 
         binding.rvArticle.addOnScrollListener(object : RecyclerView.OnScrollListener() {
@@ -97,17 +93,22 @@ class ArticleListFragment : BaseFragment<FragmentArticleListBinding>() {
                 false
             })
 
-            edtSearchArticle.setOnTouchListener { v, event ->
-                if (event.action == MotionEvent.ACTION_DOWN) {
-                    v.performClick()
-                    view?.clearFocus()
-                    hideSoftKeyboard(requireContext(), edtSearchArticle)
-                    if (event.rawX >= edtSearchArticle.right - edtSearchArticle.compoundDrawables[2].bounds.width()) {
-                        getSearchArticles()
-                        true
-                    } else false
-                } else false
+            ivSearch.setOnClickListener {
+                getSearchArticles()
+                hideSoftKeyboard(requireContext(), binding.edtSearchArticle)
             }
+
+//            edtSearchArticle.setOnTouchListener { v, event ->
+//                if (event.action == MotionEvent.ACTION_DOWN) {
+//                    v.performClick()
+//                    view?.clearFocus()
+//                    hideSoftKeyboard(requireContext(), edtSearchArticle)
+//                    if (event.rawX >= edtSearchArticle.right - edtSearchArticle.compoundDrawables[2].bounds.width()) {
+//                        getSearchArticles()
+//                        true
+//                    } else false
+//                } else false
+//            }
 
             edtSearchArticle.doAfterTextChanged {
                 if (edtSearchArticle.text.toString().isEmpty()) loadDefaultData()
@@ -260,6 +261,14 @@ class ArticleListFragment : BaseFragment<FragmentArticleListBinding>() {
                 setHero()
             }
         }
+    }
+
+    private fun initRecyclerView() {
+        layoutManager = LinearLayoutManager(requireContext())
+        articleAdapter = ArticleAdapter()
+        binding.rvArticle.setHasFixedSize(true)
+        binding.rvArticle.layoutManager = layoutManager
+        binding.rvArticle.adapter = articleAdapter
     }
 
 }

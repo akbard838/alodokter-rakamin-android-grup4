@@ -17,25 +17,44 @@
         android:layout_height="match_parent"
         android:background="@drawable/bg_rectangle_rounded_top">
 
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/img_doctor"
-            android:layout_width="@dimen/dimen_80dp"
-            android:layout_height="@dimen/dimen_80dp"
-            android:layout_marginStart="@dimen/dimen_22dp"
-            android:scaleType="centerCrop"
-            tools:src="@drawable/img_doctor"
-            app:layout_constraintBottom_toBottomOf="@id/img_distance"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@id/tv_doctor_name" />
-
-        <ProgressBar
-            android:id="@+id/pb_doctor"
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/mcv_doctor"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="@id/img_doctor"
-            app:layout_constraintEnd_toEndOf="@id/img_doctor"
-            app:layout_constraintStart_toStartOf="@id/img_doctor"
-            app:layout_constraintTop_toTopOf="@id/img_doctor" />
+            android:layout_marginStart="@dimen/dimen_22dp"
+            app:cardCornerRadius="@dimen/dimen_40dp"
+            app:layout_constraintBottom_toBottomOf="@id/img_distance"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tv_doctor_name">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/img_doctor"
+                android:layout_width="@dimen/dimen_80dp"
+                android:layout_height="@dimen/dimen_80dp"
+                android:scaleType="fitCenter"
+                android:scaleX="1.7"
+                android:scaleY="1.7"
+                android:scrollY="-12dp"
+                android:src="@drawable/img_doctor" />
+
+            <ProgressBar
+                android:id="@+id/pb_doctor"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"/>
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <!--        <de.hdodenhof.circleimageview.CircleImageView-->
+        <!--            android:id="@+id/img_doctor"-->
+        <!--            android:layout_width="@dimen/dimen_80dp"-->
+        <!--            android:layout_height="@dimen/dimen_80dp"-->
+        <!--            android:layout_marginStart="@dimen/dimen_22dp"-->
+        <!--            android:scaleType="centerCrop"-->
+        <!--            tools:src="@drawable/img_doctor"-->
+        <!--            app:layout_constraintBottom_toBottomOf="@id/img_distance"-->
+        <!--            app:layout_constraintStart_toStartOf="parent"-->
+        <!--            app:layout_constraintTop_toTopOf="@id/tv_doctor_name"/>-->
 
         <TextView
             android:id="@+id/tv_doctor_name"
@@ -46,7 +65,7 @@
             android:layout_marginEnd="@dimen/dimen_16dp"
             android:textSize="@dimen/text_size_14sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/img_doctor"
+            app:layout_constraintStart_toEndOf="@id/mcv_doctor"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="@string/sample_doctor_name" />
 
@@ -56,7 +75,7 @@
             android:layout_marginStart="@dimen/dimen_12dp"
             android:layout_marginTop="@dimen/dimen_6dp"
             android:textSize="@dimen/text_size_12sp"
-            app:layout_constraintStart_toEndOf="@id/img_doctor"
+            app:layout_constraintStart_toEndOf="@id/mcv_doctor"
             app:layout_constraintTop_toBottomOf="@id/tv_doctor_name"
             tools:text="@string/sample_doctor_specialist" />
 
@@ -227,7 +246,7 @@
 
         <include
             android:id="@+id/layout_error"
-            layout="@layout/layout_error"/>
+            layout="@layout/layout_error" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

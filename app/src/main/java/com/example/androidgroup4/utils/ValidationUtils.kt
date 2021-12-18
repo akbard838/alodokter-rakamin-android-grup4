@@ -25,7 +25,10 @@ fun TextInputLayout.validateNonEmpty() {
 fun TextInputLayout.validatePassword() {
     if (this.editText?.text.toString().isEmpty()) {
         this.validateNonEmpty()
-    } else {
+    } else if (this.editText?.text.toString().length < 8) {
+        this.validateMinLength(8)
+    }
+    else {
         if (this.editText?.text.toString()
                 .validator()
                 .atleastOneNumber()

@@ -48,7 +48,6 @@ class RegisterActivity : BaseActivity<ActivityRegisterBinding>() {
                 tilFullName.validateNonEmpty()
                 tilEmail.validateEmail()
                 tilPassword.validatePassword()
-                tilPassword.validateMinLength(8)
                 tilConfirmPassword.validateConfirmPassword(edtPassword.text.toString())
 
                 isFormValid(listOf(tilFullName, tilEmail, tilPassword, tilConfirmPassword)) {

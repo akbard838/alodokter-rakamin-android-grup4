@@ -30,10 +30,10 @@ class DoctorViewModel @Inject constructor(
         _doctors.value = Resource.init()
     }
 
-    fun getDoctors() {
+    fun getDoctors(page: Int) {
         viewModelScope.launch {
             _doctors.value = Resource.loading()
-            val data = doctorRepository.getDoctors()
+            val data = doctorRepository.getDoctors(page)
             _doctors.value = data
         }
     }

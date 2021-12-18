@@ -68,7 +68,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
             exitToast.cancel()
             super.onBackPressed()
         } else {
-            if (binding.navView.selectedItemId != 2131362167) super.onBackPressed()
+            if (binding.navView.selectedItemId != R.id.navigation_home) super.onBackPressed()
             else {
                 exitToast = Toast.makeText(this, getString(R.string.message_tap_more_to_exit), Toast.LENGTH_LONG)
                 exitToast.show()
