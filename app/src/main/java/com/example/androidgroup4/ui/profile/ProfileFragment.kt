@@ -1,8 +1,10 @@
 package com.example.androidgroup4.ui.profile
 
+import android.app.AlertDialog
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.viewbinding.ViewBinding
+import com.example.androidgroup4.R
 import com.example.androidgroup4.base.BaseFragment
 import com.example.androidgroup4.data.model.User
 import com.example.androidgroup4.databinding.FragmentProfileBinding
@@ -42,10 +44,18 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
             }
 
             btnLogout.setOnClickListener {
-                getAppPreferenceEditor(requireContext()).remove(PreferenceKeys.USER).apply()
-                getAppPreferenceEditor(requireContext()).putBoolean(IS_LOGIN, false).apply()
-                MainActivity.start(requireContext())
-                activity?.finish()
+                val builder = AlertDialog.Builder(requireContext())
+                builder.setTitle(getString(R.string.title_logout))
+                builder.setMessage(getString(R.string.message_logout))
+                builder.setPositiveButton(getString(R.string.label_ya)) { _,_ ->
+                    getAppPreferenceEditor(requireContext()).remove(PreferenceKeys.USER).apply()
+                    getAppPreferenceEditor(requireContext()).putBoolean(IS_LOGIN, false).apply()
+                    MainActivity.start(requireContext())
+                    activity?.finish()
+                }
+                builder.setNegativeButton(getString(R.string.label_tidak)) { dialog,_ -> dialog.cancel()}
+                val alert = builder.create()
+                alert.show()
             }
 
             layoutNotLoggedIn.btnLogin.setOnClickListener {
