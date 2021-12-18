@@ -69,6 +69,8 @@
     <string name="label_register_now">Daftar Sekarang</string>
     <string name="label_schedule">Jadwal Praktik</string>
     <string name="label_start">Mulai</string>
+    <string name="label_ya">Ya</string>
+    <string name="label_tidak">Tidak</string>
 
     <!-- Message -->
     <string name="message_change_password_success">Password berhasil diubah</string>
@@ -95,6 +97,7 @@
     <string name="message_reset_password_success">Kami telah mengirim pesan ke email %s. Silahkan pesan kotak masuk pada email anda untuk melakukan reset password</string>
     <string name="message_tap_more_to_exit">Ketuk sekali lagi untuk keluar</string>
     <string name="message_we_will_send_email">Kami akan mengirimkan sebuah pesan melalui email anda terkait instruksi untuk reset password</string>
+    <string name="message_logout">Apakah anda yakin ingin keluar dari akun anda ?</string>
 
     <!-- Title -->
     <string name="title_activity_home">Hi!Dokter</string>
@@ -114,5 +117,7 @@
     <string name="title_profile">Profile</string>
     <string name="title_register_success">Pendaftaran Berhasil</string>
     <string name="title_reset_password_success">Email Telah Terkirim</string>
+    <string name="title_logout">Logout</string>
+
 
 </resources>
