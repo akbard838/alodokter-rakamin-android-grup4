@@ -8,14 +8,14 @@ import androidx.activity.viewModels
 import androidx.viewbinding.ViewBinding
 import com.example.androidgroup4.R
 import com.example.androidgroup4.base.BaseActivity
-import com.example.androidgroup4.databinding.ActivityDetailArticleBinding
+import com.example.androidgroup4.databinding.ActivityArticleDetailBinding
 import com.example.androidgroup4.ui.viewmodel.ArticleViewModel
 import com.example.androidgroup4.utils.*
 import com.example.androidgroup4.utils.constant.BundleKeys
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class ArticleDetailActivity : BaseActivity<ActivityDetailArticleBinding>() {
+class ArticleDetailActivity : BaseActivity<ActivityArticleDetailBinding>() {
 
     companion object {
         fun start(context: Context, articleId: Int) {
@@ -31,7 +31,7 @@ class ArticleDetailActivity : BaseActivity<ActivityDetailArticleBinding>() {
     private var articleId: Int? = null
 
     override val bindingInflater: (LayoutInflater) -> ViewBinding =
-        ActivityDetailArticleBinding::inflate
+        ActivityArticleDetailBinding::inflate
 
     override fun initIntent() {
         articleId = intent.getIntExtra(BundleKeys.ARTICLE_ID, 0)
