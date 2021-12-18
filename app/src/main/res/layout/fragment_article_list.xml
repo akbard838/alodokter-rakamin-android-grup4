@@ -44,7 +44,7 @@
                     android:background="@color/colorTransparent"
                     android:scaleType="centerCrop"
                     app:layout_collapseMode="parallax"
-                    app:shapeAppearanceOverlay="@style/roundedImageButton"
+                    app:shapeAppearanceOverlay="@style/RoundedImageButton"
                     tools:src="@drawable/img_hospital" />
 
                 <ProgressBar
@@ -62,7 +62,7 @@
                     android:layout_marginStart="@dimen/dimen_12dp"
                     android:layout_marginEnd="@dimen/dimen_12dp"
                     app:layout_collapseMode="parallax"
-                    app:shapeAppearanceOverlay="@style/roundedImageButton"
+                    app:shapeAppearanceOverlay="@style/RoundedImageButton"
                     app:srcCompat="@drawable/bg_gradient_black" />
 
                 <androidx.appcompat.widget.AppCompatTextView
