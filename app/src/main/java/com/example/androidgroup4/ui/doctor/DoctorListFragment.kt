@@ -47,7 +47,7 @@ class DoctorListFragment : BaseFragment<FragmentDoctorListBinding>() {
         binding.apply {
             edtSearchDoctor.setOnEditorActionListener(OnEditorActionListener { v, actionId, event ->
                 if (actionId == EditorInfo.IME_ACTION_SEARCH) {
-                    doctorViewModel.getSearchDoctors(edtSearchDoctor.text.toString())
+                    getSearchDoctors()
                     hideSoftKeyboard(requireContext(), binding.edtSearchDoctor)
                     return@OnEditorActionListener true
                 }
@@ -55,7 +55,7 @@ class DoctorListFragment : BaseFragment<FragmentDoctorListBinding>() {
             })
 
             fabSearch.setOnClickListener {
-                doctorViewModel.getSearchDoctors(edtSearchDoctor.text.toString())
+                getSearchDoctors()
                 activity?.window?.setSoftInputMode(
                     WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN
                 )
@@ -131,6 +131,11 @@ class DoctorListFragment : BaseFragment<FragmentDoctorListBinding>() {
     override fun hideLoading() {
         binding.rvDoctor.visible()
         binding.pbDoctors.gone()
+    }
+
+    private fun getSearchDoctors(){
+        if (binding.edtSearchDoctor.text.toString() == emptyString()) doctorViewModel.getDoctors()
+        else doctorViewModel.getSearchDoctors(binding.edtSearchDoctor.text.toString())
     }
 
     private fun showLoggedInStateView() {
